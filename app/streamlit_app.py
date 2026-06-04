@@ -14,7 +14,7 @@ UNIFIED_DATA_DIR = PROJECT_ROOT / "data" / "processed" / "unified"
 DATAFRAME_KWARGS = {"width": "stretch", "hide_index": True}
 
 
-def read_csv_if_exists(path: Path) -> pd.DataFrame:
+def load_csv(path: Path) -> pd.DataFrame:
     if not path.exists():
         return pd.DataFrame()
     return pd.read_csv(path)
@@ -22,74 +22,61 @@ def read_csv_if_exists(path: Path) -> pd.DataFrame:
 
 @st.cache_data
 def load_data():
-    methodologies = read_csv_if_exists(DATA_DIR / "methodologies.csv")
-    projects = read_csv_if_exists(DATA_DIR / "projects_mongolia.csv")
-    issuance = read_csv_if_exists(DATA_DIR / "issuance_records.csv")
-    rules = read_csv_if_exists(DATA_DIR / "rules_forms.csv")
-    source_inventory = read_csv_if_exists(GLOBAL_DATA_DIR / "source_inventory.csv")
-    gs_projects = read_csv_if_exists(GOLD_STANDARD_DATA_DIR / "gs_projects.csv")
-    puro_projects = read_csv_if_exists(PURO_EARTH_DATA_DIR / "puro_projects_all.csv")
-    puro_issuances = read_csv_if_exists(PURO_EARTH_DATA_DIR / "puro_issuances_all.csv")
-    unified_projects = read_csv_if_exists(UNIFIED_DATA_DIR / "projects.csv")
-    unified_issuances = read_csv_if_exists(UNIFIED_DATA_DIR / "issuances.csv")
-
-    return (
-        methodologies,
-        projects,
-        issuance,
-        rules,
-        source_inventory,
-        gs_projects,
-        puro_projects,
-        puro_issuances,
-        unified_projects,
-        unified_issuances,
-    )
+    return {
+        "methodologies": load_csv(DATA_DIR / "methodologies.csv"),
+        "jcm_projects": load_csv(DATA_DIR / "projects_mongolia.csv"),
+        "jcm_issuance": load_csv(DATA_DIR / "issuance_records.csv"),
+        "rules": load_csv(DATA_DIR / "rules_forms.csv"),
+        "source_inventory": load_csv(GLOBAL_DATA_DIR / "source_inventory.csv"),
+        "gs_projects": load_csv(GOLD_STANDARD_DATA_DIR / "gs_projects.csv"),
+        "puro_projects": load_csv(PURO_EARTH_DATA_DIR / "puro_projects_all.csv"),
+        "puro_issuances": load_csv(PURO_EARTH_DATA_DIR / "puro_issuances_all.csv"),
+        "unified_projects": load_csv(UNIFIED_DATA_DIR / "projects.csv"),
+        "unified_issuances": load_csv(UNIFIED_DATA_DIR / "issuances.csv"),
+    }
 
 
-def clean_methodology_code(value):
-    if pd.isna(value):
-        return ""
+def safe_count_unique(df: pd.DataFrame, column: str) -> int:
+    if df.empty or column not in df.columns:
+        return 0
+    return int(df[column].replace("", pd.NA).dropna().nunique())
 
-    text = str(value)
-    for part in text.split():
-        if part.startswith("MN_AM"):
-            return part
-    return text
+
+def numeric_series(df: pd.DataFrame, column: str) -> pd.Series:
+    if df.empty or column not in df.columns:
+        return pd.Series(dtype="float64")
+    return pd.to_numeric(df[column], errors="coerce")
 
 
 def clean_unified_projects(df: pd.DataFrame) -> pd.DataFrame:
     if df.empty:
-        return df
+        return df.copy()
 
     cleaned = df.fillna("").copy()
     if "estimated_annual_credits" in cleaned.columns:
-        cleaned["estimated_annual_credits"] = pd.to_numeric(
-            cleaned["estimated_annual_credits"],
-            errors="coerce",
+        cleaned["estimated_annual_credits"] = numeric_series(
+            cleaned,
+            "estimated_annual_credits",
         )
     return cleaned
 
 
 def clean_unified_issuances(df: pd.DataFrame) -> pd.DataFrame:
     if df.empty:
-        return df
+        return df.copy()
 
     cleaned = df.fillna("").copy()
     if "issued_quantity" in cleaned.columns:
-        cleaned["issued_quantity"] = pd.to_numeric(
-            cleaned["issued_quantity"],
-            errors="coerce",
-        )
+        cleaned["issued_quantity"] = numeric_series(cleaned, "issued_quantity")
     return cleaned
 
 
 def clean_numeric_column(df: pd.DataFrame, column: str) -> pd.DataFrame:
     if df.empty or column not in df.columns:
-        return df
+        return df.copy()
 
-    cleaned = df.copy()
-    cleaned[column] = pd.to_numeric(cleaned[column], errors="coerce")
+    cleaned = df.fillna("").copy()
+    cleaned[column] = numeric_series(cleaned, column)
     return cleaned
 
 
@@ -114,19 +101,29 @@ def missing_values(df: pd.DataFrame) -> pd.DataFrame:
     )
 
 
+def apply_optional_multiselect_filter(
+    df: pd.DataFrame,
+    column: str,
+    selected_values: list,
+) -> pd.DataFrame:
+    if df.empty or column not in df.columns or not selected_values:
+        return df
+    return df[df[column].isin(selected_values)].copy()
+
+
 def apply_text_search(
     df: pd.DataFrame,
-    search_text: str,
     columns: list[str],
+    query: str,
 ) -> pd.DataFrame:
-    if df.empty or not search_text.strip():
+    if df.empty or not query.strip():
         return df
 
     searchable_columns = [column for column in columns if column in df.columns]
     if not searchable_columns:
         return df
 
-    search = search_text.strip().lower()
+    search = query.strip().lower()
     mask = pd.Series(False, index=df.index)
     for column in searchable_columns:
         mask = mask | df[column].astype(str).str.lower().str.contains(
@@ -137,14 +134,13 @@ def apply_text_search(
     return df[mask].copy()
 
 
-def apply_multiselect_filter(
-    df: pd.DataFrame,
-    column: str,
-    selected_values: list,
-) -> pd.DataFrame:
-    if df.empty or column not in df.columns or not selected_values:
-        return df
-    return df[df[column].isin(selected_values)].copy()
+def show_download_button(df: pd.DataFrame, filename: str) -> None:
+    st.download_button(
+        "Download CSV",
+        df.to_csv(index=False),
+        file_name=filename,
+        mime="text/csv",
+    )
 
 
 def show_missing_unified_warning(entity_name: str) -> None:
@@ -163,9 +159,25 @@ def render_bar_chart(
     if df.empty or index_column not in df.columns or value_column not in df.columns:
         st.info("No chart data available for the current selection.")
         return
+    st.bar_chart(df[[index_column, value_column]].set_index(index_column), width="stretch")
 
-    chart_data = df[[index_column, value_column]].set_index(index_column)
-    st.bar_chart(chart_data, width="stretch")
+
+def render_line_chart(
+    df: pd.DataFrame,
+    index_column: str,
+    value_column: str,
+) -> None:
+    if df.empty or index_column not in df.columns or value_column not in df.columns:
+        st.info("No chart data available for the current selection.")
+        return
+    st.line_chart(df[[index_column, value_column]].set_index(index_column), width="stretch")
+
+
+def render_summary_card(title: str, value: str, note: str = "") -> None:
+    st.markdown(f"#### {title}")
+    st.metric(title, value, label_visibility="collapsed")
+    if note:
+        st.caption(note)
 
 
 def projects_by_source(projects: pd.DataFrame) -> pd.DataFrame:
@@ -193,7 +205,7 @@ def issuances_by_source(issuances: pd.DataFrame) -> pd.DataFrame:
 def issued_quantity_summary(
     issuances: pd.DataFrame,
     column: str,
-    label: str,
+    label: str = "issued_quantity",
 ) -> pd.DataFrame:
     if issuances.empty or column not in issuances.columns:
         return pd.DataFrame(columns=[column, label])
@@ -206,166 +218,259 @@ def issued_quantity_summary(
     )
 
 
-def render_overview(unified_projects: pd.DataFrame, unified_issuances: pd.DataFrame) -> None:
-    st.header("Overview")
+def source_names(projects: pd.DataFrame, issuances: pd.DataFrame) -> set:
+    project_sources = set(projects.get("source_name", pd.Series(dtype=str)).replace("", pd.NA).dropna())
+    issuance_sources = set(issuances.get("source_name", pd.Series(dtype=str)).replace("", pd.NA).dropna())
+    return project_sources | issuance_sources
 
-    if unified_projects.empty:
+
+def duplicate_project_ids(projects: pd.DataFrame) -> pd.DataFrame:
+    if projects.empty:
+        return pd.DataFrame()
+    with_ids = projects[projects["source_project_id"] != ""].copy()
+    duplicate_mask = with_ids.duplicated(
+        subset=["source_id", "source_project_id"],
+        keep=False,
+    )
+    return with_ids[duplicate_mask].sort_values(["source_id", "source_project_id"])
+
+
+def unmatched_issuances(projects: pd.DataFrame, issuances: pd.DataFrame) -> pd.DataFrame:
+    if projects.empty or issuances.empty:
+        return pd.DataFrame()
+
+    project_keys = set(
+        zip(
+            projects["source_id"].astype(str),
+            projects["source_project_id"].astype(str),
+        )
+    )
+    unmatched_mask = [
+        (source_id, project_id) not in project_keys
+        for source_id, project_id in zip(
+            issuances["source_id"].astype(str),
+            issuances["source_project_id"].astype(str),
+        )
+    ]
+    return issuances[unmatched_mask].copy()
+
+
+def render_overview(data: dict) -> None:
+    st.header("Overview")
+    st.write(
+        "This dashboard aggregates public carbon registry data into unified project "
+        "and issuance tables."
+    )
+    st.info(
+        "Use this page to understand database scope at a glance. The detailed pages "
+        "separate unified exploration, source traceability, and known data gaps."
+    )
+
+    projects = clean_unified_projects(data["unified_projects"])
+    issuances = clean_unified_issuances(data["unified_issuances"])
+    if projects.empty:
         show_missing_unified_warning("projects")
         return
-    if unified_issuances.empty:
+    if issuances.empty:
         show_missing_unified_warning("issuances")
         return
-
-    projects = clean_unified_projects(unified_projects)
-    issuances = clean_unified_issuances(unified_issuances)
 
     project_methods = set(projects["methodology_name"].replace("", pd.NA).dropna())
     issuance_methods = set(issuances["methodology_name"].replace("", pd.NA).dropna())
-    source_names = set(projects["source_name"].replace("", pd.NA).dropna()) | set(
-        issuances["source_name"].replace("", pd.NA).dropna()
-    )
 
+    st.subheader("Current Coverage")
     metric1, metric2, metric3 = st.columns(3)
     metric1.metric("Total projects", f"{len(projects):,}")
     metric2.metric("Total issuance rows", f"{len(issuances):,}")
-    metric3.metric("Sources", f"{len(source_names):,}")
+    metric3.metric("Total sources", f"{len(source_names(projects, issuances)):,}")
 
     metric4, metric5, metric6 = st.columns(3)
-    metric4.metric("Countries", f"{projects['country'].replace('', pd.NA).nunique():,}")
-    metric5.metric("Methodologies", f"{len(project_methods | issuance_methods):,}")
+    metric4.metric("Total countries", f"{safe_count_unique(projects, 'country'):,}")
+    metric5.metric("Total methodologies", f"{len(project_methods | issuance_methods):,}")
     metric6.metric("Total issued quantity", f"{issuances['issued_quantity'].sum():,.0f}")
 
-    st.subheader("Source Coverage")
-    summary1, summary2, summary3 = st.columns(3)
-    with summary1:
+    st.subheader("Source Contribution")
+    source1, source2, source3 = st.columns(3)
+    with source1:
+        render_summary_card(
+            "JCM Mongolia-Japan",
+            f"{len(data['jcm_projects']):,} projects",
+            (
+                f"{len(data['methodologies']):,} methodologies, "
+                f"{len(data['jcm_issuance']):,} issuance rows, "
+                f"{len(data['rules']):,} rules/forms."
+            ),
+        )
+    with source2:
+        render_summary_card(
+            "Gold Standard",
+            f"{len(data['gs_projects']):,} projects",
+            "Project catalogue export only; issuance and retirement data are not loaded yet.",
+        )
+    with source3:
+        render_summary_card(
+            "Puro Earth",
+            f"{len(data['puro_projects']):,} projects",
+            f"{len(data['puro_issuances']):,} issuance rows from registry extraction.",
+        )
+
+    st.subheader("What This Does / Does Not Yet Do")
+    does, does_not = st.columns(2)
+    with does:
+        st.markdown("#### Does")
+        st.write("- Combines source data into unified project and issuance tables.")
+        st.write("- Keeps source-specific views for traceability.")
+        st.write("- Exposes data quality gaps.")
+    with does_not:
+        st.markdown("#### Does not yet")
+        st.write("- Include Gold Standard issuance or retirement data.")
+        st.write("- Include ACR, Verra, or CAR.")
+        st.write("- Fully parse methodology PDFs or project evidence documents.")
+
+    st.subheader("Quick Charts")
+    chart1, chart2 = st.columns(2)
+    with chart1:
         st.markdown("#### Projects by source")
-        st.dataframe(projects_by_source(projects), **DATAFRAME_KWARGS)
-    with summary2:
-        st.markdown("#### Issuances by source")
-        st.dataframe(issuances_by_source(issuances), **DATAFRAME_KWARGS)
-    with summary3:
+        render_bar_chart(projects_by_source(projects), "source_name", "projects")
+    with chart2:
         st.markdown("#### Issued quantity by source")
-        st.dataframe(
-            issued_quantity_summary(issuances, "source_name", "issued_quantity"),
-            **DATAFRAME_KWARGS,
+        render_bar_chart(
+            issued_quantity_summary(issuances, "source_name"),
+            "source_name",
+            "issued_quantity",
         )
 
-    st.subheader("Data Model")
-    st.write(
-        "Source-specific extraction -> unified tables -> explorer. "
-        "Source parsers preserve registry-specific fields while the unified project "
-        "and issuance tables normalize overlapping fields for cross-source analysis."
+    with st.expander("How to read this overview", expanded=False):
+        st.write(
+            "Projects and issuances are counted as rows in the unified outputs. "
+            "Gold Standard currently contributes project catalogue records only, "
+            "so source comparisons involving issuance volume are based on JCM and "
+            "Puro Earth."
         )
 
 
-def render_source_coverage(
-    unified_projects: pd.DataFrame,
-    unified_issuances: pd.DataFrame,
-) -> None:
+def render_source_coverage(data: dict) -> None:
     st.header("Source Coverage")
+    st.info(
+        "This page explains which sources contribute project, issuance, methodology, "
+        "rules, and document coverage. It is meant to make the current database scope "
+        "easy to audit."
+    )
 
-    if unified_projects.empty:
+    projects = clean_unified_projects(data["unified_projects"])
+    issuances = clean_unified_issuances(data["unified_issuances"])
+    if projects.empty:
         show_missing_unified_warning("projects")
         return
-    if unified_issuances.empty:
+    if issuances.empty:
         show_missing_unified_warning("issuances")
         return
 
-    projects = clean_unified_projects(unified_projects)
-    issuances = clean_unified_issuances(unified_issuances)
-
-    source_filter = st.multiselect(
-        "Filter sources",
-        sorted(
-            set(projects["source_name"].replace("", pd.NA).dropna())
-            | set(issuances["source_name"].replace("", pd.NA).dropna())
-        ),
-        default=sorted(
-            set(projects["source_name"].replace("", pd.NA).dropna())
-            | set(issuances["source_name"].replace("", pd.NA).dropna())
-        ),
+    coverage_matrix = pd.DataFrame(
+        [
+            {
+                "source_name": "JCM Mongolia-Japan",
+                "projects_available": "yes",
+                "issuance_rows_available": "yes",
+                "methodologies_available": "yes",
+                "rules_or_forms_available": "yes",
+                "documents_available": "yes, forms",
+                "credit_unit": "JCM credit",
+                "current_gap": "country-specific small sample",
+            },
+            {
+                "source_name": "Gold Standard",
+                "projects_available": "yes",
+                "issuance_rows_available": "no",
+                "methodologies_available": "partial",
+                "rules_or_forms_available": "no",
+                "documents_available": "no",
+                "credit_unit": "not available",
+                "current_gap": "project export lacks issuance and many methodology values",
+            },
+            {
+                "source_name": "Puro Earth",
+                "projects_available": "yes",
+                "issuance_rows_available": "yes",
+                "methodologies_available": "yes, from registry field",
+                "rules_or_forms_available": "no",
+                "documents_available": "partial, not yet extracted",
+                "credit_unit": "CORC",
+                "current_gap": "project detail documents not yet fully extracted",
+            },
+        ]
     )
-    projects = apply_multiselect_filter(projects, "source_name", source_filter)
-    issuances = apply_multiselect_filter(issuances, "source_name", source_filter)
+
+    st.subheader("Coverage Matrix")
+    st.dataframe(coverage_matrix, **DATAFRAME_KWARGS)
+    st.caption(
+        "The matrix describes what is available today, not what each registry may "
+        "publish in full. It is a quick trust layer for stakeholder conversations."
+    )
 
     project_counts = projects_by_source(projects)
     issuance_counts = issuances_by_source(issuances)
-    issued_totals = issued_quantity_summary(
-        issuances,
-        "source_name",
-        "issued_quantity",
-    )
+    issued_totals = issued_quantity_summary(issuances, "source_name")
 
-    coverage = project_counts.merge(issuance_counts, on="source_name", how="outer")
-    coverage = coverage.merge(issued_totals, on="source_name", how="outer")
-    coverage = coverage.fillna(0).sort_values("projects", ascending=False)
-    coverage["has_projects"] = coverage["projects"] > 0
-    coverage["has_issuances"] = coverage["issuance_rows"] > 0
+    card1, card2, card3, card4 = st.columns(4)
+    with card1:
+        render_summary_card("Sources with Projects", f"{len(project_counts):,}")
+    with card2:
+        render_summary_card("Sources with Issuances", f"{len(issuance_counts):,}")
+    with card3:
+        render_summary_card("Project Rows", f"{project_counts['projects'].sum():,.0f}")
+    with card4:
+        render_summary_card("Issued Quantity", f"{issued_totals['issued_quantity'].sum():,.0f}")
 
-    metric1, metric2, metric3, metric4 = st.columns(4)
-    metric1.metric("Sources", f"{coverage['source_name'].nunique():,}")
-    metric2.metric("Project rows", f"{int(coverage['projects'].sum()):,}")
-    metric3.metric("Issuance rows", f"{int(coverage['issuance_rows'].sum()):,}")
-    metric4.metric("Issued quantity", f"{coverage['issued_quantity'].sum():,.0f}")
+    table1, table2, table3 = st.columns(3)
+    with table1:
+        st.subheader("Projects by Source")
+        st.dataframe(project_counts, **DATAFRAME_KWARGS)
+    with table2:
+        st.subheader("Issuance Rows by Source")
+        st.dataframe(issuance_counts, **DATAFRAME_KWARGS)
+    with table3:
+        st.subheader("Issued Quantity by Source")
+        st.dataframe(issued_totals, **DATAFRAME_KWARGS)
 
-    st.subheader("Coverage Matrix")
-    st.dataframe(coverage, **DATAFRAME_KWARGS)
-
-    chart1, chart2, chart3 = st.columns(3)
+    chart1, chart2 = st.columns(2)
     with chart1:
-        st.subheader("Projects")
+        st.subheader("Projects by Source")
         render_bar_chart(project_counts, "source_name", "projects")
     with chart2:
-        st.subheader("Issuance Rows")
-        render_bar_chart(issuance_counts, "source_name", "issuance_rows")
-    with chart3:
-        st.subheader("Issued Quantity")
+        st.subheader("Issued Quantity by Source")
         render_bar_chart(issued_totals, "source_name", "issued_quantity")
 
-    st.subheader("Field Completeness by Source")
-    completeness_rows = []
-    for source_name, group in projects.groupby("source_name"):
-        completeness_rows.append(
+    st.subheader("Source Completeness Notes")
+    completeness = pd.DataFrame(
+        [
             {
-                "source_name": source_name,
-                "table": "projects",
-                "rows": len(group),
-                "missing_methodology": int((group["methodology_name"] == "").sum()),
-                "missing_country": int((group["country"] == "").sum()),
-                "missing_url": int((group["project_url"] == "").sum()),
-            }
-        )
-    for source_name, group in issuances.groupby("source_name"):
-        completeness_rows.append(
+                "source_name": "JCM Mongolia-Japan",
+                "strength": "Methodologies, projects, issuances, and rules/forms are linked.",
+                "watch_item": "Small country-specific source, not a broad registry universe.",
+            },
             {
-                "source_name": source_name,
-                "table": "issuances",
-                "rows": len(group),
-                "missing_methodology": int((group["methodology_name"] == "").sum()),
-                "missing_country": int((group["country"] == "").sum()),
-                "missing_url": int((group["source_url"] == "").sum()),
-                "missing_issuance_date": int((group["issuance_date"] == "").sum()),
-                "missing_issued_quantity": int(group["issued_quantity"].isna().sum()),
-            }
-        )
-    st.dataframe(pd.DataFrame(completeness_rows).fillna(""), **DATAFRAME_KWARGS)
-
-
-def render_explore_projects(unified_projects: pd.DataFrame) -> None:
-    st.header("Explore Projects")
-
-    if unified_projects.empty:
-        show_missing_unified_warning("projects")
-        return
-
-    projects = clean_unified_projects(unified_projects)
-    search_text = st.sidebar.text_input(
-        "Search projects",
-        key="project_text_search",
-        placeholder="Name, country, methodology, developer...",
+                "source_name": "Gold Standard",
+                "strength": "Large project catalogue export provides broad project coverage.",
+                "watch_item": "No issuance/retirement data and many blank methodology fields.",
+            },
+            {
+                "source_name": "Puro Earth",
+                "strength": "Project and issuance records are available from registry extraction.",
+                "watch_item": "Project detail documents are not fully extracted yet.",
+            },
+        ]
     )
+    st.dataframe(completeness, **DATAFRAME_KWARGS)
 
+
+def project_filters(projects: pd.DataFrame) -> pd.DataFrame:
     st.sidebar.subheader("Project Filters")
+    search = st.sidebar.text_input(
+        "Text search",
+        key="project_text_search",
+        placeholder="Project, developer, country, methodology...",
+    )
     source_filter = st.sidebar.multiselect(
         "source_name",
         non_empty_options(projects, "source_name"),
@@ -397,94 +502,122 @@ def render_explore_projects(unified_projects: pd.DataFrame) -> None:
         key="project_status_filter",
     )
 
-    filtered = projects.copy()
     filtered = apply_text_search(
-        filtered,
-        search_text,
+        projects.copy(),
         [
             "project_name",
-            "country",
-            "project_type",
-            "methodology_name",
             "developer_or_supplier",
+            "country",
+            "methodology_name",
             "source_project_id",
-            "status",
+        ],
+        search,
+    )
+    filtered = apply_optional_multiselect_filter(filtered, "source_name", source_filter)
+    filtered = apply_optional_multiselect_filter(filtered, "country", country_filter)
+    filtered = apply_optional_multiselect_filter(filtered, "project_type", project_type_filter)
+    filtered = apply_optional_multiselect_filter(filtered, "methodology_name", methodology_filter)
+    filtered = apply_optional_multiselect_filter(filtered, "status", status_filter)
+    return filtered
+
+
+def render_explore_projects(data: dict) -> None:
+    st.header("Explore Projects")
+    st.caption(
+        "Filter and search the unified project table, then switch analysis mode to "
+        "summarize the current result set."
+    )
+    projects = clean_unified_projects(data["unified_projects"])
+    if projects.empty:
+        show_missing_unified_warning("projects")
+        return
+
+    filtered = project_filters(projects)
+    analysis_mode = st.selectbox(
+        "Analysis mode",
+        [
+            "Browse records",
+            "Country comparison",
+            "Methodology comparison",
+            "Source comparison",
+            "Missing methodology review",
         ],
     )
-    filtered = apply_multiselect_filter(filtered, "source_name", source_filter)
-    filtered = apply_multiselect_filter(filtered, "country", country_filter)
-    filtered = apply_multiselect_filter(filtered, "project_type", project_type_filter)
-    filtered = apply_multiselect_filter(filtered, "methodology_name", methodology_filter)
-    filtered = apply_multiselect_filter(filtered, "status", status_filter)
 
     metric1, metric2, metric3, metric4 = st.columns(4)
     metric1.metric("Projects", f"{len(filtered):,}")
-    metric2.metric("Sources", f"{filtered['source_name'].replace('', pd.NA).nunique():,}")
-    metric3.metric("Countries", f"{filtered['country'].replace('', pd.NA).nunique():,}")
-    metric4.metric(
-        "Methodologies",
-        f"{filtered['methodology_name'].replace('', pd.NA).nunique():,}",
+    metric2.metric("Sources", f"{safe_count_unique(filtered, 'source_name'):,}")
+    metric3.metric("Countries", f"{safe_count_unique(filtered, 'country'):,}")
+    metric4.metric("Methodologies", f"{safe_count_unique(filtered, 'methodology_name'):,}")
+    st.caption(
+        "Empty filters mean all values for that field. Text search scans project name, "
+        "developer/supplier, country, methodology, and source project ID."
     )
 
-    st.dataframe(
-        filtered,
-        **DATAFRAME_KWARGS,
-        column_config={"project_url": st.column_config.LinkColumn("project_url")},
-    )
-    st.download_button(
-        "Download filtered projects CSV",
-        filtered.to_csv(index=False),
-        file_name="unified_projects_filtered.csv",
-        mime="text/csv",
-    )
-
-    summary1, summary2, summary3 = st.columns(3)
-    with summary1:
-        st.subheader("Top Countries")
-        top_countries = (
+    if analysis_mode == "Browse records":
+        st.subheader("Filtered Project Records")
+        if "project_url" in filtered.columns:
+            st.dataframe(
+                filtered,
+                **DATAFRAME_KWARGS,
+                column_config={"project_url": st.column_config.LinkColumn("project_url")},
+            )
+        else:
+            st.dataframe(filtered, **DATAFRAME_KWARGS)
+        show_download_button(filtered, "unified_projects_filtered.csv")
+    elif analysis_mode == "Country comparison":
+        st.subheader("Country Comparison")
+        st.info("Shows where the currently filtered project set is concentrated.")
+        summary = (
             filtered[filtered["country"] != ""]
             .groupby("country", as_index=False)
             .size()
             .rename(columns={"size": "projects"})
             .sort_values("projects", ascending=False)
-            .head(20)
+            .head(25)
         )
-        render_bar_chart(top_countries.head(10), "country", "projects")
-        st.dataframe(top_countries, **DATAFRAME_KWARGS)
-    with summary2:
-        st.subheader("Top Methodologies")
-        top_methodologies = (
+        render_bar_chart(summary.head(15), "country", "projects")
+        st.dataframe(summary, **DATAFRAME_KWARGS)
+    elif analysis_mode == "Methodology comparison":
+        st.subheader("Methodology Comparison")
+        st.info("Ranks nonblank methodology names in the filtered project set.")
+        summary = (
             filtered[filtered["methodology_name"] != ""]
             .groupby("methodology_name", as_index=False)
             .size()
             .rename(columns={"size": "projects"})
             .sort_values("projects", ascending=False)
-            .head(20)
+            .head(25)
         )
-        render_bar_chart(top_methodologies.head(10), "methodology_name", "projects")
-        st.dataframe(top_methodologies, **DATAFRAME_KWARGS)
-    with summary3:
-        st.subheader("Projects by Source")
-        source_counts = projects_by_source(filtered)
-        render_bar_chart(source_counts, "source_name", "projects")
-        st.dataframe(source_counts, **DATAFRAME_KWARGS)
+        render_bar_chart(summary.head(15), "methodology_name", "projects")
+        st.dataframe(summary, **DATAFRAME_KWARGS)
+    elif analysis_mode == "Source comparison":
+        st.subheader("Source Comparison")
+        st.info("Shows each source's project contribution and share of the filtered result.")
+        summary = projects_by_source(filtered)
+        if not summary.empty:
+            summary["share_pct"] = (summary["projects"] / summary["projects"].sum() * 100).round(1)
+        render_bar_chart(summary, "source_name", "projects")
+        st.dataframe(summary, **DATAFRAME_KWARGS)
+    else:
+        st.subheader("Missing Methodology Review")
+        missing = filtered[filtered["methodology_name"] == ""].copy()
+        st.caption(
+            "This view isolates project rows where the unified methodology field is "
+            "blank after source parsing."
+        )
+        st.metric("Projects missing methodology", f"{len(missing):,}")
+        st.dataframe(missing, **DATAFRAME_KWARGS)
+        show_download_button(missing, "projects_missing_methodology.csv")
 
 
-def render_explore_issuances(unified_issuances: pd.DataFrame) -> None:
-    st.header("Explore Issuances")
-
-    if unified_issuances.empty:
-        show_missing_unified_warning("issuances")
-        return
-
-    issuances = clean_unified_issuances(unified_issuances)
-    search_text = st.sidebar.text_input(
-        "Search issuances",
-        key="issuance_text_search",
-        placeholder="Project, methodology, source project ID...",
-    )
-
+def issuance_filters(issuances: pd.DataFrame) -> pd.DataFrame:
     st.sidebar.subheader("Issuance Filters")
+    search = st.sidebar.text_input(
+        "Text search",
+        key="issuance_text_search",
+        placeholder="Project, methodology, country, ID...",
+    )
     source_filter = st.sidebar.multiselect(
         "source_name",
         non_empty_options(issuances, "source_name"),
@@ -510,303 +643,371 @@ def render_explore_issuances(unified_issuances: pd.DataFrame) -> None:
         key="issuance_credit_unit_filter",
     )
 
-    filtered = issuances.copy()
     filtered = apply_text_search(
-        filtered,
-        search_text,
+        issuances.copy(),
+        ["project_name", "methodology_name", "country", "source_project_id"],
+        search,
+    )
+    filtered = apply_optional_multiselect_filter(filtered, "source_name", source_filter)
+    filtered = apply_optional_multiselect_filter(filtered, "methodology_name", methodology_filter)
+    filtered = apply_optional_multiselect_filter(filtered, "durability", durability_filter)
+    filtered = apply_optional_multiselect_filter(filtered, "credit_unit", credit_unit_filter)
+    return filtered
+
+
+def render_explore_issuances(data: dict) -> None:
+    st.header("Explore Issuances")
+    st.info(
+        "Issued quantities are not directly comparable across all systems unless "
+        "credit_unit is considered."
+    )
+    st.caption(
+        "Use filters and text search to define a subset, then choose an analysis mode "
+        "to summarize issuance quantity, timing, or missing core fields."
+    )
+
+    issuances = clean_unified_issuances(data["unified_issuances"])
+    if issuances.empty:
+        show_missing_unified_warning("issuances")
+        return
+
+    filtered = issuance_filters(issuances)
+    analysis_mode = st.selectbox(
+        "Analysis mode",
         [
-            "project_name",
-            "methodology_name",
-            "source_project_id",
-            "country",
-            "credit_unit",
-            "durability",
+            "Browse records",
+            "Issued quantity by source",
+            "Issued quantity by methodology",
+            "Issued quantity by country",
+            "Issuance over time",
+            "Missing issuance data review",
         ],
     )
-    filtered = apply_multiselect_filter(filtered, "source_name", source_filter)
-    filtered = apply_multiselect_filter(filtered, "methodology_name", methodology_filter)
-    filtered = apply_multiselect_filter(filtered, "durability", durability_filter)
-    filtered = apply_multiselect_filter(filtered, "credit_unit", credit_unit_filter)
 
     metric1, metric2, metric3, metric4 = st.columns(4)
     metric1.metric("Issuance rows", f"{len(filtered):,}")
     metric2.metric("Issued quantity", f"{filtered['issued_quantity'].sum():,.0f}")
-    metric3.metric("Sources", f"{filtered['source_name'].replace('', pd.NA).nunique():,}")
-    metric4.metric(
-        "Credit units",
-        f"{filtered['credit_unit'].replace('', pd.NA).nunique():,}",
+    metric3.metric("Sources", f"{safe_count_unique(filtered, 'source_name'):,}")
+    metric4.metric("Credit units", f"{safe_count_unique(filtered, 'credit_unit'):,}")
+    st.caption(
+        "Empty filters mean all values for that field. Text search scans project name, "
+        "methodology, country, and source project ID."
     )
 
-    st.dataframe(filtered, **DATAFRAME_KWARGS)
-    st.download_button(
-        "Download filtered issuances CSV",
-        filtered.to_csv(index=False),
-        file_name="unified_issuances_filtered.csv",
-        mime="text/csv",
-    )
-
-    summary1, summary2, summary3 = st.columns(3)
-    with summary1:
+    if analysis_mode == "Browse records":
+        st.subheader("Filtered Issuance Records")
+        st.dataframe(filtered, **DATAFRAME_KWARGS)
+        show_download_button(filtered, "unified_issuances_filtered.csv")
+    elif analysis_mode == "Issued quantity by source":
         st.subheader("Issued Quantity by Source")
-        source_totals = issued_quantity_summary(
-            filtered,
-            "source_name",
-            "issued_quantity",
-        )
-        render_bar_chart(source_totals, "source_name", "issued_quantity")
-        st.dataframe(source_totals, **DATAFRAME_KWARGS)
-    with summary2:
+        summary = issued_quantity_summary(filtered, "source_name")
+        render_bar_chart(summary, "source_name", "issued_quantity")
+        st.dataframe(summary, **DATAFRAME_KWARGS)
+    elif analysis_mode == "Issued quantity by methodology":
         st.subheader("Issued Quantity by Methodology")
-        methodology_totals = issued_quantity_summary(
-            filtered,
-            "methodology_name",
-            "issued_quantity",
+        summary = issued_quantity_summary(filtered, "methodology_name")
+        render_bar_chart(summary.head(20), "methodology_name", "issued_quantity")
+        st.dataframe(summary, **DATAFRAME_KWARGS)
+    elif analysis_mode == "Issued quantity by country":
+        st.subheader("Issued Quantity by Country")
+        summary = issued_quantity_summary(filtered, "country")
+        render_bar_chart(summary.head(20), "country", "issued_quantity")
+        st.dataframe(summary, **DATAFRAME_KWARGS)
+    elif analysis_mode == "Issuance over time":
+        st.subheader("Issuance Over Time")
+        dated = filtered.copy()
+        dated["issuance_date_parsed"] = pd.to_datetime(
+            dated["issuance_date"],
+            errors="coerce",
         )
-        render_bar_chart(
-            methodology_totals.head(10),
-            "methodology_name",
-            "issued_quantity",
+        missing_dates = int(dated["issuance_date_parsed"].isna().sum())
+        dated = dated[dated["issuance_date_parsed"].notna()].copy()
+        if dated.empty:
+            st.warning("No parseable issuance dates are available for the current selection.")
+            return
+        dated["year"] = dated["issuance_date_parsed"].dt.year
+        summary = (
+            dated.groupby("year", as_index=False)["issued_quantity"]
+            .sum()
+            .sort_values("year")
         )
-        st.dataframe(methodology_totals, **DATAFRAME_KWARGS)
-    with summary3:
-        st.subheader("Issued Quantity by Credit Unit")
-        credit_unit_totals = issued_quantity_summary(
-            filtered,
-            "credit_unit",
-            "issued_quantity",
+        st.caption(f"Rows with missing or unparseable dates excluded from this chart: {missing_dates:,}.")
+        render_line_chart(summary, "year", "issued_quantity")
+        st.dataframe(summary, **DATAFRAME_KWARGS)
+    else:
+        st.subheader("Missing Issuance Data Review")
+        missing = filtered[
+            (filtered["issuance_date"] == "") | (filtered["issued_quantity"].isna())
+        ].copy()
+        st.caption(
+            "This view isolates issuance rows that cannot support date-based or "
+            "quantity-based analysis without review."
         )
-        render_bar_chart(credit_unit_totals, "credit_unit", "issued_quantity")
-        st.dataframe(credit_unit_totals, **DATAFRAME_KWARGS)
+        st.metric("Rows missing date or quantity", f"{len(missing):,}")
+        st.dataframe(missing, **DATAFRAME_KWARGS)
+        show_download_button(missing, "issuances_missing_core_fields.csv")
 
 
-def render_jcm_source_views(
-    methodologies: pd.DataFrame,
-    projects: pd.DataFrame,
-    issuance: pd.DataFrame,
-    rules: pd.DataFrame,
-) -> None:
-    with st.expander("Methodologies", expanded=True):
-        st.metric("Methodologies", f"{len(methodologies):,}")
+def render_jcm_source_views(data: dict) -> None:
+    methodologies = data["methodologies"]
+    projects = data["jcm_projects"]
+    issuance = clean_numeric_column(data["jcm_issuance"], "issued_amount")
+    rules = data["rules"]
+
+    metric1, metric2, metric3, metric4 = st.columns(4)
+    metric1.metric("Methodologies", f"{len(methodologies):,}")
+    metric2.metric("Projects", f"{len(projects):,}")
+    metric3.metric("Issuance rows", f"{len(issuance):,}")
+    metric4.metric("Rules/forms", f"{len(rules):,}")
+
+    with st.expander("Methodologies", expanded=False):
         st.dataframe(methodologies, **DATAFRAME_KWARGS)
-
-    with st.expander("Projects", expanded=True):
-        st.metric("Projects", f"{len(projects):,}")
+    with st.expander("Projects", expanded=False):
         st.dataframe(projects, **DATAFRAME_KWARGS)
-
-    with st.expander("Issuance", expanded=True):
-        issuance_display = clean_numeric_column(issuance, "issued_amount")
-        st.metric("Issuance rows", f"{len(issuance_display):,}")
-        if "issued_amount" in issuance_display.columns:
-            st.metric(
-                "Issued amount",
-                f"{issuance_display['issued_amount'].sum():,.0f}",
-            )
-        st.dataframe(issuance_display, **DATAFRAME_KWARGS)
-
-    with st.expander("Rules / Forms", expanded=False):
-        st.metric("Rules / forms", f"{len(rules):,}")
+    with st.expander("Issuance records", expanded=False):
+        st.dataframe(issuance, **DATAFRAME_KWARGS)
+    with st.expander("Rules & Forms", expanded=False):
         st.dataframe(rules, **DATAFRAME_KWARGS)
 
 
-def render_gold_standard_source_view(gs_projects: pd.DataFrame) -> None:
-    if gs_projects.empty:
+def render_gold_standard_source_view(data: dict) -> None:
+    projects = clean_numeric_column(data["gs_projects"], "estimated_annual_credits")
+    if projects.empty:
         st.warning("No Gold Standard projects CSV found.")
         return
 
-    projects = clean_numeric_column(gs_projects.fillna(""), "estimated_annual_credits")
+    missing_methodology = int((projects.get("methodology", pd.Series(dtype=str)).fillna("") == "").sum())
     metric1, metric2, metric3, metric4 = st.columns(4)
     metric1.metric("Projects", f"{len(projects):,}")
-    metric2.metric("Countries", f"{projects['country'].replace('', pd.NA).nunique():,}")
-    metric3.metric("Statuses", f"{projects['status'].replace('', pd.NA).nunique():,}")
-    metric4.metric(
-        "Estimated annual credits",
-        f"{projects['estimated_annual_credits'].sum():,.0f}"
-        if "estimated_annual_credits" in projects.columns
-        else "0",
-    )
-    st.dataframe(projects, **DATAFRAME_KWARGS)
+    metric2.metric("Countries", f"{safe_count_unique(projects, 'country'):,}")
+    metric3.metric("Statuses", f"{safe_count_unique(projects, 'status'):,}")
+    metric4.metric("Missing methodology", f"{missing_methodology:,}")
+
+    summary1, summary2 = st.columns(2)
+    with summary1:
+        st.subheader("Top Countries")
+        country_summary = (
+            projects[projects["country"] != ""]
+            .groupby("country", as_index=False)
+            .size()
+            .rename(columns={"size": "projects"})
+            .sort_values("projects", ascending=False)
+            .head(20)
+        )
+        render_bar_chart(country_summary.head(10), "country", "projects")
+        st.dataframe(country_summary, **DATAFRAME_KWARGS)
+    with summary2:
+        st.subheader("Top Project Types")
+        type_summary = (
+            projects[projects["project_type"] != ""]
+            .groupby("project_type", as_index=False)
+            .size()
+            .rename(columns={"size": "projects"})
+            .sort_values("projects", ascending=False)
+            .head(20)
+        )
+        render_bar_chart(type_summary.head(10), "project_type", "projects")
+        st.dataframe(type_summary, **DATAFRAME_KWARGS)
+
+    with st.expander("Gold Standard project catalogue", expanded=True):
+        st.dataframe(projects, **DATAFRAME_KWARGS)
 
 
-def render_puro_source_view(
-    puro_projects: pd.DataFrame,
-    puro_issuances: pd.DataFrame,
-) -> None:
-    if puro_projects.empty or puro_issuances.empty:
+def render_puro_source_view(data: dict) -> None:
+    projects = data["puro_projects"].fillna("").copy()
+    issuances = clean_numeric_column(data["puro_issuances"], "issued_qty")
+    if projects.empty or issuances.empty:
         st.warning("No full Puro Earth registry outputs found.")
         return
 
-    projects = puro_projects.fillna("").copy()
-    issuances = clean_numeric_column(puro_issuances.fillna(""), "issued_qty")
-    metric1, metric2, metric3, metric4 = st.columns(4)
+    metric1, metric2, metric3, metric4, metric5 = st.columns(5)
     metric1.metric("Projects", f"{len(projects):,}")
     metric2.metric("Issuance rows", f"{len(issuances):,}")
-    metric3.metric(
-        "Issued quantity",
-        f"{issuances['issued_qty'].sum():,.0f}" if "issued_qty" in issuances.columns else "0",
-    )
-    metric4.metric("Countries", f"{projects['country'].replace('', pd.NA).nunique():,}")
+    metric3.metric("Issued quantity", f"{issuances['issued_qty'].sum():,.0f}")
+    metric4.metric("Methodologies", f"{safe_count_unique(projects, 'methodology'):,}")
+    metric5.metric("Countries", f"{safe_count_unique(projects, 'country'):,}")
 
-    st.subheader("Puro Projects")
-    st.dataframe(projects, **DATAFRAME_KWARGS)
-    st.subheader("Puro Issuances")
-    st.dataframe(issuances, **DATAFRAME_KWARGS)
+    summary1, summary2 = st.columns(2)
+    with summary1:
+        st.subheader("Issued Quantity by Methodology")
+        methodology_summary = (
+            issuances[issuances["methodology"] != ""]
+            .groupby("methodology", as_index=False)["issued_qty"]
+            .sum()
+            .sort_values("issued_qty", ascending=False)
+        )
+        render_bar_chart(methodology_summary.head(10), "methodology", "issued_qty")
+        st.dataframe(methodology_summary, **DATAFRAME_KWARGS)
+    with summary2:
+        st.subheader("Issued Quantity by Durability")
+        durability_summary = (
+            issuances[issuances["durability"] != ""]
+            .groupby("durability", as_index=False)["issued_qty"]
+            .sum()
+            .sort_values("issued_qty", ascending=False)
+        )
+        render_bar_chart(durability_summary, "durability", "issued_qty")
+        st.dataframe(durability_summary, **DATAFRAME_KWARGS)
+
+    with st.expander("Puro Earth projects", expanded=False):
+        st.dataframe(projects, **DATAFRAME_KWARGS)
+    with st.expander("Puro Earth issuances", expanded=False):
+        st.dataframe(issuances, **DATAFRAME_KWARGS)
 
 
-def render_source_views(
-    methodologies: pd.DataFrame,
-    projects: pd.DataFrame,
-    issuance: pd.DataFrame,
-    rules: pd.DataFrame,
-    gs_projects: pd.DataFrame,
-    puro_projects: pd.DataFrame,
-    puro_issuances: pd.DataFrame,
-) -> None:
+def render_source_views(data: dict) -> None:
     st.header("Source Views")
+    st.caption("Source-specific diagnostics are kept separate from unified explorer views.")
+
     source = st.selectbox(
         "Source",
         ["JCM Mongolia-Japan", "Gold Standard", "Puro Earth"],
     )
-
     if source == "JCM Mongolia-Japan":
-        render_jcm_source_views(methodologies, projects, issuance, rules)
+        render_jcm_source_views(data)
     elif source == "Gold Standard":
-        render_gold_standard_source_view(gs_projects)
+        render_gold_standard_source_view(data)
     else:
-        render_puro_source_view(puro_projects, puro_issuances)
+        render_puro_source_view(data)
 
 
-def render_data_quality(
-    unified_projects: pd.DataFrame,
-    unified_issuances: pd.DataFrame,
-) -> None:
+def render_data_quality(data: dict) -> None:
     st.header("Data Quality")
     st.write(
-        "These checks are lightweight profiling views over the unified outputs. "
-        "They do not change source data; they highlight where registry exports are "
-        "incomplete, where a parser may need review, or where a source simply does "
-        "not publish a field."
+        "This page explains known data strengths and gaps in the unified outputs. "
+        "Counts here are profiling checks, not transformations."
     )
 
-    if unified_projects.empty:
+    projects = clean_unified_projects(data["unified_projects"])
+    issuances = clean_unified_issuances(data["unified_issuances"])
+    if projects.empty:
         show_missing_unified_warning("projects")
         return
-    if unified_issuances.empty:
+    if issuances.empty:
         show_missing_unified_warning("issuances")
         return
 
-    projects = clean_unified_projects(unified_projects)
-    issuances = clean_unified_issuances(unified_issuances)
-
-    summary1, summary2 = st.columns(2)
-    with summary1:
-        st.subheader("Project Missing Values")
-        st.caption(
-            "Blank counts by unified project column. High counts can be normal when "
-            "a source does not publish that field, such as project type or estimated "
-            "annual credits."
-        )
-        st.dataframe(missing_values(projects), **DATAFRAME_KWARGS)
-    with summary2:
-        st.subheader("Issuance Missing Values")
-        st.caption(
-            "Blank counts by unified issuance column. Missing dates or quantities are "
-            "more operationally important than optional attributes like durability."
-        )
-        st.dataframe(missing_values(issuances), **DATAFRAME_KWARGS)
-
-    st.subheader("Projects Missing Methodology")
-    st.caption(
-        "Projects listed here have no methodology name in the unified projects table. "
-        "This often reflects catalogue exports where methodology details are not yet "
-        "available, rather than a failed row."
-    )
-    projects_missing_methodology = projects[projects["methodology_name"] == ""].copy()
-    st.metric("Count", f"{len(projects_missing_methodology):,}")
-    st.dataframe(projects_missing_methodology, **DATAFRAME_KWARGS)
-
-    st.subheader("Issuances Missing Date or Issued Quantity")
-    st.caption(
-        "These rows are less useful for time series or volume analysis. They should be "
-        "reviewed before building totals by period or issuance-date charts."
-    )
-    issuances_missing_core = issuances[
+    duplicates = duplicate_project_ids(projects)
+    unmatched = unmatched_issuances(projects, issuances)
+    missing_project_methodology = projects[projects["methodology_name"] == ""].copy()
+    missing_issuance_core = issuances[
         (issuances["issuance_date"] == "") | (issuances["issued_quantity"].isna())
     ].copy()
-    st.metric("Count", f"{len(issuances_missing_core):,}")
-    st.dataframe(issuances_missing_core, **DATAFRAME_KWARGS)
 
-    st.subheader("Unmatched Issuances")
-    st.caption(
-        "This compares each issuance row's source_id and source_project_id with the "
-        "unified projects table. A nonzero count means issuance records exist without "
-        "a corresponding unified project row."
-    )
-    project_keys = set(
-        zip(
-            projects["source_id"].astype(str),
-            projects["source_project_id"].astype(str),
+    st.subheader("Quality Summary")
+    card1, card2, card3, card4 = st.columns(4)
+    with card1:
+        render_summary_card("Duplicate Project IDs", f"{len(duplicates):,}")
+    with card2:
+        render_summary_card("Unmatched Issuances", f"{len(unmatched):,}")
+    with card3:
+        render_summary_card("Projects Missing Methodology", f"{len(missing_project_methodology):,}")
+    with card4:
+        render_summary_card("Issuances Missing Core Fields", f"{len(missing_issuance_core):,}")
+
+    st.subheader("A. Healthy Signals")
+    if duplicates.empty:
+        st.success("No duplicate source_project_id values within each source.")
+    else:
+        st.warning(f"Duplicate source project IDs found: {len(duplicates):,} rows.")
+    if unmatched.empty:
+        st.success("No unmatched issuances found.")
+    else:
+        st.warning(f"Unmatched issuance rows found: {len(unmatched):,}.")
+    if "project_url" in projects.columns and int((projects["project_url"] == "").sum()) == 0:
+        st.success("Project URLs are populated.")
+    else:
+        st.warning("Some project URLs are blank.")
+    if "credit_unit" in issuances.columns and int((issuances["credit_unit"] == "").sum()) == 0:
+        st.success("Credit unit is populated for issuance rows.")
+    else:
+        st.warning("Some issuance rows have blank credit_unit values.")
+
+    st.subheader("B. Known Expected Gaps")
+    st.info("Gold Standard project export has no issuance data loaded yet.")
+    st.info("Gold Standard has missing methodology values for many Listed projects.")
+    st.info("Puro durability is available, but JCM durability is not applicable.")
+    st.info("JCM Mongolia-Japan is a small country-specific sample.")
+
+    st.subheader("C. Profiling Tables")
+    summary1, summary2 = st.columns(2)
+    with summary1:
+        st.markdown("#### Missing Values in Unified Projects")
+        st.caption("Blank counts by column in data/processed/unified/projects.csv.")
+        project_missing = missing_values(projects)
+        render_bar_chart(project_missing.head(10), "column", "missing_values")
+        st.dataframe(project_missing, **DATAFRAME_KWARGS)
+    with summary2:
+        st.markdown("#### Missing Values in Unified Issuances")
+        st.caption("Blank counts by column in data/processed/unified/issuances.csv.")
+        issuance_missing = missing_values(issuances)
+        render_bar_chart(issuance_missing.head(10), "column", "missing_values")
+        st.dataframe(issuance_missing, **DATAFRAME_KWARGS)
+
+    with st.expander("Projects Missing Methodology", expanded=False):
+        st.caption(
+            "Useful for parser follow-up and for explaining why some methodology "
+            "comparisons undercount certain sources."
         )
-    )
-    unmatched_mask = [
-        (source_id, project_id) not in project_keys
-        for source_id, project_id in zip(
-            issuances["source_id"].astype(str),
-            issuances["source_project_id"].astype(str),
+        st.metric("Count", f"{len(missing_project_methodology):,}")
+        st.dataframe(missing_project_methodology, **DATAFRAME_KWARGS)
+
+    with st.expander("Issuances Missing Date or Quantity", expanded=False):
+        st.caption(
+            "Rows here cannot fully support time series or issued-volume analysis "
+            "without additional review."
         )
-    ]
-    unmatched = issuances[unmatched_mask].copy()
-    st.metric("Count", f"{len(unmatched):,}")
-    st.dataframe(unmatched, **DATAFRAME_KWARGS)
+        st.metric("Count", f"{len(missing_issuance_core):,}")
+        st.dataframe(missing_issuance_core, **DATAFRAME_KWARGS)
+
+    with st.expander("Unmatched Issuances", expanded=False):
+        st.caption(
+            "Compared by source_id and source_project_id between unified issuances "
+            "and unified projects."
+        )
+        if unmatched.empty:
+            st.success("No unmatched issuances.")
+        else:
+            st.metric("Count", f"{len(unmatched):,}")
+            st.dataframe(unmatched, **DATAFRAME_KWARGS)
 
 
-def render_admin(source_inventory: pd.DataFrame) -> None:
+def render_admin(data: dict) -> None:
     st.header("Admin / Source Inventory")
+    st.write("This page tracks possible future sources and parser priority.")
 
+    source_inventory = data["source_inventory"].fillna("").copy()
     if source_inventory.empty:
         st.warning("No source_inventory.csv found.")
         return
 
-    st.write(
-        "Planning view for candidate carbon methodology and registry sources. "
-        "Use it to prioritize future parser work."
-    )
+    summary1, summary2 = st.columns(2)
+    with summary1:
+        if "priority" in source_inventory.columns:
+            st.subheader("Priority Counts")
+            priority_counts = (
+                source_inventory.groupby("priority", as_index=False)
+                .size()
+                .rename(columns={"size": "sources"})
+                .sort_values("sources", ascending=False)
+            )
+            render_bar_chart(priority_counts, "priority", "sources")
+            st.dataframe(priority_counts, **DATAFRAME_KWARGS)
+    with summary2:
+        if "recommended_next_action" in source_inventory.columns:
+            st.subheader("Recommended Action Counts")
+            action_counts = (
+                source_inventory.groupby("recommended_next_action", as_index=False)
+                .size()
+                .rename(columns={"size": "sources"})
+                .sort_values("sources", ascending=False)
+            )
+            render_bar_chart(action_counts, "recommended_next_action", "sources")
+            st.dataframe(action_counts, **DATAFRAME_KWARGS)
 
-    priority_filter = st.multiselect(
-        "Filter by priority",
-        non_empty_options(source_inventory.fillna(""), "priority"),
-        default=non_empty_options(source_inventory.fillna(""), "priority"),
-    )
-    action_filter = st.multiselect(
-        "Filter by recommended next action",
-        non_empty_options(source_inventory.fillna(""), "recommended_next_action"),
-        default=non_empty_options(source_inventory.fillna(""), "recommended_next_action"),
-    )
-
-    filtered = source_inventory.fillna("").copy()
-    filtered = apply_multiselect_filter(filtered, "priority", priority_filter)
-    filtered = apply_multiselect_filter(
-        filtered,
-        "recommended_next_action",
-        action_filter,
-    )
-
-    st.dataframe(filtered, **DATAFRAME_KWARGS)
-
-    st.subheader("Recommended Next Parser Candidates")
-    candidates = filtered[
-        filtered["recommended_next_action"].isin(["inspect", "parse"])
-    ].copy()
-    if candidates.empty:
-        st.info("No parser candidates selected.")
-    else:
-        st.dataframe(candidates, **DATAFRAME_KWARGS)
-
-    st.download_button(
-        "Download source inventory CSV",
-        filtered.to_csv(index=False),
-        file_name="source_inventory.csv",
-        mime="text/csv",
-    )
+    st.subheader("Source Inventory")
+    st.dataframe(source_inventory, **DATAFRAME_KWARGS)
+    show_download_button(source_inventory, "source_inventory.csv")
 
 
 st.set_page_config(
@@ -817,24 +1018,7 @@ st.set_page_config(
 st.title("Carbon Registry Intelligence Database")
 st.caption("v0.4 prototype: source-specific parsers -> unified tables -> explorer")
 
-(
-    methodologies,
-    projects,
-    issuance,
-    rules,
-    source_inventory,
-    gs_projects,
-    puro_projects,
-    puro_issuances,
-    unified_projects,
-    unified_issuances,
-) = load_data()
-
-if not projects.empty and "methodology_no" in projects.columns:
-    projects = projects.copy()
-    projects["methodology_code_clean"] = projects["methodology_no"].apply(
-        clean_methodology_code
-    )
+DATA = load_data()
 
 page = st.sidebar.radio(
     "Navigation",
@@ -850,24 +1034,16 @@ page = st.sidebar.radio(
 )
 
 if page == "Overview":
-    render_overview(unified_projects, unified_issuances)
+    render_overview(DATA)
 elif page == "Source Coverage":
-    render_source_coverage(unified_projects, unified_issuances)
+    render_source_coverage(DATA)
 elif page == "Explore Projects":
-    render_explore_projects(unified_projects)
+    render_explore_projects(DATA)
 elif page == "Explore Issuances":
-    render_explore_issuances(unified_issuances)
+    render_explore_issuances(DATA)
 elif page == "Source Views":
-    render_source_views(
-        methodologies,
-        projects,
-        issuance,
-        rules,
-        gs_projects,
-        puro_projects,
-        puro_issuances,
-    )
+    render_source_views(DATA)
 elif page == "Data Quality":
-    render_data_quality(unified_projects, unified_issuances)
+    render_data_quality(DATA)
 else:
-    render_admin(source_inventory)
+    render_admin(DATA)
