@@ -7,7 +7,7 @@ PROJECT_ROOT = Path(__file__).resolve().parents[2]
 PROCESSED_DIR = PROJECT_ROOT / "data" / "processed"
 OUTPUT_CSV = PROCESSED_DIR / "unified" / "issuances.csv"
 
-CANONICAL_COLUMNS = [
+UNIFIED_COLUMNS = [
     "source_id",
     "source_name",
     "source_project_id",
@@ -36,7 +36,7 @@ def read_csv_if_exists(path: Path) -> pd.DataFrame:
 def build_jcm_issuances() -> pd.DataFrame:
     df = read_csv_if_exists(PROCESSED_DIR / "jcm_mn" / "issuance_records.csv")
     if df.empty:
-        return pd.DataFrame(columns=CANONICAL_COLUMNS)
+        return pd.DataFrame(columns=UNIFIED_COLUMNS)
 
     projects = read_csv_if_exists(PROCESSED_DIR / "jcm_mn" / "projects_mongolia.csv")
     if not projects.empty:
@@ -60,13 +60,13 @@ def build_jcm_issuances() -> pd.DataFrame:
     unified["durability"] = ""
     unified["country"] = df.get("country", blank_series(df))
     unified["source_url"] = df.get("source_url", blank_series(df))
-    return unified[CANONICAL_COLUMNS]
+    return unified[UNIFIED_COLUMNS]
 
 
 def build_puro_issuances() -> pd.DataFrame:
     df = read_csv_if_exists(PROCESSED_DIR / "puro_earth" / "puro_issuances_all.csv")
     if df.empty:
-        return pd.DataFrame(columns=CANONICAL_COLUMNS)
+        return pd.DataFrame(columns=UNIFIED_COLUMNS)
 
     projects = read_csv_if_exists(PROCESSED_DIR / "puro_earth" / "puro_projects_all.csv")
     if not projects.empty:
@@ -90,7 +90,7 @@ def build_puro_issuances() -> pd.DataFrame:
     unified["durability"] = df.get("durability", blank_series(df))
     unified["country"] = df.get("country", blank_series(df))
     unified["source_url"] = df.get("source_url", blank_series(df))
-    return unified[CANONICAL_COLUMNS]
+    return unified[UNIFIED_COLUMNS]
 
 
 def build_unified_issuances() -> pd.DataFrame:

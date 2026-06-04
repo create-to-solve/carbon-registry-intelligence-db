@@ -1,17 +1,16 @@
-# Global Carbon Methodology DB
+# Carbon Registry Intelligence Database
 
-Prototype database and Streamlit explorer for carbon methodology, project, issuance, and source-inventory data.
+Prototype database and Streamlit explorer for carbon registry methodology, project, issuance, and source-inventory data.
 
-The project currently uses JCM Mongolia-Japan as the pilot source. The goal is to prove a repeatable source ingestion pattern before adding additional carbon standards and registries.
+The project currently aggregates JCM Mongolia-Japan, Gold Standard project catalogue data, and Puro Earth registry data into unified project and issuance outputs.
 
-## Current JCM Pilot Status
+## Current Source Status
 
-The JCM Mongolia-Japan parser is implemented and produces processed CSV outputs for:
+The source parsers produce processed CSV outputs for:
 
-- approved methodologies
-- Mongolia projects
-- issuance allocation records
-- rules, guidelines, and forms
+- JCM Mongolia-Japan methodologies, projects, issuance allocation records, and rules/forms
+- Gold Standard project catalogue export
+- Puro Earth projects and issuances
 
 Raw HTML snapshots are stored under `data/raw/jcm_mn/` when fetched locally. Processed outputs are stored under `data/processed/jcm_mn/`.
 
@@ -77,9 +76,4 @@ Unified outputs aggregate available project and issuance fields across JCM Mongo
 
 ## Next-Source Roadmap
 
-Near-term roadmap:
-
-- stabilize the JCM pilot and Streamlit explorer
-- add a Gold Standard project export as the second source
-- use `data/processed/source_inventory.csv` to prioritize future sources
-- defer Puro, ACR, Berkeley, and other registries until the second-source pattern is reviewed
+Use `data/processed/source_inventory.csv` to prioritize future sources after the current unified project and issuance explorer is reviewed.

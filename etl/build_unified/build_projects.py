@@ -7,7 +7,7 @@ PROJECT_ROOT = Path(__file__).resolve().parents[2]
 PROCESSED_DIR = PROJECT_ROOT / "data" / "processed"
 OUTPUT_CSV = PROCESSED_DIR / "unified" / "projects.csv"
 
-CANONICAL_COLUMNS = [
+UNIFIED_COLUMNS = [
     "source_id",
     "source_name",
     "source_project_id",
@@ -47,7 +47,7 @@ def gold_standard_project_url(source_project_id) -> str:
 def build_jcm_projects() -> pd.DataFrame:
     df = read_csv_if_exists(PROCESSED_DIR / "jcm_mn" / "projects_mongolia.csv")
     if df.empty:
-        return pd.DataFrame(columns=CANONICAL_COLUMNS)
+        return pd.DataFrame(columns=UNIFIED_COLUMNS)
 
     unified = pd.DataFrame(index=df.index)
     unified["source_id"] = "jcm_mn"
@@ -61,13 +61,13 @@ def build_jcm_projects() -> pd.DataFrame:
     unified["developer_or_supplier"] = df.get("host_country_participant", blank_series(df))
     unified["estimated_annual_credits"] = ""
     unified["project_url"] = df.get("source_url", blank_series(df))
-    return unified[CANONICAL_COLUMNS]
+    return unified[UNIFIED_COLUMNS]
 
 
 def build_gold_standard_projects() -> pd.DataFrame:
     df = read_csv_if_exists(PROCESSED_DIR / "gold_standard" / "gs_projects.csv")
     if df.empty:
-        return pd.DataFrame(columns=CANONICAL_COLUMNS)
+        return pd.DataFrame(columns=UNIFIED_COLUMNS)
 
     unified = pd.DataFrame(index=df.index)
     unified["source_id"] = "gold_standard"
@@ -86,13 +86,13 @@ def build_gold_standard_projects() -> pd.DataFrame:
     unified["project_url"] = df.get("gs_id", blank_series(df)).apply(
         gold_standard_project_url
     )
-    return unified[CANONICAL_COLUMNS]
+    return unified[UNIFIED_COLUMNS]
 
 
 def build_puro_projects() -> pd.DataFrame:
     df = read_csv_if_exists(PROCESSED_DIR / "puro_earth" / "puro_projects_all.csv")
     if df.empty:
-        return pd.DataFrame(columns=CANONICAL_COLUMNS)
+        return pd.DataFrame(columns=UNIFIED_COLUMNS)
 
     unified = pd.DataFrame(index=df.index)
     unified["source_id"] = "puro_earth"
@@ -106,7 +106,7 @@ def build_puro_projects() -> pd.DataFrame:
     unified["developer_or_supplier"] = df.get("supplier", blank_series(df))
     unified["estimated_annual_credits"] = ""
     unified["project_url"] = df.get("project_url", blank_series(df))
-    return unified[CANONICAL_COLUMNS]
+    return unified[UNIFIED_COLUMNS]
 
 
 def build_unified_projects() -> pd.DataFrame:

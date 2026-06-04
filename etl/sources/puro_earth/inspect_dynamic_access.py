@@ -145,7 +145,7 @@ def inspect_dynamic_access() -> pd.DataFrame:
     session = requests.Session()
     session.headers.update(
         {
-            "User-Agent": "global-carbon-method-db/0.1 (+dynamic access reconnaissance)",
+            "User-Agent": "carbon-registry-intelligence-db/0.1 (+dynamic access reconnaissance)",
         }
     )
 

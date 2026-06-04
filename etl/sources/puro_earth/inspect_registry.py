@@ -111,7 +111,7 @@ def inspect_registry() -> pd.DataFrame:
     session = requests.Session()
     session.headers.update(
         {
-            "User-Agent": "global-carbon-method-db/0.1 (+source reconnaissance)",
+            "User-Agent": "carbon-registry-intelligence-db/0.1 (+source reconnaissance)",
         }
     )
 
