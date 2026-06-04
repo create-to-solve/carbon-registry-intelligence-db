@@ -1,0 +1,5 @@
+source,page_name,url,http_status,html_length,tables_found,links_found,possible_entities,notes
+Puro Earth,document_library,https://puro.earth/cdr-infrastructure/methodologies/document-library/,200,269764,0,102,"methodologies, methodology documents",No HTML tables found
+Puro Earth,registry_home,https://registry.puro.earth/,200,73300,0,20,registry overview,No HTML tables found
+Puro Earth,projects,https://registry.puro.earth/projects,200,173109,1,29,projects,HTML tables present
+Puro Earth,issuances,https://registry.puro.earth/issuances,200,1407874,1,28,"issuances, credit records",HTML tables present

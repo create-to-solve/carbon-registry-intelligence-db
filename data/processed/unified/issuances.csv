@@ -1,0 +1,584 @@
+source_id,source_name,source_project_id,project_name,issuance_date,issued_quantity,credit_unit,methodology_name,durability,country,source_url
+jcm_mn,JCM Mongolia-Japan,MN006,Introduction of 15MW Solar Power System near New Airport,,,JCM credit,MN_AM003 Ver2.0,,Mongolia,https://www.jcm.go.jp/jc/mn-projects-issues
+jcm_mn,JCM Mongolia-Japan,MN006,Introduction of 15MW Solar Power System near New Airport,2026-01-30,24249.0,JCM credit,MN_AM003 Ver2.0,,Japan,https://www.jcm.go.jp/jc/mn-projects-issues
+jcm_mn,JCM Mongolia-Japan,MN005,A HIGH EFFICIENCY AND LOW LOSS POWER TRANSMISSION AND DISTRIBUTION SYSTEM IN MONGOLIA,2019-05-17,1.0,JCM credit,MN_AM001 Ver1.0,,Mongolia,https://www.jcm.go.jp/jc/mn-projects-issues
+jcm_mn,JCM Mongolia-Japan,MN005,A HIGH EFFICIENCY AND LOW LOSS POWER TRANSMISSION AND DISTRIBUTION SYSTEM IN MONGOLIA,,0.0,JCM credit,MN_AM001 Ver1.0,,Japan,https://www.jcm.go.jp/jc/mn-projects-issues
+jcm_mn,JCM Mongolia-Japan,MN004,10MW Solar Power Project in Darkhan City,2025-05-07,8963.0,JCM credit,MN_AM003 Ver2.0,,Mongolia,https://www.jcm.go.jp/jc/mn-projects-issues
+jcm_mn,JCM Mongolia-Japan,MN004,10MW Solar Power Project in Darkhan City,2025-04-11,35854.0,JCM credit,MN_AM003 Ver2.0,,Japan,https://www.jcm.go.jp/jc/mn-projects-issues
+jcm_mn,JCM Mongolia-Japan,MN004,10MW Solar Power Project in Darkhan City,2017-10-24,1789.0,JCM credit,MN_AM003 Ver2.0,,Mongolia,https://www.jcm.go.jp/jc/mn-projects-issues
+jcm_mn,JCM Mongolia-Japan,MN004,10MW Solar Power Project in Darkhan City,2017-10-24,7158.0,JCM credit,MN_AM003 Ver2.0,,Japan,https://www.jcm.go.jp/jc/mn-projects-issues
+jcm_mn,JCM Mongolia-Japan,MN003,Installation of 12.7 MW Solar Power Plant for Power Supply In Ulaanbaatar Suburb,2022-02-22,7084.0,JCM credit,MN_AM003 Ver2.0,,Mongolia,https://www.jcm.go.jp/jc/mn-projects-issues
+jcm_mn,JCM Mongolia-Japan,MN003,Installation of 12.7 MW Solar Power Plant for Power Supply In Ulaanbaatar Suburb,2022-02-24,28335.0,JCM credit,MN_AM003 Ver2.0,,Japan,https://www.jcm.go.jp/jc/mn-projects-issues
+jcm_mn,JCM Mongolia-Japan,MN003,Installation of 12.7 MW Solar Power Plant for Power Supply In Ulaanbaatar Suburb,2018-12-14,1776.0,JCM credit,MN_AM003 Ver2.0,,Mongolia,https://www.jcm.go.jp/jc/mn-projects-issues
+jcm_mn,JCM Mongolia-Japan,MN003,Installation of 12.7 MW Solar Power Plant for Power Supply In Ulaanbaatar Suburb,2018-12-14,7104.0,JCM credit,MN_AM003 Ver2.0,,Japan,https://www.jcm.go.jp/jc/mn-projects-issues
+jcm_mn,JCM Mongolia-Japan,MN002,Centralization of heat supply system by installation of high-efficiency Heat Only Boilers in Bornuur soum Project,,,JCM credit,MN_AM002 Ver1.0,,Mongolia,https://www.jcm.go.jp/jc/mn-projects-issues
+jcm_mn,JCM Mongolia-Japan,MN002,Centralization of heat supply system by installation of high-efficiency Heat Only Boilers in Bornuur soum Project,2026-01-30,256.0,JCM credit,MN_AM002 Ver1.0,,Japan,https://www.jcm.go.jp/jc/mn-projects-issues
+jcm_mn,JCM Mongolia-Japan,MN002,Centralization of heat supply system by installation of high-efficiency Heat Only Boilers in Bornuur soum Project,2018-11-29,166.0,JCM credit,MN_AM002 Ver1.0,,Japan,https://www.jcm.go.jp/jc/mn-projects-issues
+jcm_mn,JCM Mongolia-Japan,MN002,Centralization of heat supply system by installation of high-efficiency Heat Only Boilers in Bornuur soum Project,2016-09-30,22.0,JCM credit,MN_AM002 Ver1.0,,Mongolia,https://www.jcm.go.jp/jc/mn-projects-issues
+jcm_mn,JCM Mongolia-Japan,MN002,Centralization of heat supply system by installation of high-efficiency Heat Only Boilers in Bornuur soum Project,2016-09-30,85.0,JCM credit,MN_AM002 Ver1.0,,Japan,https://www.jcm.go.jp/jc/mn-projects-issues
+jcm_mn,JCM Mongolia-Japan,MN001,Installation of high-efficiency Heat Only Boilers in 118th School of Ulaanbaatar City Project,,,JCM credit,MN_AM002 Ver1.0,,Mongolia,https://www.jcm.go.jp/jc/mn-projects-issues
+jcm_mn,JCM Mongolia-Japan,MN001,Installation of high-efficiency Heat Only Boilers in 118th School of Ulaanbaatar City Project,2026-01-30,110.0,JCM credit,MN_AM002 Ver1.0,,Japan,https://www.jcm.go.jp/jc/mn-projects-issues
+jcm_mn,JCM Mongolia-Japan,MN001,Installation of high-efficiency Heat Only Boilers in 118th School of Ulaanbaatar City Project,2018-11-07,94.0,JCM credit,MN_AM002 Ver1.0,,Japan,https://www.jcm.go.jp/jc/mn-projects-issues
+jcm_mn,JCM Mongolia-Japan,MN001,Installation of high-efficiency Heat Only Boilers in 118th School of Ulaanbaatar City Project,2016-09-30,10.0,JCM credit,MN_AM002 Ver1.0,,Mongolia,https://www.jcm.go.jp/jc/mn-projects-issues
+jcm_mn,JCM Mongolia-Japan,MN001,Installation of high-efficiency Heat Only Boilers in 118th School of Ulaanbaatar City Project,2016-09-30,40.0,JCM credit,MN_AM002 Ver1.0,,Japan,https://www.jcm.go.jp/jc/mn-projects-issues
+puro_earth,Puro Earth,432524,"Exomad Green, Concepción",01 Jun 2026,12078.0,CORC,"Biochar, 2022",100+ years,Bolivia,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,664457,Bio-Logical Mt Kenya Biochar Project,28 May 2026,597.0,CORC,"Biochar, 2022",100+ years,Kenya,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,470748,"ReGenerate Livermore Falls, LLC",26 May 2026,2901.0,CORC,"Biochar, 2022",100+ years,United States,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,353054,Gevo North Dakota,21 May 2026,61822.0,CORC,Geologically stored carbon,1000+ years,United States,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,973037,Charles Ingram Lumber Company,15 May 2026,1110.0,CORC,"Biochar, 2022",100+ years,United States,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,625222,Leeds Production Facility,08 May 2026,2893.0,CORC,Carbonated Materials,1000+ years,United Kingdom,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,625222,Leeds Production Facility,08 May 2026,717.0,CORC,Carbonated Materials,1000+ years,United Kingdom,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,292788,"Exomad Green, Riberalta",07 May 2026,10068.0,CORC,"Biochar, 2022",100+ years,Bolivia,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,432524,"Exomad Green, Concepción",30 Apr 2026,10163.0,CORC,"Biochar, 2022",100+ years,Bolivia,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,517437,Wakefield Biochar Facility 4,30 Apr 2026,2506.0,CORC,"Biochar, 2022",100+ years,United States,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,435899,East Dundee Biochar Facility,29 Apr 2026,69.0,CORC,"Biochar, 2022",100+ years,United States,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,756292,Avonmouth Production Facility,24 Apr 2026,1575.0,CORC,Carbonated Materials,1000+ years,United Kingdom,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,816220,Truecoco Ghana Ltd,22 Apr 2026,2260.0,CORC,"Biochar, 2022",100+ years,Ghana,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,554214,Jiaxing Tongao Biochar Plant,22 Apr 2026,918.0,CORC,"Biochar, 2022",100+ years,China,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,145827,Carbonity Biochar Production Canada,17 Apr 2026,88.0,CORC,"Biochar, 2022",100+ years,Canada,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,969347,R3,13 Apr 2026,4.0,CORC,"Biochar, 2022",100+ years,Finland,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,292788,"Exomad Green, Riberalta",01 Apr 2026,10835.0,CORC,"Biochar, 2022",100+ years,Bolivia,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,175613,Aperam BioEnergia,31 Mar 2026,46433.0,CORC,"Biochar, 2022",100+ years,Brazil,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,469599,SEEK Biochar in Shanghai,30 Mar 2026,60.0,CORC,"Biochar, 2022",100+ years,China,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,846201,Dragonfly,30 Mar 2026,1049.0,CORC,Terrestrial Storage of Biomass,100+ years,Namibia,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,432524,"Exomad Green, Concepción",30 Mar 2026,11082.0,CORC,"Biochar, 2022",100+ years,Bolivia,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,442197,Enhanced Rock Weathering - Smallholder farmers in India,26 Mar 2026,253.0,CORC,"Enhanced Rock Weathering, 2022",1000+ years,India,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,292788,"Exomad Green, Riberalta",23 Mar 2026,10220.0,CORC,"Biochar, 2022",100+ years,Bolivia,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,226049,Farm Gai Kaisa 159,20 Mar 2026,1396.0,CORC,"Biochar, 2022",100+ years,Namibia,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,526866,Foundation 1,13 Mar 2026,340.0,CORC,"Biochar, 2022",100+ years,Cambodia,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,593074,Sem-Chi Rice Products Corp. CDR Facility #1,06 Mar 2026,871.0,CORC,"Biochar, 2022",100+ years,United States,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,389138,Guaicaramo,05 Mar 2026,106.0,CORC,"Biochar, 2022",100+ years,Colombia,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,705515,Tierra Prieta - Parras,05 Mar 2026,1015.0,CORC,"Biochar, 2022",100+ years,Mexico,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,432524,"Exomad Green, Concepción",26 Feb 2026,11671.0,CORC,"Biochar, 2022",100+ years,Bolivia,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,292788,"Exomad Green, Riberalta",10 Feb 2026,5068.0,CORC,"Biochar, 2022",100+ years,Bolivia,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,133972,SCG,06 Feb 2026,668.0,CORC,"Biochar, 2022",100+ years,Thailand,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,530211,La Veta,04 Feb 2026,850.0,CORC,Terrestrial Storage of Biomass,100+ years,United States,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,432524,"Exomad Green, Concepción",02 Feb 2026,3714.0,CORC,"Biochar, 2022",100+ years,Bolivia,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,619736,Four Bordet,30 Jan 2026,1768.0,CORC,"Biochar, 2022",100+ years,France,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,417791,Mammoth,30 Jan 2026,82.0,CORC,"Geologically stored carbon, 2024",1000+ years,Iceland,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,631817,Orca plant,30 Jan 2026,205.0,CORC,Geologically stored carbon,1000+ years,Iceland,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,292788,"Exomad Green, Riberalta",28 Jan 2026,4900.0,CORC,"Biochar, 2022",100+ years,Bolivia,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,507468,Carbofex Nokia 1,23 Jan 2026,856.0,CORC,"Biochar, 2022",100+ years,Finland,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,816220,Truecoco Ghana Ltd,23 Jan 2026,1548.0,CORC,"Biochar, 2022",100+ years,Ghana,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,432524,"Exomad Green, Concepción",23 Jan 2026,6576.0,CORC,"Biochar, 2022",100+ years,Bolivia,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,272514,Mast Wood Preserve MT1,22 Jan 2026,4277.0,CORC,Terrestrial Storage of Biomass,100+ years,United States,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,832026,Karbonetiq Contrecoeur,31 Dec 2025,125.0,CORC,Carbonated Materials,1000+ years,Canada,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,452184,Walsenburg Facility,31 Dec 2025,104.0,CORC,Terrestrial Storage of Biomass,100+ years,United States,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,712033,Carbon Hill,30 Dec 2025,361.0,CORC,"Biochar, 2022",100+ years,United Kingdom,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,727586,OBIO Rudshøgda,30 Dec 2025,845.0,CORC,"Biochar, 2022",100+ years,Norway,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,292788,"Exomad Green, Riberalta",30 Dec 2025,7744.0,CORC,"Biochar, 2022",100+ years,Bolivia,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,432524,"Exomad Green, Concepción",29 Dec 2025,12467.0,CORC,"Biochar, 2022",100+ years,Bolivia,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,141608,NetZero-002-Lajinha,19 Dec 2025,1564.0,CORC,"Biochar, 2022",100+ years,Brazil,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,566645,NetZero-003-Brejetuba,19 Dec 2025,462.0,CORC,"Biochar, 2022",100+ years,Brazil,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,756292,Avonmouth Production Facility,19 Dec 2025,4714.0,CORC,Carbonated Materials,1000+ years,United Kingdom,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,625222,Leeds Production Facility,19 Dec 2025,2135.0,CORC,Carbonated Materials,1000+ years,United Kingdom,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,625222,Leeds Production Facility,19 Dec 2025,2723.0,CORC,Carbonated Materials,1000+ years,United Kingdom,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,607941,Fasera Biochar Plant 1,19 Dec 2025,142.0,CORC,"Biochar, 2022",100+ years,Australia,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,686528,Applied Carbon – Terra,19 Dec 2025,768.0,CORC,"Biochar, 2022",100+ years,United States,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,353054,Gevo North Dakota,19 Dec 2025,29476.0,CORC,Geologically stored carbon,1000+ years,United States,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,292788,"Exomad Green, Riberalta",19 Dec 2025,9408.0,CORC,"Biochar, 2022",100+ years,Bolivia,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,244045,Wakefield Biochar Facility 2,17 Dec 2025,2567.0,CORC,"Biochar, 2022",100+ years,United States,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,939902,Wakefield Biochar Facility 3,17 Dec 2025,752.0,CORC,"Biochar, 2022",100+ years,United States,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,517437,Wakefield Biochar Facility 4,17 Dec 2025,915.0,CORC,"Biochar, 2022",100+ years,United States,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,583695,Carbonsate Project Namibia,15 Dec 2025,799.0,CORC,Terrestrial Storage of Biomass,100+ years,Namibia,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,226049,Farm Gai Kaisa 159,15 Dec 2025,3144.0,CORC,"Biochar, 2022",100+ years,Namibia,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,477900,Fasera TSB Facility 1,15 Dec 2025,1583.0,CORC,Terrestrial Storage of Biomass,100+ years,Australia,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,320449,Joanna,12 Dec 2025,16527.0,CORC,"Biochar, 2022",100+ years,United States,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,816220,Truecoco Ghana Ltd,11 Dec 2025,942.0,CORC,"Biochar, 2022",100+ years,Ghana,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,133206,"Freres Lumber Co., Inc.",10 Dec 2025,4026.0,CORC,"Biochar, 2022",100+ years,United States,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,680422,Brodie Biomass,09 Dec 2025,1416.0,CORC,"Biochar, 2022",100+ years,United Kingdom,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,203380,Lithos Carbon US Southeast ERW Deployment,05 Dec 2025,2361.0,CORC,"Enhanced Rock Weathering, 2022",1000+ years,United States,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,432524,"Exomad Green, Concepción",05 Dec 2025,12380.0,CORC,"Biochar, 2022",100+ years,Bolivia,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,631817,Orca plant,05 Dec 2025,357.0,CORC,Geologically stored carbon,1000+ years,Iceland,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,417791,Mammoth,04 Dec 2025,278.0,CORC,"Geologically stored carbon, 2024",1000+ years,Iceland,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,782763,Lithos Mid-Atlantic Facility,03 Dec 2025,2146.0,CORC,"Enhanced Rock Weathering, 2022",1000+ years,United States,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,606367,Lithos Mid-West Facility,03 Dec 2025,2362.0,CORC,"Enhanced Rock Weathering, 2022",1000+ years,United States,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,203380,Lithos Carbon US Southeast ERW Deployment,03 Dec 2025,652.0,CORC,"Enhanced Rock Weathering, 2022",1000+ years,United States,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,470748,"ReGenerate Livermore Falls, LLC",02 Dec 2025,1745.0,CORC,"Biochar, 2022",100+ years,United States,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,226049,Farm Gai Kaisa 159,01 Dec 2025,1566.0,CORC,"Biochar, 2022",100+ years,Namibia,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,175613,Aperam BioEnergia,01 Dec 2025,16191.0,CORC,"Biochar, 2022",100+ years,Brazil,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,353054,Gevo North Dakota,28 Nov 2025,42631.0,CORC,Geologically stored carbon,1000+ years,United States,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,753518,Oregon Biochar Solutions,26 Nov 2025,6926.0,CORC,"Biochar, 2022",100+ years,United States,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,292788,"Exomad Green, Riberalta",26 Nov 2025,8701.0,CORC,"Biochar, 2022",100+ years,Bolivia,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,292788,"Exomad Green, Riberalta",19 Nov 2025,16390.0,CORC,"Biochar, 2022",100+ years,Bolivia,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,511285,"Carbon Cycle, 001, Rieden, DE",14 Nov 2025,165.0,CORC,"Biochar, 2022",100+ years,Germany,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,432524,"Exomad Green, Concepción",14 Nov 2025,10503.0,CORC,"Biochar, 2022",100+ years,Bolivia,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,517437,Wakefield Biochar Facility 4,11 Nov 2025,3272.0,CORC,"Biochar, 2022",100+ years,United States,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,939902,Wakefield Biochar Facility 3,11 Nov 2025,770.0,CORC,"Biochar, 2022",100+ years,United States,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,706975,ECOERA Millennium 1 Hammenhög Skånefrö,06 Nov 2025,113.0,CORC,"Biochar, 2022",100+ years,Sweden,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,432524,"Exomad Green, Concepción",29 Oct 2025,9309.0,CORC,"Biochar, 2022",100+ years,Bolivia,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,442197,Enhanced Rock Weathering - Smallholder farmers in India,23 Oct 2025,77.0,CORC,"Enhanced Rock Weathering, 2022",1000+ years,India,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,816220,Truecoco Ghana Ltd,14 Oct 2025,870.0,CORC,"Biochar, 2022",100+ years,Ghana,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,353054,Gevo North Dakota,30 Sept 2025,69771.0,CORC,Geologically stored carbon,1000+ years,United States,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,387867,Eion - Twinterstellar 3021,24 Sept 2025,748.0,CORC,"Enhanced Rock Weathering, 2022",1000+ years,United States,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,432524,"Exomad Green, Concepción",15 Sept 2025,7581.0,CORC,"Biochar, 2022",100+ years,Bolivia,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,674019,Novocarbo Baltic Sea,12 Sept 2025,137.0,CORC,"Biochar, 2022",100+ years,Germany,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,301704,Varaha Corn Seed Facility 1 : Pooling ID 301704,10 Sept 2025,2481.0,CORC,"Biochar, 2022",100+ years,India,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,292788,"Exomad Green, Riberalta",09 Sept 2025,4067.0,CORC,"Biochar, 2022",100+ years,Bolivia,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,272454,EUTHENIA ENERGY CENTER,01 Sept 2025,1738.0,CORC,"Biochar, 2022",100+ years,Spain,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,705515,Tierra Prieta - Parras,25 Aug 2025,521.0,CORC,"Biochar, 2022",100+ years,Mexico,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,448190,BBB - AWJ_Newton Rigg (JNR),18 Aug 2025,177.0,CORC,"Biochar, 2022",100+ years,United Kingdom,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,432524,"Exomad Green, Concepción",18 Aug 2025,7818.0,CORC,"Biochar, 2022",100+ years,Bolivia,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,511686,BBB - Ahlstrom_Radcliffe,12 Aug 2025,99.0,CORC,"Biochar, 2022",100+ years,United Kingdom,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,407851,Varaha Corn Seed Facility 2 : Pooling ID 301704,12 Aug 2025,1274.0,CORC,"Biochar, 2022",100+ years,India,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,566645,NetZero-003-Brejetuba,08 Aug 2025,452.0,CORC,"Biochar, 2022",100+ years,Brazil,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,141608,NetZero-002-Lajinha,08 Aug 2025,873.0,CORC,"Biochar, 2022",100+ years,Brazil,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,664457,Bio-Logical Mt Kenya Biochar Project,08 Aug 2025,278.0,CORC,"Biochar, 2022",100+ years,Kenya,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,664457,Bio-Logical Mt Kenya Biochar Project,08 Aug 2025,432.0,CORC,"Biochar, 2022",100+ years,Kenya,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,292788,"Exomad Green, Riberalta",05 Aug 2025,4106.0,CORC,"Biochar, 2022",100+ years,Bolivia,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,227253,Alcom-01-NuevaEcijaPhilippines,01 Aug 2025,132.0,CORC,"Biochar, 2022",100+ years,Philippines,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,432524,"Exomad Green, Concepción",22 Jul 2025,6305.0,CORC,"Biochar, 2022",100+ years,Bolivia,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,472483,V-Grid (c/o South Corner Dairy),21 Jul 2025,80.0,CORC,"Biochar, 2022",100+ years,United States,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,145827,Carbonity Biochar Production Canada,16 Jul 2025,170.0,CORC,"Biochar, 2022",100+ years,Canada,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,432524,"Exomad Green, Concepción",15 Jul 2025,8122.0,CORC,"Biochar, 2022",100+ years,Bolivia,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,631817,Orca plant,08 Jul 2025,108.0,CORC,Geologically stored carbon,1000+ years,Iceland,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,292788,"Exomad Green, Riberalta",01 Jul 2025,1229.0,CORC,"Biochar, 2022",100+ years,Bolivia,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,511285,"Carbon Cycle, 001, Rieden, DE",30 Jun 2025,498.0,CORC,"Biochar, 2022",100+ years,Germany,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,625222,Leeds Production Facility,27 Jun 2025,1706.0,CORC,Carbonated Materials,1000+ years,United Kingdom,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,272454,EUTHENIA ENERGY CENTER,24 Jun 2025,584.0,CORC,"Biochar, 2022",100+ years,Spain,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,292788,"Exomad Green, Riberalta",19 Jun 2025,2436.0,CORC,"Biochar, 2022",100+ years,Bolivia,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,432524,"Exomad Green, Concepción",17 Jun 2025,13058.0,CORC,"Biochar, 2022",100+ years,Bolivia,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,686528,Applied Carbon – Terra,13 Jun 2025,847.0,CORC,"Biochar, 2022",100+ years,United States,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,292788,"Exomad Green, Riberalta",30 May 2025,3658.0,CORC,"Biochar, 2022",100+ years,Bolivia,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,291133,Carbonchip Mobile Carboniser #1,27 May 2025,579.0,CORC,"Biochar, 2022",100+ years,Australia,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,752025,Nuntårp Gård,22 May 2025,458.0,CORC,"Biochar, 2022",100+ years,Sweden,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,477900,Fasera TSB Facility 1,22 May 2025,586.0,CORC,Terrestrial Storage of Biomass,100+ years,Australia,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,514150,InterEarth Bowgada,29 Apr 2025,49.0,CORC,Terrestrial Storage of Biomass,100+ years,Australia,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,292788,"Exomad Green, Riberalta",29 Apr 2025,3677.0,CORC,"Biochar, 2022",100+ years,Bolivia,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,577494,Nian'da Biochar Facility,23 Apr 2025,330.0,CORC,"Biochar, 2022",100+ years,China,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,417791,Mammoth,22 Apr 2025,28.0,CORC,"Geologically stored carbon, 2024",1000+ years,Iceland,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,507468,Carbofex Nokia 1,17 Apr 2025,187.0,CORC,"Biochar, 2022",100+ years,Finland,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,631817,Orca plant,17 Apr 2025,77.0,CORC,Geologically stored carbon,1000+ years,Iceland,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,625222,Leeds Production Facility,08 Apr 2025,1757.0,CORC,Carbonated Materials,1000+ years,United Kingdom,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,511285,"Carbon Cycle, 001, Rieden, DE",01 Apr 2025,192.0,CORC,"Biochar, 2022",100+ years,Germany,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,292788,"Exomad Green, Riberalta",28 Mar 2025,3134.0,CORC,"Biochar, 2022",100+ years,Bolivia,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,432524,"Exomad Green, Concepción",28 Mar 2025,3632.0,CORC,"Biochar, 2022",100+ years,Bolivia,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,226049,Farm Gai Kaisa 159,25 Mar 2025,3351.0,CORC,"Biochar, 2022",100+ years,Namibia,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,299495,Bussme-01-Munka-Ljungby,18 Mar 2025,13.0,CORC,"Biochar, 2022",100+ years,Sweden,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,665890,Bussme-01-Svedala,18 Mar 2025,205.0,CORC,"Biochar, 2022",100+ years,Sweden,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,674019,Novocarbo Baltic Sea,18 Mar 2025,70.0,CORC,"Biochar, 2022",100+ years,Germany,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,566645,NetZero-003-Brejetuba,13 Mar 2025,84.0,CORC,"Biochar, 2022",100+ years,Brazil,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,566645,NetZero-003-Brejetuba,13 Mar 2025,156.0,CORC,"Biochar, 2022",100+ years,Brazil,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,141608,NetZero-002-Lajinha,13 Mar 2025,133.0,CORC,"Biochar, 2022",100+ years,Brazil,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,141608,NetZero-002-Lajinha,13 Mar 2025,453.0,CORC,"Biochar, 2022",100+ years,Brazil,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,980845,USA,13 Mar 2025,117.0,CORC,"Biochar, 2022",100+ years,United States,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,320449,Joanna,06 Mar 2025,4001.0,CORC,"Biochar, 2022",100+ years,United States,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,292788,"Exomad Green, Riberalta",04 Mar 2025,2977.0,CORC,"Biochar, 2022",100+ years,Bolivia,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,432524,"Exomad Green, Concepción",04 Mar 2025,3209.0,CORC,"Biochar, 2022",100+ years,Bolivia,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,353054,Gevo North Dakota,28 Feb 2025,221264.0,CORC,Geologically stored carbon,1000+ years,United States,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,727586,OBIO Rudshøgda,27 Feb 2025,218.0,CORC,"Biochar, 2022",100+ years,Norway,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,392654,BioLesna Carrot River,27 Feb 2025,100.0,CORC,"Biochar, 2022",100+ years,Canada,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,316372,Lurin,20 Feb 2025,138.0,CORC,"Biochar, 2022",100+ years,Peru,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,307998,"Explocom 1, Lupeni",14 Feb 2025,155.0,CORC,"Biochar, 2022",100+ years,Romania,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,470748,"ReGenerate Livermore Falls, LLC",07 Feb 2025,1913.0,CORC,"Biochar, 2022",100+ years,United States,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,432524,"Exomad Green, Concepción",07 Feb 2025,4256.0,CORC,"Biochar, 2022",100+ years,Bolivia,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,292788,"Exomad Green, Riberalta",07 Feb 2025,3986.0,CORC,"Biochar, 2022",100+ years,Bolivia,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,226049,Farm Gai Kaisa 159,31 Jan 2025,355.0,CORC,"Biochar, 2022",100+ years,Namibia,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,292788,"Exomad Green, Riberalta",14 Jan 2025,2221.0,CORC,"Biochar, 2022",100+ years,Bolivia,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,432524,"Exomad Green, Concepción",14 Jan 2025,3818.0,CORC,"Biochar, 2022",100+ years,Bolivia,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,507468,Carbofex Nokia 1,10 Jan 2025,34.0,CORC,"Biochar, 2022",100+ years,Finland,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,272454,EUTHENIA ENERGY CENTER,10 Jan 2025,2198.0,CORC,"Biochar, 2022",100+ years,Spain,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,566645,NetZero-003-Brejetuba,10 Jan 2025,116.0,CORC,"Biochar, 2022",100+ years,Brazil,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,141608,NetZero-002-Lajinha,10 Jan 2025,1708.0,CORC,"Biochar, 2022",100+ years,Brazil,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,955988,Sonnenerde PyroDry,09 Jan 2025,29.0,CORC,"Biochar, 2022",100+ years,Austria,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,292788,"Exomad Green, Riberalta",30 Dec 2024,10523.0,CORC,"Biochar, 2022",100+ years,Bolivia,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,511285,"Carbon Cycle, 001, Rieden, DE",30 Dec 2024,66.0,CORC,"Biochar, 2022",100+ years,Germany,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,511285,"Carbon Cycle, 001, Rieden, DE",30 Dec 2024,73.0,CORC,"Biochar, 2022",100+ years,Germany,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,511285,"Carbon Cycle, 001, Rieden, DE",30 Dec 2024,94.0,CORC,"Biochar, 2022",100+ years,Germany,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,756292,Avonmouth Production Facility,30 Dec 2024,4789.0,CORC,Carbonated Materials,1000+ years,United Kingdom,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,300346,Brandon Production Facility,30 Dec 2024,1075.0,CORC,Carbonated Materials,1000+ years,United Kingdom,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,625222,Leeds Production Facility,30 Dec 2024,9009.0,CORC,Carbonated Materials,1000+ years,United Kingdom,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,292788,"Exomad Green, Riberalta",27 Dec 2024,2276.0,CORC,"Biochar, 2022",100+ years,Bolivia,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,753518,Oregon Biochar Solutions,19 Dec 2024,848.0,CORC,"Biochar, 2022",100+ years,United States,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,226049,Farm Gai Kaisa 159,19 Dec 2024,307.0,CORC,"Biochar, 2022",100+ years,Namibia,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,631817,Orca plant,17 Dec 2024,289.0,CORC,Geologically stored carbon,1000+ years,Iceland,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,417791,Mammoth,17 Dec 2024,77.0,CORC,Geologically stored carbon,1000+ years,Iceland,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,511285,"Carbon Cycle, 001, Rieden, DE",12 Dec 2024,241.0,CORC,"Biochar, 2022",100+ years,Germany,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,432524,"Exomad Green, Concepción",12 Dec 2024,3579.0,CORC,"Biochar, 2022",100+ years,Bolivia,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,674019,Novocarbo Baltic Sea,05 Dec 2024,131.0,CORC,"Biochar, 2022",100+ years,Germany,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,507468,Carbofex Nokia 1,27 Nov 2024,58.0,CORC,"Biochar, 2022",100+ years,Finland,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,226049,Farm Gai Kaisa 159,27 Nov 2024,3810.0,CORC,"Biochar, 2022",100+ years,Namibia,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,120366,Clean Maine Carbon,21 Nov 2024,114.0,CORC,"Biochar, 2022",100+ years,United States,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,320449,Joanna,19 Nov 2024,5995.0,CORC,"Biochar, 2022",100+ years,United States,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,715141,Earthcare,15 Nov 2024,264.0,CORC,"Biochar, 2022",100+ years,United States,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,432524,"Exomad Green, Concepción",14 Nov 2024,4523.0,CORC,"Biochar, 2022",100+ years,Bolivia,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,706975,ECOERA Millennium 1 Hammenhög Skånefrö,12 Nov 2024,436.0,CORC,"Biochar, 2022",100+ years,Sweden,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,226049,Farm Gai Kaisa 159,04 Nov 2024,1901.0,CORC,"Biochar, 2022",100+ years,Namibia,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,114352,Jeffries Group,31 Oct 2024,217.0,CORC,"Biochar, 2022",100+ years,Australia,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,959739,CSI-Hardin,31 Oct 2024,3248.0,CORC,Terrestrial Storage of Biomass,100+ years,United States,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,175613,Aperam BioEnergia,25 Oct 2024,1917.0,CORC,"Biochar, 2022",100+ years,Brazil,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,175613,Aperam BioEnergia,25 Oct 2024,21456.0,CORC,"Biochar, 2022",100+ years,Brazil,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,301704,Varaha Corn Seed Facility 1 : Pooling ID 301704,23 Oct 2024,1747.0,CORC,"Biochar, 2022",100+ years,India,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,432524,"Exomad Green, Concepción",15 Oct 2024,3524.0,CORC,"Biochar, 2022",100+ years,Bolivia,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,507468,Carbofex Nokia 1,10 Oct 2024,115.0,CORC,"Biochar, 2022",100+ years,Finland,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,472483,V-Grid (c/o South Corner Dairy),10 Oct 2024,54.0,CORC,"Biochar, 2022",100+ years,United States,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,798006,Novocarbo Ruhr/Tyssenkrupp,10 Oct 2024,12.0,CORC,"Biochar, 2022",100+ years,Germany,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,619736,Four Bordet,02 Oct 2024,1403.0,CORC,"Biochar, 2022",100+ years,France,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,753518,Oregon Biochar Solutions,27 Sept 2024,1971.0,CORC,"Biochar, 2022",100+ years,United States,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,644638,General Biochar Systems - Irapuato,26 Sept 2024,108.0,CORC,"Biochar, 2022",100+ years,Mexico,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,569274,Pyrocal - Wellcamp,26 Sept 2024,63.0,CORC,"Biochar, 2022",100+ years,Australia,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,507468,Carbofex Nokia 1,19 Sept 2024,23.0,CORC,"Biochar, 2022",100+ years,Finland,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,674019,Novocarbo Baltic Sea,12 Sept 2024,45.0,CORC,"Biochar, 2022",100+ years,Germany,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,226049,Farm Gai Kaisa 159,12 Sept 2024,2284.0,CORC,"Biochar, 2022",100+ years,Namibia,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,432524,"Exomad Green, Concepción",12 Sept 2024,4200.0,CORC,"Biochar, 2022",100+ years,Bolivia,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,631817,Orca plant,12 Sept 2024,429.0,CORC,Geologically stored carbon,1000+ years,Iceland,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,244045,Wakefield Biochar Facility 2,03 Sept 2024,359.0,CORC,"Biochar, 2022",100+ years,United States,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,753518,Oregon Biochar Solutions,29 Aug 2024,872.0,CORC,"Biochar, 2022",100+ years,United States,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,244045,Wakefield Biochar Facility 2,27 Aug 2024,1440.0,CORC,"Biochar, 2022",100+ years,United States,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,607941,Fasera Biochar Plant 1,27 Aug 2024,268.0,CORC,"Biochar, 2022",100+ years,Australia,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,507468,Carbofex Nokia 1,20 Aug 2024,44.0,CORC,"Biochar, 2022",100+ years,Finland,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,472483,V-Grid (c/o South Corner Dairy),20 Aug 2024,106.0,CORC,"Biochar, 2022",100+ years,United States,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,432524,"Exomad Green, Concepción",13 Aug 2024,4109.0,CORC,"Biochar, 2022",100+ years,Bolivia,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,727586,OBIO Rudshøgda,08 Aug 2024,227.0,CORC,"Biochar, 2022",100+ years,Norway,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,674019,Novocarbo Baltic Sea,08 Aug 2024,133.0,CORC,"Biochar, 2022",100+ years,Germany,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,452184,Walsenburg Facility,26 Jul 2024,69.0,CORC,Terrestrial Storage of Biomass,100+ years,United States,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,511285,"Carbon Cycle, 001, Rieden, DE",25 Jul 2024,103.0,CORC,"Biochar, 2022",100+ years,Germany,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,511285,"Carbon Cycle, 001, Rieden, DE",25 Jul 2024,56.0,CORC,"Biochar, 2022",100+ years,Germany,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,226049,Farm Gai Kaisa 159,23 Jul 2024,441.0,CORC,"Biochar, 2022",100+ years,Namibia,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,472483,V-Grid (c/o South Corner Dairy),23 Jul 2024,126.0,CORC,"Biochar, 2022",100+ years,United States,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,432524,"Exomad Green, Concepción",18 Jul 2024,3975.0,CORC,"Biochar, 2022",100+ years,Bolivia,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,727586,OBIO Rudshøgda,18 Jul 2024,66.0,CORC,"Biochar, 2022",100+ years,Norway,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,244045,Wakefield Biochar Facility 2,09 Jul 2024,2564.0,CORC,"Biochar, 2022",100+ years,United States,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,133206,"Freres Lumber Co., Inc.",09 Jul 2024,3396.0,CORC,"Biochar, 2022",100+ years,United States,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,507468,Carbofex Nokia 1,05 Jul 2024,247.0,CORC,"Biochar, 2022",100+ years,Finland,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,226049,Farm Gai Kaisa 159,05 Jul 2024,1843.0,CORC,"Biochar, 2022",100+ years,Namibia,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,175613,Aperam BioEnergia,02 Jul 2024,16727.0,CORC,"Biochar, 2022",100+ years,Brazil,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,133206,"Freres Lumber Co., Inc.",27 Jun 2024,2166.0,CORC,"Biochar, 2022",100+ years,United States,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,432524,"Exomad Green, Concepción",27 Jun 2024,9160.0,CORC,"Biochar, 2022",100+ years,Bolivia,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,432524,"Exomad Green, Concepción",14 Jun 2024,10020.0,CORC,"Biochar, 2022",100+ years,Bolivia,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,244045,Wakefield Biochar Facility 2,07 Jun 2024,1937.0,CORC,"Biochar, 2022",100+ years,United States,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,242171,"Sylva Fertilis, Argentan, FR",05 Jun 2024,17.0,CORC,"Biochar, 2022",100+ years,France,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,511285,"Carbon Cycle, 001, Rieden, DE",04 Jun 2024,95.0,CORC,"Biochar, 2022",100+ years,Germany,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,226049,Farm Gai Kaisa 159,30 May 2024,555.0,CORC,"Biochar, 2022",100+ years,Namibia,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,511285,"Carbon Cycle, 001, Rieden, DE",28 May 2024,54.0,CORC,"Biochar, 2022",100+ years,Germany,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,631817,Orca plant,23 May 2024,158.0,CORC,Geologically stored carbon,1000+ years,Iceland,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,371935,Restoration Fuels,16 May 2024,877.0,CORC,"Biochar, 2022",100+ years,United States,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,244045,Wakefield Biochar Facility 2,14 May 2024,1045.0,CORC,"Biochar, 2022",100+ years,United States,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,507468,Carbofex Nokia 1,07 May 2024,115.0,CORC,"Biochar, 2022",100+ years,Finland,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,242171,"Sylva Fertilis, Argentan, FR",07 May 2024,11.0,CORC,"Biochar, 2022",100+ years,France,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,242171,"Sylva Fertilis, Argentan, FR",30 Apr 2024,29.0,CORC,"Biochar, 2022",100+ years,France,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,181017,Novocarbo Rhine,30 Apr 2024,90.0,CORC,"Biochar, 2022",100+ years,Germany,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,175613,Aperam BioEnergia,26 Apr 2024,17423.0,CORC,"Biochar, 2022",100+ years,Brazil,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,244045,Wakefield Biochar Facility 2,25 Apr 2024,851.0,CORC,"Biochar, 2022",100+ years,United States,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,955988,Sonnenerde PyroDry,23 Apr 2024,64.0,CORC,"Biochar, 2022",100+ years,Austria,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,619736,Four Bordet,19 Apr 2024,741.0,CORC,"Biochar, 2022",100+ years,France,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,244045,Wakefield Biochar Facility 2,16 Apr 2024,1366.0,CORC,"Biochar, 2022",100+ years,United States,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,472483,V-Grid (c/o South Corner Dairy),16 Apr 2024,65.0,CORC,"Biochar, 2022",100+ years,United States,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,507468,Carbofex Nokia 1,11 Apr 2024,275.0,CORC,"Biochar, 2022",100+ years,Finland,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,511285,"Carbon Cycle, 001, Rieden, DE",04 Apr 2024,78.0,CORC,"Biochar, 2022",100+ years,Germany,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,432524,"Exomad Green, Concepción",04 Apr 2024,2663.0,CORC,"Biochar, 2022",100+ years,Bolivia,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,242171,"Sylva Fertilis, Argentan, FR",28 Mar 2024,43.0,CORC,"Biochar, 2022",100+ years,France,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,307998,"Explocom 1, Lupeni",28 Mar 2024,179.0,CORC,"Biochar, 2022",100+ years,Romania,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,955988,Sonnenerde PyroDry,26 Mar 2024,168.0,CORC,"Biochar, 2022",100+ years,Austria,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,727586,OBIO Rudshøgda,25 Mar 2024,135.0,CORC,"Biochar, 2022",100+ years,Norway,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,951479,Sonnenerde Pyreg 500,25 Mar 2024,146.0,CORC,"Biochar, 2022",100+ years,Austria,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,432524,"Exomad Green, Concepción",22 Mar 2024,1573.0,CORC,"Biochar, 2022",100+ years,Bolivia,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,507468,Carbofex Nokia 1,21 Mar 2024,74.0,CORC,"Biochar, 2022",100+ years,Finland,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,307998,"Explocom 1, Lupeni",14 Mar 2024,25.0,CORC,"Biochar, 2022",100+ years,Romania,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,242171,"Sylva Fertilis, Argentan, FR",14 Mar 2024,20.0,CORC,"Biochar, 2022",100+ years,France,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,244045,Wakefield Biochar Facility 2,14 Mar 2024,2209.0,CORC,"Biochar, 2022",100+ years,United States,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,353054,Gevo North Dakota,05 Mar 2024,157592.0,CORC,Geologically stored carbon,1000+ years,United States,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,432524,"Exomad Green, Concepción",29 Feb 2024,2071.0,CORC,"Biochar, 2022",100+ years,Bolivia,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,181017,Novocarbo Rhine,29 Feb 2024,79.0,CORC,"Biochar, 2022",100+ years,Germany,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,175613,Aperam BioEnergia,26 Feb 2024,9386.0,CORC,"Biochar, 2022",100+ years,Brazil,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,432524,"Exomad Green, Concepción",26 Feb 2024,3552.0,CORC,"Biochar, 2022",100+ years,Bolivia,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,227253,Alcom-01-NuevaEcijaPhilippines,22 Feb 2024,420.0,CORC,"Biochar, 2022",100+ years,Philippines,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,939902,Wakefield Biochar Facility 3,22 Feb 2024,406.0,CORC,"Biochar, 2022",100+ years,United States,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,424545,"Nordgau Carbon, Wernberg-Köblitz",15 Feb 2024,511.0,CORC,"Biochar, 2022",100+ years,Germany,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,244045,Wakefield Biochar Facility 2,13 Feb 2024,1765.0,CORC,"Biochar, 2022",100+ years,United States,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,307998,"Explocom 1, Lupeni",13 Feb 2024,6.0,CORC,"Biochar, 2022",100+ years,Romania,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,511285,"Carbon Cycle, 001, Rieden, DE",13 Feb 2024,409.0,CORC,"Biochar, 2022",100+ years,Germany,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,712033,Carbon Hill,13 Feb 2024,281.0,CORC,"Biochar, 2022",100+ years,United Kingdom,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,432524,"Exomad Green, Concepción",08 Feb 2024,5395.0,CORC,"Biochar, 2022",100+ years,Bolivia,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,175613,Aperam BioEnergia,25 Jan 2024,8541.0,CORC,"Biochar, 2022",100+ years,Brazil,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,242171,"Sylva Fertilis, Argentan, FR",25 Jan 2024,134.0,CORC,"Biochar, 2022",100+ years,France,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,543800,"American BioCarbon CT, LLC",18 Jan 2024,87.0,CORC,"Biochar, 2022",100+ years,United States,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,543800,"American BioCarbon CT, LLC",18 Jan 2024,519.0,CORC,"Biochar, 2022",100+ years,United States,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,625222,Leeds Production Facility,12 Jan 2024,15561.0,CORC,Carbonated Materials,1000+ years,United Kingdom,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,300346,Brandon Production Facility,12 Jan 2024,4608.0,CORC,Carbonated Materials,1000+ years,United Kingdom,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,756292,Avonmouth Production Facility,12 Jan 2024,8985.0,CORC,Carbonated Materials,1000+ years,United Kingdom,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,511285,"Carbon Cycle, 001, Rieden, DE",12 Jan 2024,287.0,CORC,"Biochar, 2022",100+ years,Germany,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,706975,ECOERA Millennium 1 Hammenhög Skånefrö,12 Jan 2024,82.0,CORC,"Biochar, 2022",-,Sweden,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,424545,"Nordgau Carbon, Wernberg-Köblitz",11 Jan 2024,225.0,CORC,"Biochar, 2022",100+ years,Germany,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,244045,Wakefield Biochar Facility 2,11 Jan 2024,628.0,CORC,"Biochar, 2022",100+ years,United States,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,307998,"Explocom 1, Lupeni",29 Dec 2023,20.0,CORC,"Biochar, 2022",100+ years,Romania,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,511285,"Carbon Cycle, 001, Rieden, DE",29 Dec 2023,100.0,CORC,"Biochar, 2022",100+ years,Germany,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,753518,Oregon Biochar Solutions,29 Dec 2023,481.0,CORC,"Biochar, 2022",100+ years,United States,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,753518,Oregon Biochar Solutions,29 Dec 2023,720.0,CORC,"Biochar, 2022",100+ years,United States,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,753518,Oregon Biochar Solutions,29 Dec 2023,778.0,CORC,"Biochar, 2022",100+ years,United States,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,307998,"Explocom 1, Lupeni",29 Dec 2023,323.0,CORC,"Biochar, 2022",100+ years,Romania,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,141608,NetZero-002-Lajinha,29 Dec 2023,480.0,CORC,"Biochar, 2022",100+ years,Brazil,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,244045,Wakefield Biochar Facility 2,29 Dec 2023,995.0,CORC,"Biochar, 2022",100+ years,United States,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,244045,Wakefield Biochar Facility 2,29 Dec 2023,1473.0,CORC,"Biochar, 2022",100+ years,United States,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,244045,Wakefield Biochar Facility 2,29 Dec 2023,2823.0,CORC,"Biochar, 2022",100+ years,United States,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,244045,Wakefield Biochar Facility 2,22 Dec 2023,5482.0,CORC,"Biochar, 2022",100+ years,United States,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,242171,"Sylva Fertilis, Argentan, FR",21 Dec 2023,52.0,CORC,"Biochar, 2022",100+ years,France,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,432524,"Exomad Green, Concepción",15 Dec 2023,2971.0,CORC,"Biochar, 2022",100+ years,Bolivia,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,432524,"Exomad Green, Concepción",15 Dec 2023,3052.0,CORC,"Biochar, 2022",100+ years,Bolivia,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,181017,Novocarbo Rhine,07 Dec 2023,52.0,CORC,"Biochar, 2022",100+ years,Germany,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,798006,Novocarbo Ruhr/Tyssenkrupp,07 Dec 2023,32.0,CORC,"Biochar, 2022",100+ years,Germany,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,507468,Carbofex Nokia 1,07 Dec 2023,189.0,CORC,"Biochar, 2022",100+ years,Finland,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,727586,OBIO Rudshøgda,24 Nov 2023,191.0,CORC,"Biochar, 2022",100+ years,Norway,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,798006,Novocarbo Ruhr/Tyssenkrupp,23 Nov 2023,98.0,CORC,"Biochar, 2022",100+ years,Germany,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,181017,Novocarbo Rhine,16 Nov 2023,101.0,CORC,"Biochar, 2022",100+ years,Germany,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,984723,Hjelmsäters Egendom,10 Nov 2023,94.0,CORC,"Biochar, 2022",100+ years,Sweden,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,984723,Hjelmsäters Egendom,10 Nov 2023,47.0,CORC,"Biochar, 2022",100+ years,Sweden,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,432524,"Exomad Green, Concepción",09 Nov 2023,2042.0,CORC,"Biochar, 2022",100+ years,Bolivia,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,507468,Carbofex Nokia 1,09 Nov 2023,121.0,CORC,"Biochar, 2022",100+ years,Finland,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,175613,Aperam BioEnergia,02 Nov 2023,452.0,CORC,"Biochar, 2022",100+ years,Brazil,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,665890,Bussme-01-Svedala,27 Oct 2023,57.0,CORC,"Biochar, 2022",100+ years,Sweden,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,665890,Bussme-01-Svedala,27 Oct 2023,32.0,CORC,"Biochar, 2022",100+ years,Sweden,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,727586,OBIO Rudshøgda,27 Oct 2023,622.0,CORC,"Biochar, 2022",100+ years,Norway,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,665890,Bussme-01-Svedala,24 Oct 2023,121.0,CORC,"Biochar, 2022",100+ years,Sweden,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,299495,Bussme-01-Munka-Ljungby,24 Oct 2023,22.0,CORC,"Biochar, 2022",100+ years,Sweden,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,543800,"American BioCarbon CT, LLC",13 Oct 2023,459.0,CORC,"Biochar, 2022",100+ years,United States,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,242171,"Sylva Fertilis, Argentan, FR",12 Oct 2023,75.0,CORC,"Biochar, 2022",100+ years,France,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,432524,"Exomad Green, Concepción",12 Oct 2023,4144.0,CORC,"Biochar, 2022",100+ years,Bolivia,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,181017,Novocarbo Rhine,29 Sept 2023,113.0,CORC,"Biochar, 2022",100+ years,Germany,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,181017,Novocarbo Rhine,28 Sept 2023,156.0,CORC,"Biochar, 2022",100+ years,Germany,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,984723,Hjelmsäters Egendom,28 Sept 2023,108.0,CORC,"Biochar, 2022",100+ years,Sweden,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,727586,OBIO Rudshøgda,28 Sept 2023,192.0,CORC,"Biochar, 2022",100+ years,Norway,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,543800,"American BioCarbon CT, LLC",18 Sept 2023,143.0,CORC,"Biochar, 2022",100+ years,United States,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,227253,Alcom-01-NuevaEcijaPhilippines,07 Sept 2023,22.0,CORC,"Biochar, 2022",100+ years,Philippines,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,798006,Novocarbo Ruhr/Tyssenkrupp,07 Sept 2023,30.0,CORC,"Biochar, 2022",100+ years,Germany,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,507468,Carbofex Nokia 1,07 Sept 2023,170.0,CORC,"Biochar, 2022",100+ years,Finland,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,753518,Oregon Biochar Solutions,31 Aug 2023,559.0,CORC,"Biochar, 2022",100+ years,United States,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,753518,Oregon Biochar Solutions,31 Aug 2023,406.0,CORC,"Biochar, 2022",100+ years,United States,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,299495,Bussme-01-Munka-Ljungby,25 Aug 2023,7.0,CORC,"Biochar, 2022",100+ years,Sweden,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,299495,Bussme-01-Munka-Ljungby,25 Aug 2023,21.0,CORC,"Biochar, 2022",100+ years,Sweden,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,299495,Bussme-01-Munka-Ljungby,25 Aug 2023,25.0,CORC,"Biochar, 2022",100+ years,Sweden,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,432524,"Exomad Green, Concepción",25 Aug 2023,5203.0,CORC,"Biochar, 2022",100+ years,Bolivia,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,299495,Bussme-01-Munka-Ljungby,24 Aug 2023,56.0,CORC,"Biochar, 2022",100+ years,Sweden,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,175613,Aperam BioEnergia,18 Aug 2023,1360.0,CORC,"Biochar, 2022",100+ years,Brazil,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,432524,"Exomad Green, Concepción",10 Aug 2023,3840.0,CORC,"Biochar, 2022",100+ years,Bolivia,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,712033,Carbon Hill,27 Jul 2023,140.0,CORC,"Biochar, 2022",100+ years,United Kingdom,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,175613,Aperam BioEnergia,20 Jul 2023,2966.0,CORC,"Biochar, 2022",100+ years,Brazil,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,862421,BC Biocarbon - McBride,06 Jul 2023,40.0,CORC,"Biochar, 2022",-,Canada,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,798006,Novocarbo Ruhr/Tyssenkrupp,06 Jul 2023,87.0,CORC,"Biochar, 2022",100+ years,Germany,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,244045,Wakefield Biochar Facility 2,27 Jun 2023,3430.0,CORC,"Biochar, 2022",100+ years,United States,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,244045,Wakefield Biochar Facility 2,22 Jun 2023,1570.0,CORC,"Biochar, 2022",100+ years,United States,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,507468,Carbofex Nokia 1,22 Jun 2023,162.0,CORC,"Biochar, 2022",100+ years,Finland,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,175613,Aperam BioEnergia,16 Jun 2023,2502.0,CORC,"Biochar, 2022",100+ years,Brazil,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,798006,Novocarbo Ruhr/Tyssenkrupp,16 Jun 2023,58.0,CORC,"Biochar, 2022",100+ years,Germany,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,654470,Wakefield Biochar Facility 1,16 Jun 2023,6.0,CORC,"Biochar, 2022",100+ years,United States,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,654470,Wakefield Biochar Facility 1,16 Jun 2023,153.0,CORC,"Biochar, 2022",100+ years,United States,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,133206,"Freres Lumber Co., Inc.",15 Jun 2023,1355.0,CORC,"Biochar, 2022",100+ years,United States,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,654470,Wakefield Biochar Facility 1,15 Jun 2023,67.0,CORC,"Biochar, 2022",100+ years,United States,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,654470,Wakefield Biochar Facility 1,15 Jun 2023,38.0,CORC,"Biochar, 2022",100+ years,United States,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,507468,Carbofex Nokia 1,08 Jun 2023,239.0,CORC,"Biochar, 2022",100+ years,Finland,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,242171,"Sylva Fertilis, Argentan, FR",08 Jun 2023,11.0,CORC,"Biochar, 2022",100+ years,France,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,798006,Novocarbo Ruhr/Tyssenkrupp,02 Jun 2023,34.0,CORC,"Biochar, 2022",100+ years,Germany,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,753518,Oregon Biochar Solutions,02 Jun 2023,360.0,CORC,"Biochar, 2022",100+ years,United States,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,753518,Oregon Biochar Solutions,01 Jun 2023,821.0,CORC,"Biochar, 2022",100+ years,United States,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,175613,Aperam BioEnergia,25 May 2023,10578.0,CORC,"Biochar, 2022",100+ years,Brazil,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,175613,Aperam BioEnergia,25 May 2023,840.0,CORC,"Biochar, 2022",100+ years,Brazil,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,181017,Novocarbo Rhine,11 May 2023,117.0,CORC,"Biochar, 2022",100+ years,Germany,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,706975,ECOERA Millennium 1 Hammenhög Skånefrö,09 May 2023,296.0,CORC,"Biochar, 2022",-,Sweden,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,507468,Carbofex Nokia 1,05 May 2023,153.0,CORC,"Biochar, 2022",100+ years,Finland,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,507468,Carbofex Nokia 1,26 Apr 2023,110.0,CORC,"Biochar, 2022",100+ years,Finland,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,242171,"Sylva Fertilis, Argentan, FR",20 Apr 2023,39.0,CORC,"Biochar, 2022",100+ years,France,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,507468,Carbofex Nokia 1,20 Apr 2023,421.0,CORC,"Biochar, 2022",100+ years,Finland,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,654470,Wakefield Biochar Facility 1,17 Apr 2023,26.0,CORC,"Biochar, 2022",100+ years,United States,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,654470,Wakefield Biochar Facility 1,17 Apr 2023,298.0,CORC,"Biochar, 2022",100+ years,United States,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,951479,Sonnenerde Pyreg 500,06 Apr 2023,47.0,CORC,"Biochar, 2022",100+ years,Austria,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,712033,Carbon Hill,28 Mar 2023,63.0,CORC,"Biochar, 2022",100+ years,United Kingdom,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,242171,"Sylva Fertilis, Argentan, FR",23 Mar 2023,39.0,CORC,"Biochar, 2022",100+ years,France,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,375603,Glanris,21 Mar 2023,39.0,CORC,"Biochar, 2022",100+ years,United States,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,654470,Wakefield Biochar Facility 1,16 Mar 2023,165.0,CORC,"Biochar, 2022",100+ years,United States,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,654470,Wakefield Biochar Facility 1,16 Mar 2023,190.0,CORC,"Biochar, 2022",100+ years,United States,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,753518,Oregon Biochar Solutions,16 Mar 2023,578.0,CORC,"Biochar, 2022",100+ years,United States,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,625222,Leeds Production Facility,02 Mar 2023,9195.0,CORC,Carbonated Materials,1000+ years,United Kingdom,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,300346,Brandon Production Facility,02 Mar 2023,3640.0,CORC,Carbonated Materials,1000+ years,United Kingdom,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,756292,Avonmouth Production Facility,02 Mar 2023,5920.0,CORC,Carbonated Materials,1000+ years,United Kingdom,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,753518,Oregon Biochar Solutions,27 Feb 2023,506.0,CORC,"Biochar, 2022",100+ years,United States,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,375603,Glanris,23 Feb 2023,43.0,CORC,"Biochar, 2022",100+ years,United States,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,916484,"Premier Forest, Newport",16 Feb 2023,50.0,CORC,"Biochar, 2022",-,United Kingdom,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,424545,"Nordgau Carbon, Wernberg-Köblitz",09 Feb 2023,467.0,CORC,"Biochar, 2022",100+ years,Germany,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,424545,"Nordgau Carbon, Wernberg-Köblitz",09 Feb 2023,62.0,CORC,"Biochar, 2022",100+ years,Germany,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,114352,Jeffries Group,09 Feb 2023,80.0,CORC,"Biochar, 2022",-,Australia,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,242171,"Sylva Fertilis, Argentan, FR",09 Feb 2023,34.0,CORC,"Biochar, 2022",100+ years,France,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,181017,Novocarbo Rhine,02 Feb 2023,161.0,CORC,"Biochar, 2022",100+ years,Germany,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,242171,"Sylva Fertilis, Argentan, FR",02 Feb 2023,111.0,CORC,"Biochar, 2022",100+ years,France,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,133206,"Freres Lumber Co., Inc.",02 Feb 2023,720.0,CORC,"Biochar, 2022",100+ years,United States,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,123804,Igloo Cellulose Inc.,30 Jan 2023,34214.0,CORC,Wooden Building Elements,-,Canada,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,299495,Bussme-01-Munka-Ljungby,30 Jan 2023,29.0,CORC,"Biochar, 2022",-,Sweden,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,665890,Bussme-01-Svedala,30 Jan 2023,71.0,CORC,"Biochar, 2022",-,Sweden,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,133206,"Freres Lumber Co., Inc.",27 Jan 2023,521.0,CORC,"Biochar, 2022",100+ years,United States,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,727586,OBIO Rudshøgda,26 Jan 2023,210.0,CORC,"Biochar, 2022",-,Norway,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,654470,Wakefield Biochar Facility 1,26 Jan 2023,879.0,CORC,"Biochar, 2022",100+ years,United States,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,654470,Wakefield Biochar Facility 1,26 Jan 2023,1602.0,CORC,"Biochar, 2022",100+ years,United States,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,511285,"Carbon Cycle, 001, Rieden, DE",26 Jan 2023,231.0,CORC,"Biochar, 2022",100+ years,Germany,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,992402,Douglas County Forest Products,26 Jan 2023,342.0,CORC,"Biochar, 2022",-,United States,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,543800,"American BioCarbon CT, LLC",13 Jan 2023,30.0,CORC,"Biochar, 2022",100+ years,United States,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,472483,V-Grid (c/o South Corner Dairy),12 Jan 2023,33.0,CORC,"Biochar, 2022",100+ years,United States,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,350917,"Moelven Limtre, Moelv",30 Dec 2022,5592.0,CORC,Wooden Building Elements,-,Norway,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,310958,"Are Treindustrier, Norway",30 Dec 2022,4695.0,CORC,Wooden Building Elements,-,Norway,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,511285,"Carbon Cycle, 001, Rieden, DE",22 Dec 2022,384.0,CORC,"Biochar, 2022",100+ years,Germany,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,767851,ECHO2 Holla-Fresh,22 Dec 2022,231.0,CORC,"Biochar, 2022",100+ years,Australia,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,220156,Ekovilla 3 Ylistaro,21 Dec 2022,1102.0,CORC,Wooden Building Elements,-,Finland,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,926954,Ekovilla 2 Kuusankoski,21 Dec 2022,5270.0,CORC,Wooden Building Elements,-,Finland,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,522433,Ekovilla 1 Kiiminki,21 Dec 2022,6183.0,CORC,Wooden Building Elements,-,Finland,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,785725,Soilfood-1-Finland,20 Dec 2022,6585.0,CORC,Soil Amendment,20+ years,Finland,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,712033,Carbon Hill,16 Dec 2022,185.0,CORC,"Biochar, 2022",100+ years,United Kingdom,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,175613,Aperam BioEnergia,08 Dec 2022,3613.0,CORC,"Biochar, 2022",100+ years,Brazil,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,753518,Oregon Biochar Solutions,30 Nov 2022,584.0,CORC,"Biochar, 2022",100+ years,United States,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,472483,V-Grid (c/o South Corner Dairy),24 Nov 2022,109.0,CORC,"Biochar, 2022",100+ years,United States,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,992402,Douglas County Forest Products,24 Nov 2022,485.0,CORC,"Biochar, 2022",-,United States,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,133206,"Freres Lumber Co., Inc.",18 Nov 2022,582.0,CORC,"Biochar, 2022",100+ years,United States,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,299495,Bussme-01-Munka-Ljungby,10 Nov 2022,28.0,CORC,"Biochar, 2022",-,Sweden,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,665890,Bussme-01-Svedala,10 Nov 2022,108.0,CORC,"Biochar, 2022",-,Sweden,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,133206,"Freres Lumber Co., Inc.",03 Nov 2022,1486.0,CORC,"Biochar, 2022",100+ years,United States,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,244045,Wakefield Biochar Facility 2,31 Oct 2022,23820.0,CORC,"Biochar, 2022",100+ years,United States,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,641719,NetZero-001-Nkongsamba,27 Oct 2022,184.0,CORC,"Biochar, 2022",100+ years,Cameroon,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,665890,Bussme-01-Svedala,20 Oct 2022,62.0,CORC,"Biochar, 2022",-,Sweden,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,727586,OBIO Rudshøgda,20 Oct 2022,226.0,CORC,"Biochar, 2022",-,Norway,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,984723,Hjelmsäters Egendom,20 Oct 2022,45.0,CORC,"Biochar, 2022",-,Sweden,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,916484,"Premier Forest, Newport",04 Oct 2022,23.0,CORC,"Biochar, 2022",-,United Kingdom,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,992402,Douglas County Forest Products,04 Oct 2022,528.0,CORC,"Biochar, 2022",-,United States,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,133206,"Freres Lumber Co., Inc.",27 Sept 2022,1961.0,CORC,"Biochar, 2022",100+ years,United States,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,133206,"Freres Lumber Co., Inc.",27 Sept 2022,98.0,CORC,"Biochar, 2022",-,United States,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,665890,Bussme-01-Svedala,15 Sept 2022,143.0,CORC,"Biochar, 2022",-,Sweden,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,299495,Bussme-01-Munka-Ljungby,15 Sept 2022,23.0,CORC,"Biochar, 2022",-,Sweden,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,181856,A. James - 50370 Brecey,01 Sept 2022,4261.0,CORC,Wooden Building Elements,-,France,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,672804,V-Grid Energy Systems,01 Sept 2022,29.0,CORC,"Biochar, 2022",100+ years,United States,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,472483,V-Grid (c/o South Corner Dairy),01 Sept 2022,240.0,CORC,"Biochar, 2022",100+ years,United States,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,220156,Ekovilla 3 Ylistaro,25 Aug 2022,689.0,CORC,Wooden Building Elements,-,Finland,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,926954,Ekovilla 2 Kuusankoski,25 Aug 2022,4931.0,CORC,Wooden Building Elements,-,Finland,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,522433,Ekovilla 1 Kiiminki,25 Aug 2022,5082.0,CORC,Wooden Building Elements,-,Finland,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,992402,Douglas County Forest Products,23 Aug 2022,621.0,CORC,"Biochar, 2022",-,United States,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,767851,ECHO2 Holla-Fresh,22 Aug 2022,20.0,CORC,"Biochar, 2022",-,Australia,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,181017,Novocarbo Rhine,05 Aug 2022,61.0,CORC,"Biochar, 2022",-,Germany,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,665890,Bussme-01-Svedala,04 Aug 2022,60.0,CORC,"Biochar, 2022",-,Sweden,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,299495,Bussme-01-Munka-Ljungby,04 Aug 2022,38.0,CORC,"Biochar, 2022",-,Sweden,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,424545,"Nordgau Carbon, Wernberg-Köblitz",04 Aug 2022,71.0,CORC,"Biochar, 2022",-,Germany,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,753518,Oregon Biochar Solutions,25 Jul 2022,266.0,CORC,"Biochar, 2022",100+ years,United States,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,753518,Oregon Biochar Solutions,15 Jul 2022,289.0,CORC,"Biochar, 2022",100+ years,United States,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,753518,Oregon Biochar Solutions,14 Jul 2022,232.0,CORC,"Biochar, 2022",-,United States,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,992402,Douglas County Forest Products,08 Jul 2022,557.0,CORC,"Biochar, 2022",-,United States,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,984723,Hjelmsäters Egendom,08 Jul 2022,42.0,CORC,"Biochar, 2022",-,Sweden,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,911942,Carbofex 1 Hiedanranta,07 Jul 2022,317.0,CORC,"Biochar, 2022",-,Finland,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,114352,Jeffries Group,07 Jul 2022,85.0,CORC,"Biochar, 2022",-,Australia,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,928755,"Noritec, Stall im Mölltal, Austria",07 Jul 2022,47600.0,CORC,Wooden Building Elements,-,Austria,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,727586,OBIO Rudshøgda,30 Jun 2022,164.0,CORC,"Biochar, 2022",-,Norway,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,299495,Bussme-01-Munka-Ljungby,30 Jun 2022,153.0,CORC,"Biochar, 2022",-,Sweden,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,299495,Bussme-01-Munka-Ljungby,30 Jun 2022,37.0,CORC,"Biochar, 2022",-,Sweden,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,665890,Bussme-01-Svedala,30 Jun 2022,395.0,CORC,"Biochar, 2022",-,Sweden,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,307998,"Explocom 1, Lupeni",15 Jun 2022,30.0,CORC,"Biochar, 2022",-,Romania,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,307998,"Explocom 1, Lupeni",15 Jun 2022,69.0,CORC,"Biochar, 2022",-,Romania,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,242171,"Sylva Fertilis, Argentan, FR",15 Jun 2022,27.0,CORC,"Biochar, 2022",-,France,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,992402,Douglas County Forest Products,15 Jun 2022,360.0,CORC,"Biochar, 2022",-,United States,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,911942,Carbofex 1 Hiedanranta,15 Jun 2022,379.0,CORC,"Biochar, 2022",-,Finland,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,862421,BC Biocarbon - McBride,09 Jun 2022,37.0,CORC,"Biochar, 2022",-,Canada,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,767851,ECHO2 Holla-Fresh,09 Jun 2022,400.0,CORC,"Biochar, 2022",-,Australia,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,767851,ECHO2 Holla-Fresh,09 Jun 2022,4.0,CORC,"Biochar, 2022",-,Australia,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,511285,"Carbon Cycle, 001, Rieden, DE",09 Jun 2022,234.0,CORC,"Biochar, 2022",-,Germany,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,157033,Bella Biochar Corporation,02 Jun 2022,19.0,CORC,"Biochar, 2022",100+ years,Canada,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,175613,Aperam BioEnergia,20 May 2022,460.0,CORC,"Biochar, 2022",100+ years,Brazil,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,569274,Pyrocal - Wellcamp,20 May 2022,31.0,CORC,"Biochar, 2022",-,Australia,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,951479,Sonnenerde Pyreg 500,19 May 2022,52.0,CORC,"Biochar, 2022",-,Austria,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,992402,Douglas County Forest Products,12 May 2022,1685.0,CORC,"Biochar, 2022",-,United States,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,432365,SAS OUATTITUDE,05 May 2022,12250.0,CORC,Wooden Building Elements,-,France,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,438730,Igloo France Cellulose,05 May 2022,20347.0,CORC,Wooden Building Elements,-,France,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,727586,OBIO Rudshøgda,29 Apr 2022,231.0,CORC,"Biochar, 2022",-,Norway,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,847673,"Moelven Limtre, Agder",28 Apr 2022,3657.0,CORC,Wooden Building Elements,-,Norway,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,350917,"Moelven Limtre, Moelv",28 Apr 2022,12581.0,CORC,Wooden Building Elements,-,Norway,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,310958,"Are Treindustrier, Norway",28 Apr 2022,3915.0,CORC,Wooden Building Elements,-,Norway,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,329175,Lapwall Factory 2,22 Apr 2022,673.0,CORC,Wooden Building Elements,-,Finland,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,134828,Lapwall Factory 1,22 Apr 2022,2297.0,CORC,Wooden Building Elements,-,Finland,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,220156,Ekovilla 3 Ylistaro,22 Apr 2022,1094.0,CORC,Wooden Building Elements,-,Finland,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,926954,Ekovilla 2 Kuusankoski,22 Apr 2022,3872.0,CORC,Wooden Building Elements,-,Finland,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,522433,Ekovilla 1 Kiiminki,22 Apr 2022,5301.0,CORC,Wooden Building Elements,-,Finland,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,133206,"Freres Lumber Co., Inc.",21 Apr 2022,442.0,CORC,"Biochar, 2022",-,United States,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,242171,"Sylva Fertilis, Argentan, FR",07 Apr 2022,69.0,CORC,"Biochar, 2022",-,France,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,175613,Aperam BioEnergia,01 Apr 2022,662.0,CORC,"Biochar, 2022",100+ years,Brazil,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,181017,Novocarbo Rhine,31 Mar 2022,129.0,CORC,"Biochar, 2022",-,Germany,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,984723,Hjelmsäters Egendom,25 Mar 2022,87.0,CORC,"Biochar, 2022",-,Sweden,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,984723,Hjelmsäters Egendom,25 Mar 2022,2.0,CORC,"Biochar, 2022",-,Sweden,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,916484,"Premier Forest, Newport",23 Mar 2022,299.0,CORC,"Biochar, 2022",-,United Kingdom,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,519265,Pyrocal - Whitton,23 Mar 2022,550.0,CORC,"Biochar, 2022",-,Australia,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,133206,"Freres Lumber Co., Inc.",18 Mar 2022,500.0,CORC,"Biochar, 2022",-,United States,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,569274,Pyrocal - Wellcamp,02 Mar 2022,70.0,CORC,"Biochar, 2022",-,Australia,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,992402,Douglas County Forest Products,02 Mar 2022,8212.0,CORC,"Biochar, 2022",-,United States,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,911942,Carbofex 1 Hiedanranta,28 Feb 2022,83.0,CORC,"Biochar, 2022",-,Finland,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,424545,"Nordgau Carbon, Wernberg-Köblitz",17 Feb 2022,130.0,CORC,"Biochar, 2022",-,Germany,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,133206,"Freres Lumber Co., Inc.",17 Feb 2022,428.0,CORC,"Biochar, 2022",-,United States,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,957051,BASNA d.o.o.,03 Feb 2022,508.0,CORC,"Biochar, 2022",-,Serbia,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,911942,Carbofex 1 Hiedanranta,03 Feb 2022,108.0,CORC,"Biochar, 2022",-,Finland,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,665890,Bussme-01-Svedala,13 Jan 2022,171.0,CORC,"Biochar, 2022",-,Sweden,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,133206,"Freres Lumber Co., Inc.",13 Jan 2022,587.0,CORC,"Biochar, 2022",-,United States,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,753518,Oregon Biochar Solutions,13 Jan 2022,231.0,CORC,"Biochar, 2022",-,United States,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,911942,Carbofex 1 Hiedanranta,07 Jan 2022,84.0,CORC,"Biochar, 2022",-,Finland,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,951479,Sonnenerde Pyreg 500,30 Dec 2021,21.0,CORC,"Biochar, 2022",-,Austria,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,181017,Novocarbo Rhine,30 Dec 2021,113.0,CORC,"Biochar, 2022",-,Germany,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,181017,Novocarbo Rhine,30 Dec 2021,122.0,CORC,"Biochar, 2022",-,Germany,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,706975,ECOERA Millennium 1 Hammenhög Skånefrö,21 Dec 2021,314.0,CORC,"Biochar, 2022",-,Sweden,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,911942,Carbofex 1 Hiedanranta,17 Dec 2021,54.0,CORC,"Biochar, 2022",-,Finland,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,665890,Bussme-01-Svedala,17 Dec 2021,237.0,CORC,"Biochar, 2022",-,Sweden,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,133206,"Freres Lumber Co., Inc.",15 Dec 2021,1290.0,CORC,"Biochar, 2022",-,United States,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,511285,"Carbon Cycle, 001, Rieden, DE",07 Dec 2021,267.0,CORC,"Biochar, 2022",-,Germany,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,242171,"Sylva Fertilis, Argentan, FR",22 Nov 2021,185.0,CORC,"Biochar, 2022",-,France,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,951479,Sonnenerde Pyreg 500,18 Nov 2021,208.0,CORC,"Biochar, 2022",-,Austria,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,424545,"Nordgau Carbon, Wernberg-Köblitz",12 Nov 2021,73.0,CORC,"Biochar, 2022",-,Germany,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,911942,Carbofex 1 Hiedanranta,08 Nov 2021,87.0,CORC,"Biochar, 2022",-,Finland,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,665890,Bussme-01-Svedala,28 Oct 2021,178.0,CORC,"Biochar, 2022",-,Sweden,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,665890,Bussme-01-Svedala,28 Oct 2021,49.0,CORC,"Biochar, 2022",-,Sweden,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,753518,Oregon Biochar Solutions,28 Oct 2021,859.0,CORC,"Biochar, 2022",-,United States,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,133206,"Freres Lumber Co., Inc.",08 Oct 2021,2166.0,CORC,"Biochar, 2022",-,United States,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,984723,Hjelmsäters Egendom,06 Oct 2021,92.0,CORC,"Biochar, 2022",-,Sweden,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,911942,Carbofex 1 Hiedanranta,06 Oct 2021,116.0,CORC,"Biochar, 2022",-,Finland,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,329175,Lapwall Factory 2,23 Sept 2021,1149.0,CORC,Wooden Building Elements,-,Finland,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,134828,Lapwall Factory 1,23 Sept 2021,4278.0,CORC,Wooden Building Elements,-,Finland,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,665890,Bussme-01-Svedala,08 Sept 2021,20.0,CORC,"Biochar, 2022",-,Sweden,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,911942,Carbofex 1 Hiedanranta,08 Sept 2021,116.0,CORC,"Biochar, 2022",-,Finland,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,220156,Ekovilla 3 Ylistaro,08 Sept 2021,349.0,CORC,Wooden Building Elements,-,Finland,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,926954,Ekovilla 2 Kuusankoski,08 Sept 2021,4013.0,CORC,Wooden Building Elements,-,Finland,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,522433,Ekovilla 1 Kiiminki,08 Sept 2021,5206.0,CORC,Wooden Building Elements,-,Finland,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,911942,Carbofex 1 Hiedanranta,24 Aug 2021,129.0,CORC,"Biochar, 2022",-,Finland,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,424545,"Nordgau Carbon, Wernberg-Köblitz",24 Aug 2021,116.0,CORC,"Biochar, 2022",-,Germany,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,511285,"Carbon Cycle, 001, Rieden, DE",24 Aug 2021,87.0,CORC,"Biochar, 2022",-,Germany,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,133206,"Freres Lumber Co., Inc.",24 Aug 2021,7821.0,CORC,"Biochar, 2022",-,United States,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,984723,Hjelmsäters Egendom,28 Jul 2021,24.0,CORC,"Biochar, 2022",-,Sweden,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,911942,Carbofex 1 Hiedanranta,09 Jul 2021,81.0,CORC,"Biochar, 2022",-,Finland,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,665890,Bussme-01-Svedala,09 Jul 2021,19.0,CORC,"Biochar, 2022",-,Sweden,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,310958,"Are Treindustrier, Norway",09 Jul 2021,13644.0,CORC,Wooden Building Elements,-,Norway,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,785725,Soilfood-1-Finland,08 Jul 2021,5691.0,CORC,Soil Amendment,20+ years,Finland,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,511285,"Carbon Cycle, 001, Rieden, DE",24 Jun 2021,65.0,CORC,"Biochar, 2022",-,Germany,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,911942,Carbofex 1 Hiedanranta,22 Jun 2021,33.0,CORC,"Biochar, 2022",-,Finland,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,911942,Carbofex 1 Hiedanranta,21 Jun 2021,324.0,CORC,"Biochar, 2022",-,Finland,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,753518,Oregon Biochar Solutions,21 Jun 2021,3464.0,CORC,"Biochar, 2022",-,United States,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,511285,"Carbon Cycle, 001, Rieden, DE",14 Jun 2021,395.0,CORC,"Biochar, 2022",-,Germany,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,665890,Bussme-01-Svedala,09 Jun 2021,75.0,CORC,"Biochar, 2022",-,Sweden,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,984723,Hjelmsäters Egendom,09 Jun 2021,72.0,CORC,"Biochar, 2022",-,Sweden,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,220156,Ekovilla 3 Ylistaro,28 May 2021,281.0,CORC,Wooden Building Elements,-,Finland,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,926954,Ekovilla 2 Kuusankoski,28 May 2021,1707.0,CORC,Wooden Building Elements,-,Finland,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,522433,Ekovilla 1 Kiiminki,28 May 2021,2382.0,CORC,Wooden Building Elements,-,Finland,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,424545,"Nordgau Carbon, Wernberg-Köblitz",28 May 2021,466.0,CORC,"Biochar, 2022",-,Germany,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,984723,Hjelmsäters Egendom,12 May 2021,54.0,CORC,"Biochar, 2022",-,Sweden,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,665890,Bussme-01-Svedala,12 May 2021,211.0,CORC,"Biochar, 2022",-,Sweden,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,665890,Bussme-01-Svedala,13 Apr 2021,118.0,CORC,"Biochar, 2022",-,Sweden,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,220156,Ekovilla 3 Ylistaro,25 Mar 2021,843.0,CORC,Wooden Building Elements,-,Finland,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,926954,Ekovilla 2 Kuusankoski,25 Mar 2021,5120.0,CORC,Wooden Building Elements,-,Finland,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,522433,Ekovilla 1 Kiiminki,25 Mar 2021,7147.0,CORC,Wooden Building Elements,-,Finland,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,911942,Carbofex 1 Hiedanranta,23 Mar 2021,62.0,CORC,"Biochar, 2022",-,Finland,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,911942,Carbofex 1 Hiedanranta,23 Mar 2021,88.0,CORC,"Biochar, 2022",-,Finland,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,984723,Hjelmsäters Egendom,23 Mar 2021,314.0,CORC,"Biochar, 2022",-,Sweden,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,511285,"Carbon Cycle, 001, Rieden, DE",24 Feb 2021,522.0,CORC,"Biochar, 2022",-,Germany,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,911942,Carbofex 1 Hiedanranta,12 Feb 2021,131.0,CORC,"Biochar, 2022",-,Finland,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,847673,"Moelven Limtre, Agder",11 Feb 2021,2269.0,CORC,Wooden Building Elements,-,Norway,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,350917,"Moelven Limtre, Moelv",11 Feb 2021,14873.0,CORC,Wooden Building Elements,-,Norway,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,706975,ECOERA Millennium 1 Hammenhög Skånefrö,11 Jan 2021,289.0,CORC,"Biochar, 2022",-,Sweden,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,767851,ECHO2 Holla-Fresh,21 Dec 2020,130.0,CORC,"Biochar, 2022",-,Australia,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,911942,Carbofex 1 Hiedanranta,14 Dec 2020,35.0,CORC,"Biochar, 2022",-,Finland,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,911942,Carbofex 1 Hiedanranta,10 Dec 2020,286.0,CORC,"Biochar, 2022",-,Finland,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,641179,Termowood - Hurdal,04 Dec 2020,192.0,CORC,Wooden Building Elements,-,Norway,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,511285,"Carbon Cycle, 001, Rieden, DE",27 Nov 2020,441.0,CORC,"Biochar, 2022",-,Germany,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,767851,ECHO2 Holla-Fresh,07 Oct 2020,672.0,CORC,"Biochar, 2022",-,Australia,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,911942,Carbofex 1 Hiedanranta,05 Oct 2020,434.0,CORC,"Biochar, 2022",-,Finland,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,911942,Carbofex 1 Hiedanranta,10 Feb 2020,196.0,CORC,"Biochar, 2022",-,Finland,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,220156,Ekovilla 3 Ylistaro,09 Feb 2020,3072.0,CORC,Wooden Building Elements,-,Finland,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,926954,Ekovilla 2 Kuusankoski,09 Feb 2020,7438.0,CORC,Wooden Building Elements,-,Finland,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,911942,Carbofex 1 Hiedanranta,29 Jan 2020,135.0,CORC,"Biochar, 2022",-,Finland,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,911942,Carbofex 1 Hiedanranta,08 Oct 2019,217.0,CORC,"Biochar, 2022",-,Finland,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,522433,Ekovilla 1 Kiiminki,18 Jun 2019,10719.0,CORC,Wooden Building Elements,-,Finland,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,911942,Carbofex 1 Hiedanranta,04 Jun 2019,334.0,CORC,"Biochar, 2022",-,Finland,https://registry.puro.earth/issuances
+puro_earth,Puro Earth,911942,Carbofex 1 Hiedanranta,04 Jun 2019,284.0,CORC,"Biochar, 2022",-,Finland,https://registry.puro.earth/issuances

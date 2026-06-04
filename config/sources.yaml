@@ -1,0 +1,18 @@
+jcm_mn:
+  base_url: "https://www.jcm.go.jp"
+  pages:
+    approved_methodologies:
+      url: "https://www.jcm.go.jp/jc/mn-methodologies-proposed"
+      raw_filename: "methodologies.html"
+
+    rules_and_guidelines:
+      url: "https://www.jcm.go.jp/jc/mn-rules-and-guidelines"
+      raw_filename: "rules_and_guidelines.html"
+
+    projects:
+      url: "https://www.jcm.go.jp/jc/mn-projects/"
+      raw_filename: "projects.html"
+
+    issuance:
+      url: "https://www.jcm.go.jp/jc/mn-projects-issues"
+      raw_filename: "issuance.html"

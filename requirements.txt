@@ -1,0 +1,8 @@
+pandas
+beautifulsoup4
+lxml
+requests
+pyyaml
+streamlit
+openpyxl
+playwright

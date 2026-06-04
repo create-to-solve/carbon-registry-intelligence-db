@@ -1,0 +1,11 @@
+page_name,test_url,status_code,html_length,rows_detected,useful_links_detected,notes
+projects,data\raw\puro_earth\projects.html,,173109,10,14,saved snapshot scan
+issuances,data\raw\puro_earth\issuances.html,,1407874,10,11,saved snapshot scan
+projects,https://registry.puro.earth/projects,200,173109,10,14,query probe; did not expose more than first 10 table rows in static HTML
+projects,https://registry.puro.earth/projects?page=2,200,173109,10,14,query probe; did not expose more than first 10 table rows in static HTML
+projects,https://registry.puro.earth/projects?page=2&limit=10,200,173109,10,14,query probe; did not expose more than first 10 table rows in static HTML
+projects,https://registry.puro.earth/projects?limit=100,200,173109,10,14,query probe; did not expose more than first 10 table rows in static HTML
+issuances,https://registry.puro.earth/issuances,200,1407874,10,11,query probe; did not expose more than first 10 table rows in static HTML
+issuances,https://registry.puro.earth/issuances?page=2,200,1407874,10,11,query probe; did not expose more than first 10 table rows in static HTML
+issuances,https://registry.puro.earth/issuances?page=2&limit=10,200,1407874,10,11,query probe; did not expose more than first 10 table rows in static HTML
+issuances,https://registry.puro.earth/issuances?limit=100,200,1407874,10,11,query probe; did not expose more than first 10 table rows in static HTML
