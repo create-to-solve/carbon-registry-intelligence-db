@@ -21,6 +21,8 @@ OPTIONAL_OUTPUTS = [
     PROJECT_ROOT / "data" / "processed" / "puro_earth" / "puro_issuances_all.csv",
     PROJECT_ROOT / "data" / "processed" / "unified" / "projects.csv",
     PROJECT_ROOT / "data" / "processed" / "unified" / "issuances.csv",
+    PROJECT_ROOT / "data" / "processed" / "unified" / "methodologies.csv",
+    PROJECT_ROOT / "data" / "processed" / "unified" / "documents.csv",
 ]
 
 
