@@ -35,6 +35,13 @@ def load_data():
         "unified_issuances": load_csv(UNIFIED_DATA_DIR / "issuances.csv"),
         "unified_methodologies": load_csv(UNIFIED_DATA_DIR / "methodologies.csv"),
         "unified_documents": load_csv(UNIFIED_DATA_DIR / "documents.csv"),
+        "methodology_project_links": load_csv(
+            UNIFIED_DATA_DIR / "methodology_project_links.csv"
+        ),
+        "methodology_profiles": load_csv(UNIFIED_DATA_DIR / "methodology_profiles.csv"),
+        "evidence_requirements_seed": load_csv(
+            UNIFIED_DATA_DIR / "evidence_requirements_seed.csv"
+        ),
     }
 
 
@@ -85,6 +92,33 @@ def clean_unified_methodologies(df: pd.DataFrame) -> pd.DataFrame:
 
 
 def clean_unified_documents(df: pd.DataFrame) -> pd.DataFrame:
+    if df.empty:
+        return df.copy()
+    return df.fillna("").copy()
+
+
+def clean_methodology_profiles(df: pd.DataFrame) -> pd.DataFrame:
+    if df.empty:
+        return df.copy()
+
+    cleaned = df.fillna("").copy()
+    for column in [
+        "related_projects_count",
+        "related_documents_count",
+        "countries_count",
+    ]:
+        if column in cleaned.columns:
+            cleaned[column] = numeric_series(cleaned, column)
+    return cleaned
+
+
+def clean_methodology_project_links(df: pd.DataFrame) -> pd.DataFrame:
+    if df.empty:
+        return df.copy()
+    return df.fillna("").copy()
+
+
+def clean_evidence_requirements_seed(df: pd.DataFrame) -> pd.DataFrame:
     if df.empty:
         return df.copy()
     return df.fillna("").copy()
@@ -168,6 +202,9 @@ def show_missing_unified_warning(entity_name: str) -> None:
         "issuances": "`python -m etl.build_unified.build_issuances`",
         "methodologies": "`python -m etl.build_unified.build_methodologies`",
         "documents": "`python -m etl.build_unified.build_documents`",
+        "methodology profiles": "`python -m etl.build_unified.build_methodology_profiles`",
+        "evidence requirements": "`python -m etl.build_unified.build_evidence_requirements_seed`",
+        "methodology project links": "`python -m etl.build_unified.build_methodology_project_links`",
     }
     command = builder_commands.get(entity_name, "`python -m etl.build_unified.<builder>`")
     st.warning(
@@ -305,6 +342,8 @@ def render_overview(data: dict) -> None:
     issuances = clean_unified_issuances(data["unified_issuances"])
     methodologies = clean_unified_methodologies(data["unified_methodologies"])
     documents = clean_unified_documents(data["unified_documents"])
+    methodology_profiles = clean_methodology_profiles(data["methodology_profiles"])
+    evidence_seed = clean_evidence_requirements_seed(data["evidence_requirements_seed"])
     if projects.empty:
         show_missing_unified_warning("projects")
         return
@@ -319,10 +358,14 @@ def render_overview(data: dict) -> None:
     metric3.metric("Total sources", f"{len(source_names(projects, issuances)):,}")
     metric4.metric("Total documents", f"{len(documents):,}")
 
-    metric5, metric6, metric7 = st.columns(3)
+    metric5, metric6, metric7, metric8 = st.columns(4)
     metric5.metric("Total countries", f"{safe_count_unique(projects, 'country'):,}")
     metric6.metric("Total methodologies", f"{len(methodologies):,}")
-    metric7.metric("Total issued quantity", f"{issuances['issued_quantity'].sum():,.0f}")
+    metric7.metric("Methodology profiles", f"{len(methodology_profiles):,}")
+    metric8.metric("Evidence seed rows", f"{len(evidence_seed):,}")
+
+    metric9, _metric10 = st.columns(2)
+    metric9.metric("Total issued quantity", f"{issuances['issued_quantity'].sum():,.0f}")
 
     st.subheader("Source Contribution")
     source1, source2, source3 = st.columns(3)
@@ -362,6 +405,7 @@ def render_overview(data: dict) -> None:
     with does:
         st.markdown("#### Does")
         st.write("- Combines source data into unified project and issuance tables.")
+        st.write("- Adds a methodology intelligence layer with profiles and evidence seeds.")
         st.write("- Keeps source-specific views for traceability.")
         st.write("- Exposes data quality gaps.")
     with does_not:
@@ -388,7 +432,8 @@ def render_overview(data: dict) -> None:
             "Projects and issuances are counted as rows in the unified outputs. "
             "Gold Standard currently contributes project catalogue records only, "
             "so source comparisons involving issuance volume are based on JCM and "
-            "Puro Earth."
+            "Puro Earth. The methodology intelligence layer links methodology labels "
+            "to projects and seeds evidence requirements from existing document titles."
         )
 
 
@@ -404,6 +449,8 @@ def render_source_coverage(data: dict) -> None:
     issuances = clean_unified_issuances(data["unified_issuances"])
     methodologies = clean_unified_methodologies(data["unified_methodologies"])
     documents = clean_unified_documents(data["unified_documents"])
+    methodology_profiles = clean_methodology_profiles(data["methodology_profiles"])
+    evidence_seed = clean_evidence_requirements_seed(data["evidence_requirements_seed"])
     if projects.empty:
         show_missing_unified_warning("projects")
         return
@@ -419,6 +466,14 @@ def render_source_coverage(data: dict) -> None:
     document_count_by_source = dict(
         zip(document_counts["source_name"], document_counts["document_rows"])
     )
+    profile_counts = rows_by_source(methodology_profiles, "methodology_profile_rows")
+    evidence_counts = rows_by_source(evidence_seed, "evidence_seed_rows")
+    profile_count_by_source = dict(
+        zip(profile_counts["source_name"], profile_counts["methodology_profile_rows"])
+    )
+    evidence_count_by_source = dict(
+        zip(evidence_counts["source_name"], evidence_counts["evidence_seed_rows"])
+    )
 
     coverage_matrix = pd.DataFrame(
         [
@@ -428,9 +483,11 @@ def render_source_coverage(data: dict) -> None:
                 "issuance_rows_available": "yes",
                 "methodologies_available": "yes",
                 "methodology_rows": int(methodology_count_by_source.get("JCM Mongolia-Japan", 0)),
+                "methodology_profile_rows": int(profile_count_by_source.get("JCM Mongolia-Japan", 0)),
                 "rules_or_forms_available": "yes",
                 "documents_available": "yes, forms",
                 "document_rows": int(document_count_by_source.get("JCM Mongolia-Japan", 0)),
+                "evidence_seed_rows": int(evidence_count_by_source.get("JCM Mongolia-Japan", 0)),
                 "credit_unit": "JCM credit",
                 "current_gap": "country-specific small sample",
             },
@@ -440,9 +497,11 @@ def render_source_coverage(data: dict) -> None:
                 "issuance_rows_available": "no",
                 "methodologies_available": "partial",
                 "methodology_rows": int(methodology_count_by_source.get("Gold Standard", 0)),
+                "methodology_profile_rows": int(profile_count_by_source.get("Gold Standard", 0)),
                 "rules_or_forms_available": "no",
                 "documents_available": "no",
                 "document_rows": int(document_count_by_source.get("Gold Standard", 0)),
+                "evidence_seed_rows": int(evidence_count_by_source.get("Gold Standard", 0)),
                 "credit_unit": "not available",
                 "current_gap": "project export lacks issuance and many methodology values",
             },
@@ -452,9 +511,11 @@ def render_source_coverage(data: dict) -> None:
                 "issuance_rows_available": "yes",
                 "methodologies_available": "yes, from registry field",
                 "methodology_rows": int(methodology_count_by_source.get("Puro Earth", 0)),
+                "methodology_profile_rows": int(profile_count_by_source.get("Puro Earth", 0)),
                 "rules_or_forms_available": "no",
                 "documents_available": "partial, not yet extracted",
                 "document_rows": int(document_count_by_source.get("Puro Earth", 0)),
+                "evidence_seed_rows": int(evidence_count_by_source.get("Puro Earth", 0)),
                 "credit_unit": "CORC",
                 "current_gap": "project detail documents not yet fully extracted",
             },
@@ -478,9 +539,9 @@ def render_source_coverage(data: dict) -> None:
     with card2:
         render_summary_card("Sources with Issuances", f"{len(issuance_counts):,}")
     with card3:
-        render_summary_card("Methodology Rows", f"{len(methodologies):,}")
+        render_summary_card("Methodology Profiles", f"{len(methodology_profiles):,}")
     with card4:
-        render_summary_card("Document Rows", f"{len(documents):,}")
+        render_summary_card("Evidence Seed Rows", f"{len(evidence_seed):,}")
 
     table1, table2, table3, table4 = st.columns(4)
     with table1:
@@ -495,6 +556,14 @@ def render_source_coverage(data: dict) -> None:
     with table4:
         st.subheader("Documents by Source")
         st.dataframe(document_counts, **DATAFRAME_KWARGS)
+
+    table5, table6 = st.columns(2)
+    with table5:
+        st.subheader("Methodology Profiles by Source")
+        st.dataframe(profile_counts, **DATAFRAME_KWARGS)
+    with table6:
+        st.subheader("Evidence Seed Rows by Source")
+        st.dataframe(evidence_counts, **DATAFRAME_KWARGS)
 
     st.subheader("Issued Quantity by Source")
     st.dataframe(issued_totals, **DATAFRAME_KWARGS)
@@ -975,6 +1044,184 @@ def render_explore_documents(data: dict) -> None:
     show_download_button(filtered, "unified_documents_filtered.csv")
 
 
+def render_methodology_profiles(data: dict) -> None:
+    st.header("Methodology Profiles")
+    st.caption(
+        "Explore v1.1 methodology profiles: source methodology labels enriched with "
+        "linked project counts, country counts, document match counts, and examples."
+    )
+
+    profiles = clean_methodology_profiles(data["methodology_profiles"])
+    if profiles.empty:
+        show_missing_unified_warning("methodology profiles")
+        return
+
+    st.sidebar.subheader("Profile Filters")
+    source_filter = st.sidebar.multiselect(
+        "source_name",
+        non_empty_options(profiles, "source_name"),
+        default=non_empty_options(profiles, "source_name"),
+        key="profile_source_filter",
+    )
+    search = st.sidebar.text_input(
+        "Search methodology name",
+        key="profile_text_search",
+        placeholder="Methodology name or code...",
+    )
+
+    filtered = profiles.copy()
+    filtered = apply_optional_multiselect_filter(filtered, "source_name", source_filter)
+    filtered = apply_text_search(
+        filtered,
+        ["methodology_name", "methodology_code", "notes"],
+        search,
+    )
+
+    total_linked_projects = (
+        filtered["related_projects_count"].sum()
+        if "related_projects_count" in filtered.columns
+        else 0
+    )
+    profiles_with_projects = (
+        int((filtered["related_projects_count"] > 0).sum())
+        if "related_projects_count" in filtered.columns
+        else 0
+    )
+
+    metric1, metric2, metric3, metric4 = st.columns(4)
+    metric1.metric("Total methodology profiles", f"{len(filtered):,}")
+    metric2.metric("Sources", f"{safe_count_unique(filtered, 'source_name'):,}")
+    metric3.metric("Total linked projects", f"{total_linked_projects:,.0f}")
+    metric4.metric("Profiles with linked projects", f"{profiles_with_projects:,}")
+
+    st.subheader("Top Methodologies by Linked Projects")
+    if "related_projects_count" in filtered.columns:
+        top_profiles = (
+            filtered.sort_values("related_projects_count", ascending=False)
+            .head(25)
+            .copy()
+        )
+        render_bar_chart(
+            top_profiles.head(15),
+            "methodology_name",
+            "related_projects_count",
+        )
+        st.dataframe(top_profiles, **DATAFRAME_KWARGS)
+    else:
+        st.info("No related_projects_count column is available.")
+
+    if "countries_count" in filtered.columns:
+        st.subheader("Countries Count Summary")
+        countries_summary = (
+            filtered.groupby("countries_count", as_index=False)
+            .size()
+            .rename(columns={"size": "methodology_profiles"})
+            .sort_values("countries_count", ascending=False)
+        )
+        render_bar_chart(
+            countries_summary,
+            "countries_count",
+            "methodology_profiles",
+        )
+        st.dataframe(countries_summary, **DATAFRAME_KWARGS)
+
+    st.subheader("Methodology Profiles Table")
+    st.dataframe(filtered, **DATAFRAME_KWARGS)
+    show_download_button(filtered, "methodology_profiles_filtered.csv")
+
+
+def render_evidence_requirements(data: dict) -> None:
+    st.header("Evidence Requirements")
+    st.caption(
+        "Explore v1.1 evidence requirement seed rows classified from existing "
+        "document titles only. No PDF contents are parsed."
+    )
+
+    evidence = clean_evidence_requirements_seed(data["evidence_requirements_seed"])
+    if evidence.empty:
+        show_missing_unified_warning("evidence requirements")
+        return
+
+    st.sidebar.subheader("Evidence Filters")
+    source_filter = st.sidebar.multiselect(
+        "source_name",
+        non_empty_options(evidence, "source_name"),
+        default=non_empty_options(evidence, "source_name"),
+        key="evidence_source_filter",
+    )
+    stage_filter = st.sidebar.multiselect(
+        "evidence_stage",
+        non_empty_options(evidence, "evidence_stage"),
+        default=[],
+        key="evidence_stage_filter",
+    )
+    if "evidence_document_type" in evidence.columns:
+        document_type_filter = st.sidebar.multiselect(
+            "evidence_document_type",
+            non_empty_options(evidence, "evidence_document_type"),
+            default=[],
+            key="evidence_document_type_filter",
+        )
+    else:
+        document_type_filter = []
+    search = st.sidebar.text_input(
+        "Search evidence rows",
+        key="evidence_text_search",
+        placeholder="Document title or relevance note...",
+    )
+
+    filtered = evidence.copy()
+    filtered = apply_optional_multiselect_filter(filtered, "source_name", source_filter)
+    filtered = apply_optional_multiselect_filter(filtered, "evidence_stage", stage_filter)
+    filtered = apply_optional_multiselect_filter(
+        filtered,
+        "evidence_document_type",
+        document_type_filter,
+    )
+    filtered = apply_text_search(
+        filtered,
+        ["document_title", "relevance_note"],
+        search,
+    )
+
+    metric1, metric2, metric3, metric4 = st.columns(4)
+    metric1.metric("Evidence seed rows", f"{len(filtered):,}")
+    metric2.metric("Sources", f"{safe_count_unique(filtered, 'source_name'):,}")
+    metric3.metric("Evidence stages", f"{safe_count_unique(filtered, 'evidence_stage'):,}")
+    metric4.metric(
+        "Document types",
+        f"{safe_count_unique(filtered, 'evidence_document_type'):,}",
+    )
+
+    summary1, summary2 = st.columns(2)
+    with summary1:
+        st.subheader("Evidence Stage Distribution")
+        stage_summary = (
+            filtered.groupby("evidence_stage", as_index=False)
+            .size()
+            .rename(columns={"size": "evidence_rows"})
+            .sort_values("evidence_rows", ascending=False)
+        )
+        render_bar_chart(stage_summary, "evidence_stage", "evidence_rows")
+        st.dataframe(stage_summary, **DATAFRAME_KWARGS)
+    with summary2:
+        st.subheader("Documents by Source")
+        source_summary = rows_by_source(filtered, "evidence_rows")
+        render_bar_chart(source_summary, "source_name", "evidence_rows")
+        st.dataframe(source_summary, **DATAFRAME_KWARGS)
+
+    st.subheader("Evidence Requirements Seed Table")
+    if "document_url" in filtered.columns:
+        st.dataframe(
+            filtered,
+            **DATAFRAME_KWARGS,
+            column_config={"document_url": st.column_config.LinkColumn("document_url")},
+        )
+    else:
+        st.dataframe(filtered, **DATAFRAME_KWARGS)
+    show_download_button(filtered, "evidence_requirements_seed_filtered.csv")
+
+
 def render_jcm_source_views(data: dict) -> None:
     methodologies = data["methodologies"]
     projects = data["jcm_projects"]
@@ -1109,6 +1356,11 @@ def render_data_quality(data: dict) -> None:
     issuances = clean_unified_issuances(data["unified_issuances"])
     methodologies = clean_unified_methodologies(data["unified_methodologies"])
     documents = clean_unified_documents(data["unified_documents"])
+    methodology_project_links = clean_methodology_project_links(
+        data["methodology_project_links"]
+    )
+    methodology_profiles = clean_methodology_profiles(data["methodology_profiles"])
+    evidence_seed = clean_evidence_requirements_seed(data["evidence_requirements_seed"])
     if projects.empty:
         show_missing_unified_warning("projects")
         return
@@ -1197,6 +1449,38 @@ def render_data_quality(data: dict) -> None:
                 render_bar_chart(document_missing.head(10), "column", "missing_values")
                 st.dataframe(document_missing, **DATAFRAME_KWARGS)
 
+    if (
+        not methodology_project_links.empty
+        or not methodology_profiles.empty
+        or not evidence_seed.empty
+    ):
+        st.subheader("v1.1 Methodology Intelligence Layer")
+        v11_col1, v11_col2, v11_col3 = st.columns(3)
+        with v11_col1:
+            st.markdown("#### Missing Values in Methodology Project Links")
+            if methodology_project_links.empty:
+                st.info("Methodology project links output is not present.")
+            else:
+                link_missing = missing_values(methodology_project_links)
+                render_bar_chart(link_missing.head(10), "column", "missing_values")
+                st.dataframe(link_missing, **DATAFRAME_KWARGS)
+        with v11_col2:
+            st.markdown("#### Missing Values in Methodology Profiles")
+            if methodology_profiles.empty:
+                st.info("Methodology profiles output is not present.")
+            else:
+                profile_missing = missing_values(methodology_profiles)
+                render_bar_chart(profile_missing.head(10), "column", "missing_values")
+                st.dataframe(profile_missing, **DATAFRAME_KWARGS)
+        with v11_col3:
+            st.markdown("#### Missing Values in Evidence Requirements")
+            if evidence_seed.empty:
+                st.info("Evidence requirements seed output is not present.")
+            else:
+                evidence_missing = missing_values(evidence_seed)
+                render_bar_chart(evidence_missing.head(10), "column", "missing_values")
+                st.dataframe(evidence_missing, **DATAFRAME_KWARGS)
+
     with st.expander("Projects Missing Methodology", expanded=False):
         st.caption(
             "Useful for parser follow-up and for explaining why some methodology "
@@ -1282,6 +1566,8 @@ page = st.sidebar.radio(
         "Explore Issuances",
         "Explore Methodologies",
         "Explore Documents",
+        "Methodology Profiles",
+        "Evidence Requirements",
         "Source Views",
         "Data Quality",
         "Admin / Source Inventory",
@@ -1300,6 +1586,10 @@ elif page == "Explore Methodologies":
     render_explore_methodologies(DATA)
 elif page == "Explore Documents":
     render_explore_documents(DATA)
+elif page == "Methodology Profiles":
+    render_methodology_profiles(DATA)
+elif page == "Evidence Requirements":
+    render_evidence_requirements(DATA)
 elif page == "Source Views":
     render_source_views(DATA)
 elif page == "Data Quality":
