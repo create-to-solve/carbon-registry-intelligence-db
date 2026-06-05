@@ -9,6 +9,15 @@ PROJECTS_CSV = PROJECT_ROOT / "data" / "processed" / "unified" / "projects.csv"
 ISSUANCES_CSV = PROJECT_ROOT / "data" / "processed" / "unified" / "issuances.csv"
 METHODOLOGIES_CSV = PROJECT_ROOT / "data" / "processed" / "unified" / "methodologies.csv"
 DOCUMENTS_CSV = PROJECT_ROOT / "data" / "processed" / "unified" / "documents.csv"
+METHODOLOGY_PROJECT_LINKS_CSV = (
+    PROJECT_ROOT / "data" / "processed" / "unified" / "methodology_project_links.csv"
+)
+METHODOLOGY_PROFILES_CSV = (
+    PROJECT_ROOT / "data" / "processed" / "unified" / "methodology_profiles.csv"
+)
+EVIDENCE_REQUIREMENTS_SEED_CSV = (
+    PROJECT_ROOT / "data" / "processed" / "unified" / "evidence_requirements_seed.csv"
+)
 
 
 def print_section(title: str) -> None:
@@ -199,6 +208,53 @@ def main() -> int:
         print_series(documents["document_type"].value_counts())
         print("\nMissing Values by Column:")
         print_series(missing_values(documents))
+
+    methodology_project_links = load_optional_csv(METHODOLOGY_PROJECT_LINKS_CSV)
+    print_section("Methodology Project Links")
+    if methodology_project_links.empty:
+        print(f"Not present: {METHODOLOGY_PROJECT_LINKS_CSV}")
+    else:
+        print(f"File: {METHODOLOGY_PROJECT_LINKS_CSV}")
+        print(f"Rows: {len(methodology_project_links)}")
+        print("\nRows by source:")
+        print_series(methodology_project_links["source_id"].value_counts())
+        print("\nTop methodologies:")
+        print_series(methodology_project_links["methodology_name"].value_counts().head(20))
+        print("\nMissing Values by Column:")
+        print_series(missing_values(methodology_project_links))
+
+    methodology_profiles = load_optional_csv(METHODOLOGY_PROFILES_CSV)
+    print_section("Methodology Profiles")
+    if methodology_profiles.empty:
+        print(f"Not present: {METHODOLOGY_PROFILES_CSV}")
+    else:
+        print(f"File: {METHODOLOGY_PROFILES_CSV}")
+        print(f"Rows: {len(methodology_profiles)}")
+        print("\nRows by source:")
+        print_series(methodology_profiles["source_id"].value_counts())
+        print("\nProfiles by related project count:")
+        print_series(
+            methodology_profiles["related_projects_count"]
+            .astype(str)
+            .value_counts()
+            .head(20)
+        )
+        print("\nMissing Values by Column:")
+        print_series(missing_values(methodology_profiles))
+
+    evidence_requirements_seed = load_optional_csv(EVIDENCE_REQUIREMENTS_SEED_CSV)
+    print_section("Evidence Requirements Seed")
+    if evidence_requirements_seed.empty:
+        print(f"Not present: {EVIDENCE_REQUIREMENTS_SEED_CSV}")
+    else:
+        print(f"File: {EVIDENCE_REQUIREMENTS_SEED_CSV}")
+        print(f"Rows: {len(evidence_requirements_seed)}")
+        print("\nRows by source:")
+        print_series(evidence_requirements_seed["source_id"].value_counts())
+        print("\nRows by evidence stage:")
+        print_series(evidence_requirements_seed["evidence_stage"].value_counts())
+        print("\nMissing Values by Column:")
+        print_series(missing_values(evidence_requirements_seed))
 
     return 0
 

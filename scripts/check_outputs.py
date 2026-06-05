@@ -23,6 +23,9 @@ OPTIONAL_OUTPUTS = [
     PROJECT_ROOT / "data" / "processed" / "unified" / "issuances.csv",
     PROJECT_ROOT / "data" / "processed" / "unified" / "methodologies.csv",
     PROJECT_ROOT / "data" / "processed" / "unified" / "documents.csv",
+    PROJECT_ROOT / "data" / "processed" / "unified" / "methodology_project_links.csv",
+    PROJECT_ROOT / "data" / "processed" / "unified" / "methodology_profiles.csv",
+    PROJECT_ROOT / "data" / "processed" / "unified" / "evidence_requirements_seed.csv",
 ]
 
 
