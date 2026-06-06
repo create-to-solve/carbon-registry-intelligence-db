@@ -1,4 +1,5 @@
 from pathlib import Path
+import html
 
 import pandas as pd
 import streamlit as st
@@ -234,11 +235,103 @@ def render_line_chart(
     st.line_chart(df[[index_column, value_column]].set_index(index_column), width="stretch")
 
 
+def apply_page_styles() -> None:
+    st.markdown(
+        """
+<style>
+.cri-card {
+    border: 1px solid #dbe3ea;
+    border-radius: 10px;
+    background: #f8fafc;
+    padding: 0.85rem 0.95rem;
+    min-height: 7.2rem;
+    margin-bottom: 0.75rem;
+}
+.cri-card-title {
+    color: #475569;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    margin-bottom: 0.3rem;
+}
+.cri-card-value {
+    color: #0f172a;
+    font-size: 1.45rem;
+    font-weight: 750;
+    line-height: 1.2;
+    margin-bottom: 0.35rem;
+}
+.cri-card-caption {
+    color: #64748b;
+    font-size: 0.84rem;
+    line-height: 1.35;
+}
+.cri-section-intro {
+    border-left: 4px solid #2563eb;
+    background: #f8fafc;
+    padding: 0.8rem 1rem;
+    margin: 0.75rem 0 1rem 0;
+}
+.cri-section-intro h3 {
+    margin: 0 0 0.25rem 0;
+    font-size: 1rem;
+}
+.cri-section-intro p {
+    margin: 0;
+    color: #475569;
+}
+</style>
+""",
+        unsafe_allow_html=True,
+    )
+
+
+def render_card(title: str, value, caption: str = "") -> None:
+    safe_title = html.escape(str(title))
+    safe_value = html.escape(str(value))
+    safe_caption = html.escape(str(caption))
+    st.markdown(
+        f"""
+<div class="cri-card">
+  <div class="cri-card-title">{safe_title}</div>
+  <div class="cri-card-value">{safe_value}</div>
+  <div class="cri-card-caption">{safe_caption}</div>
+</div>
+""",
+        unsafe_allow_html=True,
+    )
+
+
+def render_section_intro(title: str, text: str) -> None:
+    st.markdown(
+        f"""
+<div class="cri-section-intro">
+  <h3>{html.escape(str(title))}</h3>
+  <p>{html.escape(str(text))}</p>
+</div>
+""",
+        unsafe_allow_html=True,
+    )
+
+
+def get_top_value(df: pd.DataFrame, column: str) -> str:
+    if df.empty or column not in df.columns:
+        return "None"
+    values = df[column].replace("", pd.NA).dropna()
+    if values.empty:
+        return "None"
+    return str(values.value_counts().idxmax())
+
+
+def get_missing_count(df: pd.DataFrame, column: str) -> int:
+    if df.empty or column not in df.columns:
+        return 0
+    return int(df[column].fillna("").eq("").sum())
+
+
 def render_summary_card(title: str, value: str, note: str = "") -> None:
-    st.markdown(f"#### {title}")
-    st.metric(title, value, label_visibility="collapsed")
-    if note:
-        st.caption(note)
+    render_card(title, value, note)
 
 
 def projects_by_source(projects: pd.DataFrame) -> pd.DataFrame:
@@ -328,20 +421,18 @@ def unmatched_issuances(projects: pd.DataFrame, issuances: pd.DataFrame) -> pd.D
 
 
 def render_overview(data: dict) -> None:
-    st.header("Overview")
-    st.write(
-        "This dashboard aggregates public carbon registry data into unified project "
-        "and issuance tables."
-    )
-    st.info(
-        "Use this page to understand database scope at a glance. The detailed pages "
-        "separate unified exploration, source traceability, and known data gaps."
+    st.title("Carbon Registry Intelligence Database")
+    st.caption(
+        "Fragmented registry data -> unified project, methodology, and evidence intelligence"
     )
 
     projects = clean_unified_projects(data["unified_projects"])
     issuances = clean_unified_issuances(data["unified_issuances"])
     methodologies = clean_unified_methodologies(data["unified_methodologies"])
     documents = clean_unified_documents(data["unified_documents"])
+    methodology_project_links = clean_methodology_project_links(
+        data["methodology_project_links"]
+    )
     methodology_profiles = clean_methodology_profiles(data["methodology_profiles"])
     evidence_seed = clean_evidence_requirements_seed(data["evidence_requirements_seed"])
     if projects.empty:
@@ -350,6 +441,52 @@ def render_overview(data: dict) -> None:
     if issuances.empty:
         show_missing_unified_warning("issuances")
         return
+
+    render_section_intro(
+        "Mission Control",
+        (
+            "A stakeholder view of registry coverage, project scale, methodology "
+            "signals, and evidence readiness across the current public data layer."
+        ),
+    )
+
+    cards = st.columns(4)
+    with cards[0]:
+        render_card(
+            "Registry Coverage",
+            f"{len(source_names(projects, issuances)):,} sources",
+            (
+                f"{len(projects):,} project rows and {len(issuances):,} issuance "
+                "rows loaded into unified outputs."
+            ),
+        )
+    with cards[1]:
+        render_card(
+            "Project Landscape",
+            f"{len(projects):,} projects",
+            (
+                f"{safe_count_unique(projects, 'country'):,} countries and "
+                f"{safe_count_unique(projects, 'project_type'):,} project types represented."
+            ),
+        )
+    with cards[2]:
+        render_card(
+            "Methodology Intelligence",
+            f"{len(methodology_profiles):,} profiles",
+            (
+                f"{len(methodologies):,} methodology rows and "
+                f"{len(methodology_project_links):,} project-methodology links."
+            ),
+        )
+    with cards[3]:
+        render_card(
+            "Evidence Readiness",
+            f"{len(evidence_seed):,} seed rows",
+            (
+                f"{len(documents):,} document rows support early evidence "
+                "mapping without PDF parsing."
+            ),
+        )
 
     st.subheader("Current Coverage")
     metric1, metric2, metric3, metric4 = st.columns(4)
@@ -367,7 +504,10 @@ def render_overview(data: dict) -> None:
     metric9, _metric10 = st.columns(2)
     metric9.metric("Total issued quantity", f"{issuances['issued_quantity'].sum():,.0f}")
 
-    st.subheader("Source Contribution")
+    render_section_intro(
+        "Source Contribution",
+        "Each source contributes a different slice of registry intelligence today.",
+    )
     source1, source2, source3 = st.columns(3)
     with source1:
         render_summary_card(
@@ -400,6 +540,10 @@ def render_overview(data: dict) -> None:
             ),
         )
 
+    render_section_intro(
+        "Data Model",
+        "source-specific extraction -> unified tables -> explorer and intelligence pages.",
+    )
     st.subheader("What This Does / Does Not Yet Do")
     does, does_not = st.columns(2)
     with does:
@@ -414,7 +558,7 @@ def render_overview(data: dict) -> None:
         st.write("- Include ACR, Verra, or CAR.")
         st.write("- Fully parse methodology PDFs or project evidence documents.")
 
-    st.subheader("Quick Charts")
+    st.subheader("Charts / summaries")
     chart1, chart2 = st.columns(2)
     with chart1:
         st.markdown("#### Projects by source")
@@ -437,12 +581,64 @@ def render_overview(data: dict) -> None:
         )
 
 
+def render_demo_walkthrough(data: dict) -> None:
+    st.header("Demo Walkthrough")
+    render_section_intro(
+        "How to Explore the Prototype",
+        "Use this flow when walking stakeholders from data coverage to intelligence signals.",
+    )
+
+    steps = [
+        (
+            "Step 1: Source Coverage",
+            "Start with what each registry contributes and where coverage is still partial.",
+        ),
+        (
+            "Step 2: Explore Projects",
+            "Filter the project landscape by source, country, type, methodology, or status.",
+        ),
+        (
+            "Step 3: Explore Issuances",
+            "Compare issuance rows and quantities while keeping credit units in view.",
+        ),
+        (
+            "Step 4: Explore Methodologies",
+            "Review the unified methodology index and source-level methodology coverage.",
+        ),
+        (
+            "Step 5: Methodology Profiles",
+            "Move from labels to profiles with linked projects, countries, and documents.",
+        ),
+        (
+            "Step 6: Evidence Requirements",
+            "Inspect title-seeded evidence stages before any PDF parsing is added.",
+        ),
+        (
+            "Step 7: Data Quality",
+            "Close with trust signals, known gaps, and records needing follow-up.",
+        ),
+    ]
+
+    for start in range(0, len(steps), 3):
+        row = st.columns(3)
+        for column, (title, text) in zip(row, steps[start : start + 3]):
+            with column:
+                render_card(title, "Demo path", text)
+
+    st.info(
+        "The strongest demo arc is coverage -> projects -> issuances -> methodologies "
+        "-> evidence -> quality. It shows both what works and what still needs source expansion."
+    )
+
+
 def render_source_coverage(data: dict) -> None:
     st.header("Source Coverage")
-    st.info(
-        "This page explains which sources contribute project, issuance, methodology, "
-        "rules, and document coverage. It is meant to make the current database scope "
-        "easy to audit."
+    render_section_intro(
+        "What this page tells you",
+        (
+            "Which registries contribute projects, issuances, methodologies, documents, "
+            "profiles, and evidence seeds, plus the major current gaps."
+        ),
     )
 
     projects = clean_unified_projects(data["unified_projects"])
@@ -522,26 +718,28 @@ def render_source_coverage(data: dict) -> None:
         ]
     )
 
-    st.subheader("Coverage Matrix")
+    project_counts = projects_by_source(projects)
+    issuance_counts = issuances_by_source(issuances)
+    issued_totals = issued_quantity_summary(issuances, "source_name")
+
+    st.subheader("Key signals")
+    card1, card2, card3, card4 = st.columns(4)
+    with card1:
+        render_card("Sources with Projects", f"{len(project_counts):,}", "Registries contributing project rows.")
+    with card2:
+        render_card("Sources with Issuances", f"{len(issuance_counts):,}", "Registries contributing issuance rows.")
+    with card3:
+        render_card("Methodology Profiles", f"{len(methodology_profiles):,}", "Rows in the v1.1 profile layer.")
+    with card4:
+        render_card("Evidence Seed Rows", f"{len(evidence_seed):,}", "Document-title evidence classifications.")
+
+    st.subheader("Charts / summaries")
+    st.markdown("#### Coverage Matrix")
     st.dataframe(coverage_matrix, **DATAFRAME_KWARGS)
     st.caption(
         "The matrix describes what is available today, not what each registry may "
         "publish in full. It is a quick trust layer for stakeholder conversations."
     )
-
-    project_counts = projects_by_source(projects)
-    issuance_counts = issuances_by_source(issuances)
-    issued_totals = issued_quantity_summary(issuances, "source_name")
-
-    card1, card2, card3, card4 = st.columns(4)
-    with card1:
-        render_summary_card("Sources with Projects", f"{len(project_counts):,}")
-    with card2:
-        render_summary_card("Sources with Issuances", f"{len(issuance_counts):,}")
-    with card3:
-        render_summary_card("Methodology Profiles", f"{len(methodology_profiles):,}")
-    with card4:
-        render_summary_card("Evidence Seed Rows", f"{len(evidence_seed):,}")
 
     table1, table2, table3, table4 = st.columns(4)
     with table1:
@@ -661,9 +859,12 @@ def project_filters(projects: pd.DataFrame) -> pd.DataFrame:
 
 def render_explore_projects(data: dict) -> None:
     st.header("Explore Projects")
-    st.caption(
-        "Filter and search the unified project table, then switch analysis mode to "
-        "summarize the current result set."
+    render_section_intro(
+        "What this page tells you",
+        (
+            "Where projects are concentrated, which sources dominate the current "
+            "selection, and where methodology coverage still needs follow-up."
+        ),
     )
     projects = clean_unified_projects(data["unified_projects"])
     if projects.empty:
@@ -682,18 +883,31 @@ def render_explore_projects(data: dict) -> None:
         ],
     )
 
-    metric1, metric2, metric3, metric4 = st.columns(4)
-    metric1.metric("Projects", f"{len(filtered):,}")
-    metric2.metric("Sources", f"{safe_count_unique(filtered, 'source_name'):,}")
-    metric3.metric("Countries", f"{safe_count_unique(filtered, 'country'):,}")
-    metric4.metric("Methodologies", f"{safe_count_unique(filtered, 'methodology_name'):,}")
+    st.subheader("Key signals")
+    cards = st.columns(5)
+    with cards[0]:
+        render_card("Filtered Projects", f"{len(filtered):,}", "Rows matching the current filters.")
+    with cards[1]:
+        render_card("Top Source", get_top_value(filtered, "source_name"), "Largest source by project count.")
+    with cards[2]:
+        render_card("Top Country", get_top_value(filtered, "country"), "Most common country in this view.")
+    with cards[3]:
+        render_card("Top Methodology", get_top_value(filtered, "methodology_name"), "Most common nonblank methodology.")
+    with cards[4]:
+        render_card(
+            "Missing Methodology",
+            f"{get_missing_count(filtered, 'methodology_name'):,}",
+            "Project rows with blank methodology_name.",
+        )
     st.caption(
         "Empty filters mean all values for that field. Text search scans project name, "
         "developer/supplier, country, methodology, and source project ID."
     )
 
+    st.subheader("Charts / summaries")
     if analysis_mode == "Browse records":
-        st.subheader("Filtered Project Records")
+        st.info("Browse mode keeps the current filtered project set available for review and export.")
+        st.subheader("Detailed records")
         if "project_url" in filtered.columns:
             st.dataframe(
                 filtered,
@@ -704,7 +918,7 @@ def render_explore_projects(data: dict) -> None:
             st.dataframe(filtered, **DATAFRAME_KWARGS)
         show_download_button(filtered, "unified_projects_filtered.csv")
     elif analysis_mode == "Country comparison":
-        st.subheader("Country Comparison")
+        st.markdown("#### Country Comparison")
         st.info("Shows where the currently filtered project set is concentrated.")
         summary = (
             filtered[filtered["country"] != ""]
@@ -715,9 +929,10 @@ def render_explore_projects(data: dict) -> None:
             .head(25)
         )
         render_bar_chart(summary.head(15), "country", "projects")
+        st.subheader("Detailed records")
         st.dataframe(summary, **DATAFRAME_KWARGS)
     elif analysis_mode == "Methodology comparison":
-        st.subheader("Methodology Comparison")
+        st.markdown("#### Methodology Comparison")
         st.info("Ranks nonblank methodology names in the filtered project set.")
         summary = (
             filtered[filtered["methodology_name"] != ""]
@@ -728,23 +943,26 @@ def render_explore_projects(data: dict) -> None:
             .head(25)
         )
         render_bar_chart(summary.head(15), "methodology_name", "projects")
+        st.subheader("Detailed records")
         st.dataframe(summary, **DATAFRAME_KWARGS)
     elif analysis_mode == "Source comparison":
-        st.subheader("Source Comparison")
+        st.markdown("#### Source Comparison")
         st.info("Shows each source's project contribution and share of the filtered result.")
         summary = projects_by_source(filtered)
         if not summary.empty:
             summary["share_pct"] = (summary["projects"] / summary["projects"].sum() * 100).round(1)
         render_bar_chart(summary, "source_name", "projects")
+        st.subheader("Detailed records")
         st.dataframe(summary, **DATAFRAME_KWARGS)
     else:
-        st.subheader("Missing Methodology Review")
+        st.markdown("#### Missing Methodology Review")
         missing = filtered[filtered["methodology_name"] == ""].copy()
         st.caption(
             "This view isolates project rows where the unified methodology field is "
             "blank after source parsing."
         )
         st.metric("Projects missing methodology", f"{len(missing):,}")
+        st.subheader("Detailed records")
         st.dataframe(missing, **DATAFRAME_KWARGS)
         show_download_button(missing, "projects_missing_methodology.csv")
 
@@ -795,13 +1013,16 @@ def issuance_filters(issuances: pd.DataFrame) -> pd.DataFrame:
 
 def render_explore_issuances(data: dict) -> None:
     st.header("Explore Issuances")
+    render_section_intro(
+        "What this page tells you",
+        (
+            "Which sources, methodologies, countries, and credit units drive issued "
+            "quantity in the current filtered issuance set."
+        ),
+    )
     st.info(
         "Issued quantities are not directly comparable across all systems unless "
         "credit_unit is considered."
-    )
-    st.caption(
-        "Use filters and text search to define a subset, then choose an analysis mode "
-        "to summarize issuance quantity, timing, or missing core fields."
     )
 
     issuances = clean_unified_issuances(data["unified_issuances"])
@@ -822,37 +1043,61 @@ def render_explore_issuances(data: dict) -> None:
         ],
     )
 
-    metric1, metric2, metric3, metric4 = st.columns(4)
-    metric1.metric("Issuance rows", f"{len(filtered):,}")
-    metric2.metric("Issued quantity", f"{filtered['issued_quantity'].sum():,.0f}")
-    metric3.metric("Sources", f"{safe_count_unique(filtered, 'source_name'):,}")
-    metric4.metric("Credit units", f"{safe_count_unique(filtered, 'credit_unit'):,}")
+    source_totals = issued_quantity_summary(filtered, "source_name")
+    methodology_totals = issued_quantity_summary(filtered, "methodology_name")
+    top_source_by_quantity = (
+        source_totals.iloc[0]["source_name"] if not source_totals.empty else "n/a"
+    )
+    top_methodology_by_quantity = (
+        methodology_totals.iloc[0]["methodology_name"] if not methodology_totals.empty else "n/a"
+    )
+    missing_core = filtered[
+        (filtered["issuance_date"] == "") | (filtered["issued_quantity"].isna())
+    ].copy()
+
+    st.subheader("Key signals")
+    cards = st.columns(5)
+    with cards[0]:
+        render_card("Issuance Rows", f"{len(filtered):,}", "Rows matching the current filters.")
+    with cards[1]:
+        render_card("Issued Quantity", f"{filtered['issued_quantity'].sum():,.0f}", "Sum of issued_quantity.")
+    with cards[2]:
+        render_card("Top Source", top_source_by_quantity, "Largest issued quantity.")
+    with cards[3]:
+        render_card("Top Methodology", top_methodology_by_quantity, "Largest issued quantity.")
+    with cards[4]:
+        render_card("Missing Core Fields", f"{len(missing_core):,}", "Rows missing date or quantity.")
     st.caption(
         "Empty filters mean all values for that field. Text search scans project name, "
         "methodology, country, and source project ID."
     )
 
+    st.subheader("Charts / summaries")
     if analysis_mode == "Browse records":
-        st.subheader("Filtered Issuance Records")
+        st.info("Browse mode keeps the current filtered issuance set available for review and export.")
+        st.subheader("Detailed records")
         st.dataframe(filtered, **DATAFRAME_KWARGS)
         show_download_button(filtered, "unified_issuances_filtered.csv")
     elif analysis_mode == "Issued quantity by source":
-        st.subheader("Issued Quantity by Source")
+        st.markdown("#### Issued Quantity by Source")
         summary = issued_quantity_summary(filtered, "source_name")
         render_bar_chart(summary, "source_name", "issued_quantity")
+        st.subheader("Detailed records")
         st.dataframe(summary, **DATAFRAME_KWARGS)
     elif analysis_mode == "Issued quantity by methodology":
-        st.subheader("Issued Quantity by Methodology")
+        st.markdown("#### Issued Quantity by Methodology")
         summary = issued_quantity_summary(filtered, "methodology_name")
         render_bar_chart(summary.head(20), "methodology_name", "issued_quantity")
+        st.subheader("Detailed records")
         st.dataframe(summary, **DATAFRAME_KWARGS)
     elif analysis_mode == "Issued quantity by country":
-        st.subheader("Issued Quantity by Country")
+        st.markdown("#### Issued Quantity by Country")
         summary = issued_quantity_summary(filtered, "country")
         render_bar_chart(summary.head(20), "country", "issued_quantity")
+        st.subheader("Detailed records")
         st.dataframe(summary, **DATAFRAME_KWARGS)
     elif analysis_mode == "Issuance over time":
-        st.subheader("Issuance Over Time")
+        st.markdown("#### Issuance Over Time")
         dated = filtered.copy()
         dated["issuance_date_parsed"] = pd.to_datetime(
             dated["issuance_date"],
@@ -871,26 +1116,29 @@ def render_explore_issuances(data: dict) -> None:
         )
         st.caption(f"Rows with missing or unparseable dates excluded from this chart: {missing_dates:,}.")
         render_line_chart(summary, "year", "issued_quantity")
+        st.subheader("Detailed records")
         st.dataframe(summary, **DATAFRAME_KWARGS)
     else:
-        st.subheader("Missing Issuance Data Review")
-        missing = filtered[
-            (filtered["issuance_date"] == "") | (filtered["issued_quantity"].isna())
-        ].copy()
+        st.markdown("#### Missing Issuance Data Review")
+        missing = missing_core
         st.caption(
             "This view isolates issuance rows that cannot support date-based or "
             "quantity-based analysis without review."
         )
         st.metric("Rows missing date or quantity", f"{len(missing):,}")
+        st.subheader("Detailed records")
         st.dataframe(missing, **DATAFRAME_KWARGS)
         show_download_button(missing, "issuances_missing_core_fields.csv")
 
 
 def render_explore_methodologies(data: dict) -> None:
     st.header("Explore Methodologies")
-    st.caption(
-        "Browse the unified methodology index built from JCM methodology records and "
-        "distinct methodology labels found in project registries."
+    render_section_intro(
+        "What this page tells you",
+        (
+            "How methodology labels are distributed across sources and which "
+            "methodologies already connect to project records."
+        ),
     )
 
     methodologies = clean_unified_methodologies(data["unified_methodologies"])
@@ -919,21 +1167,49 @@ def render_explore_methodologies(data: dict) -> None:
         search,
     )
 
-    metric1, metric2, metric3 = st.columns(3)
-    metric1.metric("Total methodologies", f"{len(filtered):,}")
-    metric2.metric("Sources", f"{safe_count_unique(filtered, 'source_name'):,}")
-    metric3.metric(
-        "Methodologies by source",
-        f"{len(rows_by_source(filtered, 'methodologies')):,}",
-    )
-
     source_summary = rows_by_source(filtered, "methodologies")
-    st.subheader("Methodology Count by Source")
+    source_with_most = (
+        source_summary.iloc[0]["source_name"] if not source_summary.empty else "n/a"
+    )
+    project_count_column = (
+        "related_projects_count"
+        if "related_projects_count" in filtered.columns
+        else "project_count"
+        if "project_count" in filtered.columns
+        else ""
+    )
+    linked_methodologies = (
+        int((filtered[project_count_column] > 0).sum())
+        if project_count_column
+        else 0
+    )
+    top_methodology = "n/a"
+    if project_count_column:
+        top_rows = filtered[filtered[project_count_column].notna()].sort_values(
+            project_count_column,
+            ascending=False,
+        )
+        if not top_rows.empty:
+            top_methodology = top_rows.iloc[0]["methodology_name"]
+
+    st.subheader("Key signals")
+    cards = st.columns(4)
+    with cards[0]:
+        render_card("Methodologies", f"{len(filtered):,}", "Rows matching the current filters.")
+    with cards[1]:
+        render_card("Largest Source", source_with_most, "Source with the most methodology rows.")
+    with cards[2]:
+        render_card("Linked to Projects", f"{linked_methodologies:,}", "Methodologies with a positive project count.")
+    with cards[3]:
+        render_card("Top Linked Methodology", top_methodology, "Highest related project count.")
+
+    st.subheader("Charts / summaries")
+    st.markdown("#### Methodology Count by Source")
     render_bar_chart(source_summary, "source_name", "methodologies")
     st.dataframe(source_summary, **DATAFRAME_KWARGS)
 
     if "related_projects_count" in filtered.columns:
-        st.subheader("Top Methodologies by Related Projects")
+        st.markdown("#### Top Methodologies by Related Projects")
         top_related = (
             filtered[filtered["related_projects_count"].notna()]
             .sort_values("related_projects_count", ascending=False)
@@ -946,7 +1222,7 @@ def render_explore_methodologies(data: dict) -> None:
         )
         st.dataframe(top_related, **DATAFRAME_KWARGS)
     elif "project_count" in filtered.columns:
-        st.subheader("Top Methodologies by Project Count")
+        st.markdown("#### Top Methodologies by Project Count")
         top_related = (
             filtered[filtered["project_count"].notna()]
             .sort_values("project_count", ascending=False)
@@ -955,16 +1231,19 @@ def render_explore_methodologies(data: dict) -> None:
         render_bar_chart(top_related, "methodology_name", "project_count")
         st.dataframe(top_related, **DATAFRAME_KWARGS)
 
-    st.subheader("Unified Methodology Records")
+    st.subheader("Detailed records")
     st.dataframe(filtered, **DATAFRAME_KWARGS)
     show_download_button(filtered, "unified_methodologies_filtered.csv")
 
 
 def render_explore_documents(data: dict) -> None:
     st.header("Explore Documents")
-    st.caption(
-        "Browse the unified document index built from JCM rules/forms and existing "
-        "Puro Earth reconnaissance/access-note outputs."
+    render_section_intro(
+        "What this page tells you",
+        (
+            "Which source documents are already indexed and whether document type "
+            "coverage is strong enough for evidence-oriented exploration."
+        ),
     )
 
     documents = clean_unified_documents(data["unified_documents"])
@@ -1007,19 +1286,29 @@ def render_explore_documents(data: dict) -> None:
         search,
     )
 
-    metric1, metric2, metric3 = st.columns(3)
-    metric1.metric("Total documents", f"{len(filtered):,}")
-    metric2.metric("Sources", f"{safe_count_unique(filtered, 'source_name'):,}")
-    metric3.metric("Document types", f"{safe_count_unique(filtered, 'document_type'):,}")
+    top_document_type = (
+        get_top_value(filtered, "document_type")
+        if "document_type" in filtered.columns
+        else "n/a"
+    )
+    st.subheader("Key signals")
+    cards = st.columns(3)
+    with cards[0]:
+        render_card("Documents", f"{len(filtered):,}", "Rows matching the current filters.")
+    with cards[1]:
+        render_card("Top Source", get_top_value(filtered, "source_name"), "Largest source by document rows.")
+    with cards[2]:
+        render_card("Top Document Type", top_document_type, "Most common document type.")
 
+    st.subheader("Charts / summaries")
     summary1, summary2 = st.columns(2)
     with summary1:
-        st.subheader("Documents by Source")
+        st.markdown("#### Documents by Source")
         source_summary = rows_by_source(filtered, "documents")
         render_bar_chart(source_summary, "source_name", "documents")
         st.dataframe(source_summary, **DATAFRAME_KWARGS)
     with summary2:
-        st.subheader("Documents by Type")
+        st.markdown("#### Documents by Type")
         if "document_type" in filtered.columns:
             type_summary = (
                 filtered.groupby("document_type", as_index=False)
@@ -1032,7 +1321,7 @@ def render_explore_documents(data: dict) -> None:
         else:
             st.info("No document_type column is available.")
 
-    st.subheader("Unified Document Records")
+    st.subheader("Detailed records")
     if "document_url" in filtered.columns:
         st.dataframe(
             filtered,
@@ -1046,9 +1335,12 @@ def render_explore_documents(data: dict) -> None:
 
 def render_methodology_profiles(data: dict) -> None:
     st.header("Methodology Profiles")
-    st.caption(
-        "Explore v1.1 methodology profiles: source methodology labels enriched with "
-        "linked project counts, country counts, document match counts, and examples."
+    render_section_intro(
+        "What this page tells you",
+        (
+            "Which methodology labels have enough linked projects, countries, and "
+            "documents to become useful intelligence profiles."
+        ),
     )
 
     profiles = clean_methodology_profiles(data["methodology_profiles"])
@@ -1087,14 +1379,25 @@ def render_methodology_profiles(data: dict) -> None:
         if "related_projects_count" in filtered.columns
         else 0
     )
+    top_profile = "n/a"
+    if "related_projects_count" in filtered.columns:
+        ranked_profiles = filtered.sort_values("related_projects_count", ascending=False)
+        if not ranked_profiles.empty:
+            top_profile = ranked_profiles.iloc[0]["methodology_name"]
 
-    metric1, metric2, metric3, metric4 = st.columns(4)
-    metric1.metric("Total methodology profiles", f"{len(filtered):,}")
-    metric2.metric("Sources", f"{safe_count_unique(filtered, 'source_name'):,}")
-    metric3.metric("Total linked projects", f"{total_linked_projects:,.0f}")
-    metric4.metric("Profiles with linked projects", f"{profiles_with_projects:,}")
+    st.subheader("Key signals")
+    cards = st.columns(4)
+    with cards[0]:
+        render_card("Profiles", f"{len(filtered):,}", "Rows matching the current filters.")
+    with cards[1]:
+        render_card("Sources", f"{safe_count_unique(filtered, 'source_name'):,}", "Sources represented in profiles.")
+    with cards[2]:
+        render_card("Linked Projects", f"{total_linked_projects:,.0f}", "Sum of related_projects_count.")
+    with cards[3]:
+        render_card("Top Profile", top_profile, "Highest related project count.")
 
-    st.subheader("Top Methodologies by Linked Projects")
+    st.subheader("Charts / summaries")
+    st.markdown("#### Top Methodologies by Linked Projects")
     if "related_projects_count" in filtered.columns:
         top_profiles = (
             filtered.sort_values("related_projects_count", ascending=False)
@@ -1111,7 +1414,7 @@ def render_methodology_profiles(data: dict) -> None:
         st.info("No related_projects_count column is available.")
 
     if "countries_count" in filtered.columns:
-        st.subheader("Countries Count Summary")
+        st.markdown("#### Countries Count Summary")
         countries_summary = (
             filtered.groupby("countries_count", as_index=False)
             .size()
@@ -1125,17 +1428,21 @@ def render_methodology_profiles(data: dict) -> None:
         )
         st.dataframe(countries_summary, **DATAFRAME_KWARGS)
 
-    st.subheader("Methodology Profiles Table")
+    st.subheader("Detailed records")
     st.dataframe(filtered, **DATAFRAME_KWARGS)
     show_download_button(filtered, "methodology_profiles_filtered.csv")
 
 
 def render_evidence_requirements(data: dict) -> None:
     st.header("Evidence Requirements")
-    st.caption(
-        "Explore v1.1 evidence requirement seed rows classified from existing "
-        "document titles only. No PDF contents are parsed."
+    render_section_intro(
+        "What this page tells you",
+        (
+            "How existing document titles can seed an evidence map across project "
+            "design, validation, monitoring, verification, issuance, and related stages."
+        ),
     )
+    st.caption("Seed rows are classified from document titles only. No PDF contents are parsed.")
 
     evidence = clean_evidence_requirements_seed(data["evidence_requirements_seed"])
     if evidence.empty:
@@ -1184,18 +1491,21 @@ def render_evidence_requirements(data: dict) -> None:
         search,
     )
 
-    metric1, metric2, metric3, metric4 = st.columns(4)
-    metric1.metric("Evidence seed rows", f"{len(filtered):,}")
-    metric2.metric("Sources", f"{safe_count_unique(filtered, 'source_name'):,}")
-    metric3.metric("Evidence stages", f"{safe_count_unique(filtered, 'evidence_stage'):,}")
-    metric4.metric(
-        "Document types",
-        f"{safe_count_unique(filtered, 'evidence_document_type'):,}",
-    )
+    st.subheader("Key signals")
+    cards = st.columns(4)
+    with cards[0]:
+        render_card("Evidence Seed Rows", f"{len(filtered):,}", "Rows matching the current filters.")
+    with cards[1]:
+        render_card("Evidence Stages", f"{safe_count_unique(filtered, 'evidence_stage'):,}", "Distinct staged categories.")
+    with cards[2]:
+        render_card("Top Stage", get_top_value(filtered, "evidence_stage"), "Most common evidence stage.")
+    with cards[3]:
+        render_card("Sources Covered", f"{safe_count_unique(filtered, 'source_name'):,}", "Sources represented in seed rows.")
 
+    st.subheader("Charts / summaries")
     summary1, summary2 = st.columns(2)
     with summary1:
-        st.subheader("Evidence Stage Distribution")
+        st.markdown("#### Evidence Stage Distribution")
         stage_summary = (
             filtered.groupby("evidence_stage", as_index=False)
             .size()
@@ -1205,12 +1515,12 @@ def render_evidence_requirements(data: dict) -> None:
         render_bar_chart(stage_summary, "evidence_stage", "evidence_rows")
         st.dataframe(stage_summary, **DATAFRAME_KWARGS)
     with summary2:
-        st.subheader("Documents by Source")
+        st.markdown("#### Documents by Source")
         source_summary = rows_by_source(filtered, "evidence_rows")
         render_bar_chart(source_summary, "source_name", "evidence_rows")
         st.dataframe(source_summary, **DATAFRAME_KWARGS)
 
-    st.subheader("Evidence Requirements Seed Table")
+    st.subheader("Detailed records")
     if "document_url" in filtered.columns:
         st.dataframe(
             filtered,
@@ -1347,9 +1657,12 @@ def render_source_views(data: dict) -> None:
 
 def render_data_quality(data: dict) -> None:
     st.header("Data Quality")
-    st.write(
-        "This page explains known data strengths and gaps in the unified outputs. "
-        "Counts here are profiling checks, not transformations."
+    render_section_intro(
+        "What this page tells you",
+        (
+            "Whether the unified outputs are internally coherent enough for demo use, "
+            "and which gaps should be disclosed before analysis is over-interpreted."
+        ),
     )
 
     projects = clean_unified_projects(data["unified_projects"])
@@ -1375,18 +1688,30 @@ def render_data_quality(data: dict) -> None:
         (issuances["issuance_date"] == "") | (issuances["issued_quantity"].isna())
     ].copy()
 
-    st.subheader("Quality Summary")
+    duplicate_status = "Clear" if duplicates.empty else f"{len(duplicates):,} rows"
+    unmatched_status = "Clear" if unmatched.empty else f"{len(unmatched):,} rows"
+
+    st.subheader("Key signals")
     card1, card2, card3, card4 = st.columns(4)
     with card1:
-        render_summary_card("Duplicate Project IDs", f"{len(duplicates):,}")
+        render_card("Duplicate Project ID Status", duplicate_status, "Checked within each source.")
     with card2:
-        render_summary_card("Unmatched Issuances", f"{len(unmatched):,}")
+        render_card("Unmatched Issuance Status", unmatched_status, "Compared by source and project ID.")
     with card3:
-        render_summary_card("Projects Missing Methodology", f"{len(missing_project_methodology):,}")
+        render_card(
+            "Methodology Missingness",
+            f"{len(missing_project_methodology):,}",
+            "Project rows with blank methodology_name.",
+        )
     with card4:
-        render_summary_card("Issuances Missing Core Fields", f"{len(missing_issuance_core):,}")
+        render_card(
+            "Issuance Core Missingness",
+            f"{len(missing_issuance_core):,}",
+            "Rows missing issuance date or issued quantity.",
+        )
 
-    st.subheader("A. Healthy Signals")
+    st.subheader("Charts / summaries")
+    st.markdown("#### Healthy Signals")
     if duplicates.empty:
         st.success("No duplicate source_project_id values within each source.")
     else:
@@ -1404,13 +1729,14 @@ def render_data_quality(data: dict) -> None:
     else:
         st.warning("Some issuance rows have blank credit_unit values.")
 
-    st.subheader("B. Known Expected Gaps")
+    st.markdown("#### Known Expected Gaps")
     st.info("Gold Standard project export has no issuance data loaded yet.")
     st.info("Gold Standard has missing methodology values for many Listed projects.")
     st.info("Puro durability is available, but JCM durability is not applicable.")
     st.info("JCM Mongolia-Japan is a small country-specific sample.")
 
-    st.subheader("C. Profiling Tables")
+    st.subheader("Detailed records")
+    st.markdown("#### Profiling Tables")
     summary1, summary2 = st.columns(2)
     with summary1:
         st.markdown("#### Missing Values in Unified Projects")
@@ -1552,8 +1878,7 @@ st.set_page_config(
     layout="wide",
 )
 
-st.title("Carbon Registry Intelligence Database")
-st.caption("v0.4 prototype: source-specific parsers -> unified tables -> explorer")
+apply_page_styles()
 
 DATA = load_data()
 
@@ -1561,6 +1886,7 @@ page = st.sidebar.radio(
     "Navigation",
     [
         "Overview",
+        "Demo Walkthrough",
         "Source Coverage",
         "Explore Projects",
         "Explore Issuances",
@@ -1576,6 +1902,8 @@ page = st.sidebar.radio(
 
 if page == "Overview":
     render_overview(DATA)
+elif page == "Demo Walkthrough":
+    render_demo_walkthrough(DATA)
 elif page == "Source Coverage":
     render_source_coverage(DATA)
 elif page == "Explore Projects":
